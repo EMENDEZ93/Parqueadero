@@ -31,12 +31,12 @@ public class Parqueadero implements Serializable {
 	private String placa;
 
 	private Calendar fechaIngreso;
-
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private TipoVehiculo tipoVehiculo;
 	
 	@PrePersist
-	public void PrePersist() {
+	public void prePersist() {
 		fechaIngreso = Calendar.getInstance();
 	}
 	
