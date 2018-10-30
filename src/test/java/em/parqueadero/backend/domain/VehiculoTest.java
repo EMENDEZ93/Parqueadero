@@ -8,10 +8,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
+import em.parqueadero.backend.entity.builder.TipoVehiculoBuilder;
 import em.parqueadero.backend.entity.tipovehiculo.TipoVehiculoEntity;
+import em.parqueadero.backend.model.tipovehiculo.TipoVehiculoModel;
 import em.parqueadero.backend.repository.tipovehiculo.TipoVehiculoJpaRepository;
 
 @RunWith(SpringRunner.class)
@@ -22,19 +24,34 @@ public class VehiculoTest {
 	@Qualifier("tipoVehiculoJpaRepository")
 	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
 	
+	private TipoVehiculoBuilder tipoVehiculoBuilder;
+	
+	private TipoVehiculoTestDataBuilder tipoVehiculoTestDataBuilder;
+	private TipoVehiculoModel tipoVehiculoModel;
+	
 	@Before
 	public void setUp() throws Exception {		
+	
+		tipoVehiculoTestDataBuilder = new TipoVehiculoTestDataBuilder();
+		tipoVehiculoModel = tipoVehiculoTestDataBuilder.build();
+		 
+		
+		tipoVehiculoBuilder = new TipoVehiculoBuilder(); 
+		
 		TipoVehiculoEntity tipoVehiculoEntity2 = new TipoVehiculoEntity();
 		tipoVehiculoEntity2.setIdTipoVehiculo(1);
 		tipoVehiculoEntity2.setNombre("Carro");
-		tipoVehiculoJpaRepository.save(tipoVehiculoEntity2);
+	
+		tipoVehiculoJpaRepository.save(tipoVehiculoBuilder.convertirTipoVehiculoModelAEntity(tipoVehiculoModel));
+
+	
 	}
 	
 	
 	@Test
 	public void test() {
 				
-		TipoVehiculoEntity tipoVehiculoEntity =  tipoVehiculoJpaRepository.getOne(1);
+		TipoVehiculoEntity tipoVehiculoEntity =  tipoVehiculoJpaRepository.getOne(2);
 		
 		System.out.println("******************");
 		System.out.println(tipoVehiculoEntity.getNombre());
