@@ -1,9 +1,10 @@
 package em.parqueadero.backend.domain.factory.vehiculo;
 
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
 public interface VehiculoFactoryService {
 
-	public VehiculoService getService(String tipoVehiculo);	
+	public VehiculoService getService(Vehiculo vehiculo);
 	
 }
