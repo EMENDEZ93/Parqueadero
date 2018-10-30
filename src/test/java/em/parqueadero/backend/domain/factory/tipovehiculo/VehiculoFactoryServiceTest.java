@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
+import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.factory.vehiculo.impl.VehiculoFactoryServiceImpl;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.impl.CarroServiceImpl;
@@ -26,36 +28,55 @@ public class VehiculoFactoryServiceTest {
 	private VehiculoFactoryServiceImpl vehiculoFactoryService;
 
 	private Vehiculo vehiculo;
-	
+
 	@Autowired
 	private VehiculoService vehiculoService;
-	
+
 	@Before
 	public void setUp() {
 	}
 
 	@Test
-	public void obtenerCarroServicioPorvehiculoFactoryService() {
-		//arrange
+	public void obtenerCarroServicioPorvehiculoFactoryService() throws PreconditionException {
+		// arrange
 		vehiculo = new VehiculoTestDataBuilder().build();
-		
-		//act
+
+		// act
 		vehiculoService = vehiculoFactoryService.getService(vehiculo);
-		
-		//assert
+
+		// assert
 		assertEquals(CarroServiceImpl.class, vehiculoService.getClass());
 	}
 
 	@Test
-	public void obtenerMotoServicioPorVehiculoFactoryService() {
-		//arrange
+	public void obtenerMotoServicioPorVehiculoFactoryService() throws PreconditionException {
+		// arrange
 		vehiculo = new VehiculoTestDataBuilder().setPlaca("342-de").setTipoVehiculo("MOTO").build();
-				
-		//act
+
+		// act
 		vehiculoService = vehiculoFactoryService.getService(vehiculo);
-		
-		//assert
+
+		// assert
 		assertEquals(MotoServiceImpl.class, vehiculoService.getClass());
-	}	
-	
+	}
+
+	@Test
+	public void exceptionObtenerServicioPorTipoVehiculoNoExisteEnVehiculoFactoryService() throws PreconditionException {
+		// arrange
+		vehiculo = new VehiculoTestDataBuilder().setPlaca("342-de").setTipoVehiculo("AUTOBUS").build();
+
+		try {
+			// act
+			vehiculoService = vehiculoFactoryService.getService(vehiculo);
+		
+		} catch (PreconditionException e) {
+			
+			System.out.println(e.getMessage());
+			
+			// assert
+			assertEquals(ConstantExcep.TIPO_VEHICULO_NO_EXISTE, e.getMessage());
+		}
+
+	}
+
 }

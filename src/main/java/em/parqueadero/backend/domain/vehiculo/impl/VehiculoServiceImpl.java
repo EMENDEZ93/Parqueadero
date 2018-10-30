@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.factory.vehiculo.VehiculoFactoryService;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
@@ -20,7 +21,7 @@ public class VehiculoServiceImpl implements VehiculoService{
 		
 	
 	@Override
-	public Vehiculo tipoVehiculo(Vehiculo vehiculo) {
+	public Vehiculo tipoVehiculo(Vehiculo vehiculo) throws PreconditionException {
 		vehiculoService = vehiculoFactoryService.getService(vehiculo);
 		return vehiculoService.tipoVehiculo(vehiculo);
 	}
