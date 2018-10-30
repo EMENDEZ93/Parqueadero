@@ -23,42 +23,30 @@ public class VehiculoTest {
 	@Autowired
 	@Qualifier("tipoVehiculoJpaRepository")
 	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
-	
+
 	private TipoVehiculoBuilder tipoVehiculoBuilder;
-	
+
 	private TipoVehiculoTestDataBuilder tipoVehiculoTestDataBuilder;
 	private TipoVehiculoModel tipoVehiculoModel;
-	
+
 	@Before
-	public void setUp() throws Exception {		
-	
+	public void setUp() throws Exception {
+
 		tipoVehiculoTestDataBuilder = new TipoVehiculoTestDataBuilder();
 		tipoVehiculoModel = tipoVehiculoTestDataBuilder.build();
-		 
-		
-		tipoVehiculoBuilder = new TipoVehiculoBuilder(); 
-		
+
 		TipoVehiculoEntity tipoVehiculoEntity2 = new TipoVehiculoEntity();
 		tipoVehiculoEntity2.setIdTipoVehiculo(1);
 		tipoVehiculoEntity2.setNombre("Carro");
-	
+
 		tipoVehiculoJpaRepository.save(tipoVehiculoBuilder.convertirTipoVehiculoModelAEntity(tipoVehiculoModel));
 
-	
 	}
-	
-	
+
 	@Test
 	public void test() {
-				
-		TipoVehiculoEntity tipoVehiculoEntity =  tipoVehiculoJpaRepository.getOne(2);
-		
-		System.out.println("******************");
-		System.out.println(tipoVehiculoEntity.getNombre());
-		
-	    assertThat(tipoVehiculoEntity.getNombre())
-	      .isEqualTo("Carro");
-		
+		TipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository.getOne(2);
+		assertThat(tipoVehiculoEntity.getNombre()).isEqualTo("Carro");
 	}
 
 }

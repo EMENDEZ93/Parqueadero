@@ -5,6 +5,8 @@ import em.parqueadero.backend.model.tipovehiculo.TipoVehiculoModel;
 
 public class TipoVehiculoBuilder {
 
+	private TipoVehiculoBuilder() {}
+	
 	public static TipoVehiculoModel convertirTipoVehiculoEntityAModel(TipoVehiculoEntity tipoVehiculoEntity) {
 
 		TipoVehiculoModel tipoVehiculoModel = null;
