@@ -13,11 +13,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.persistence.PrePersist;
 
-import em.parqueadero.backend.entity.tipovehiculo.TipoVehiculo;
+import em.parqueadero.backend.entity.tipovehiculo.TipoVehiculoEntity;
 
 @Entity
 @Table()
-public class Parqueadero implements Serializable {
+public class ParqueaderoEntity implements Serializable {
 
 	private static final long serialVersionUID = -6585773340404494121L;
 
@@ -33,7 +33,7 @@ public class Parqueadero implements Serializable {
 	private Calendar fechaIngreso;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	private TipoVehiculo tipoVehiculo;
+	private TipoVehiculoEntity tipoVehiculo;
 	
 	@PrePersist
 	public void prePersist() {
