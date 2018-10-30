@@ -3,7 +3,7 @@ package em.parqueadero.backend.entity.builder;
 import em.parqueadero.backend.entity.tipovehiculo.TipoVehiculoEntity;
 import em.parqueadero.backend.model.tipovehiculo.TipoVehiculoModel;
 
-public class TipoVehiculoBuilder {
+public final class TipoVehiculoBuilder {
 
 	private TipoVehiculoBuilder() {}
 	
