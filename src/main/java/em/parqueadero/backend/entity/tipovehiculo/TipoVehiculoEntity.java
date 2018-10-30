@@ -16,15 +16,15 @@ public class TipoVehiculoEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idTipoVehiculo;
+	private int idTipoVehiculo;
 
 	private String nombre;
 
-	public Integer getIdTipoVehiculo() {
+	public int getIdTipoVehiculo() {
 		return idTipoVehiculo;
 	}
 
-	public void setIdTipoVehiculo(Integer idTipoVehiculo) {
+	public void setIdTipoVehiculo(int idTipoVehiculo) {
 		this.idTipoVehiculo = idTipoVehiculo;
 	}
 
