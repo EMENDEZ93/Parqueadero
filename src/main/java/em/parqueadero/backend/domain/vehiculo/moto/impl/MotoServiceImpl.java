@@ -3,49 +3,32 @@ package em.parqueadero.backend.domain.vehiculo.moto.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
-import em.parqueadero.backend.domain.vehiculo.moto.DisponibilidadParqueoMoto;
-import em.parqueadero.backend.domain.vehiculo.segregation.Delete;
-import em.parqueadero.backend.domain.vehiculo.segregation.Save;
+import em.parqueadero.backend.domain.vehiculo.moto.MotoServicio;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
-import em.parqueadero.backend.repository.tipovehiculo.TipoVehiculoJpaRepository;
+import em.parqueadero.backend.repository.parqueadero.ParqueaderoJpaRepository;
 
-public class MotoServiceImpl implements VehiculoService, Save, Delete, DisponibilidadParqueoMoto {
+public class MotoServiceImpl implements VehiculoService, MotoServicio {
 
 	@Autowired
-	@Qualifier("tipoVehiculoJpaRepository")
-	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
-	
+	private ParqueaderoJpaRepository parqueaderoJpaRepository;
+
 	@Override
 	public Vehiculo tipoVehiculo(Vehiculo vehiculo) {
-		System.out.println(moto());
-		save();
+		ingresoVehiculoParqueadero();
 		return vehiculo;
 	}
 
 	@Override
-	public Vehiculo save() {
-		
-		if(!disponibilidadParqueoMoto()) {
-			System.out.println("*******************************");
-			System.out.println("No hay Disponibilidad Para Motos");
-		}
-		
+	public Vehiculo ingresoVehiculoParqueadero() {
 		return null;
-	}
-
-	public String moto() {
-		return "MOTO";
-	}
-	
-	@Override
-	public void delete(Vehiculo vehiculo) {
-		
 	}
 
 	@Override
 	public boolean disponibilidadParqueoMoto() {
-		return false;
+		return (parqueaderoJpaRepository.
+				findByTipoVehiculo(VehiculoConstant.MOTO).size() < VehiculoConstant.LIMITE_MOTOS_PARQUEADAS);
 	}
 
 }

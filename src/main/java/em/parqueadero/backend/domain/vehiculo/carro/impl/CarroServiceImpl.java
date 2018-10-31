@@ -1,29 +1,24 @@
 package em.parqueadero.backend.domain.vehiculo.carro.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.carro.CarroService;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service
 public class CarroServiceImpl implements VehiculoService, CarroService {
 
-	@Override
-	public Vehiculo save() {
-		
-		if(disponibilidadParqueoCarro()) {
-			System.out.println("*******************************");
-			System.out.println("No hay Disponibilidad Para Carros");
-		}
-		
-		return null;
-	}
+	@Autowired
+	private ParqueaderoJpaRepository parqueaderoJpaRepository;
 
 	@Override
-	public void delete(Vehiculo vehiculo) {
-		
+	public Vehiculo ingresoVehiculoParqueadero() {
+		return null;
 	}
 
 	@Override
@@ -33,7 +28,8 @@ public class CarroServiceImpl implements VehiculoService, CarroService {
 
 	@Override
 	public boolean disponibilidadParqueoCarro() {
-		return false;
+		return (parqueaderoJpaRepository.findByTipoVehiculo(VehiculoConstant.CARRO)
+				.size() < VehiculoConstant.LIMITE_CARROS_PARQUEADOS);
 	}
 
 }

@@ -1,6 +1,6 @@
 package em.parqueadero.backend.domain.vehiculo.carro;
 
-public interface DisponibilildadParqueoCarro {
+public interface DisponibilidadParqueoCarro {
 
 	public boolean disponibilidadParqueoCarro();
 	

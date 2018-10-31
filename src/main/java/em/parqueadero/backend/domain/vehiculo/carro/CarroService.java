@@ -1,8 +1,7 @@
 package em.parqueadero.backend.domain.vehiculo.carro;
 
-import em.parqueadero.backend.domain.vehiculo.segregation.Delete;
-import em.parqueadero.backend.domain.vehiculo.segregation.Save;
+import em.parqueadero.backend.domain.vehiculo.segregation.IngresoVehiculoParqueadero;
 
-public interface CarroService extends Save, Delete, DisponibilildadParqueoCarro {
+public interface CarroService extends IngresoVehiculoParqueadero, DisponibilidadParqueoCarro {
 
 }
