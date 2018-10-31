@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
-import em.parqueadero.backend.domain.vehiculo.carro.impl.CarroServiceImpl;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
-import em.parqueadero.backend.repository.tipovehiculo.TipoVehiculoJpaRepository;
 
 @RestController
 public class VehiculoController {
@@ -21,13 +19,6 @@ public class VehiculoController {
 	@Autowired
 	@Qualifier("vehiculoService")
 	private VehiculoService vehiculoService;
-	
-	@Autowired
-	private CarroServiceImpl carroService;
-	
-	@Autowired
-	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
-	
 	
 	@GetMapping("/")
 	public Vehiculo index() throws PreconditionException {

@@ -1,7 +1,6 @@
 package em.parqueadero.backend.domain.vehiculo.moto.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;

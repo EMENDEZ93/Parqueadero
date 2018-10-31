@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.factory.vehiculo.VehiculoFactoryService;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.segregation.PlacaIniciaConA;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService {
+public class VehiculoServiceImpl implements VehiculoService, PlacaIniciaConA {
 
 	@Autowired
 	@Qualifier("vehiculoFactoryService")
@@ -28,6 +29,11 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Override
 	public Vehiculo ingresoVehiculoParqueadero() {
 		return null;
+	}
+
+	@Override
+	public boolean placaIniciConA(Vehiculo vehiculo) {
+		return String.valueOf(vehiculo.getPlaca()).startsWith("A");
 	}
 
 }
