@@ -22,12 +22,19 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Override
 	public Vehiculo tipoVehiculo(Vehiculo vehiculo) throws PreconditionException {
 		vehiculoService = vehiculoFactoryService.getService(vehiculo);
+		System.out.println("**********************");
+		vehiculoService.save();
 		return vehiculoService.tipoVehiculo(vehiculo);
 	}
 
 	@Override
 	public Vehiculo save() {
 		return null;
+	}
+
+	@Override
+	public void delete(Vehiculo vehiculo) {
+		
 	}
 
 }
