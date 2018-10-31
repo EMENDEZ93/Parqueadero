@@ -22,13 +22,15 @@ public class VehiculoController {
 	
 	@GetMapping("/")
 	public Vehiculo index() throws PreconditionException {
-		Vehiculo vehiculo = new Vehiculo("333hhh", "BICICLETA");
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setPlaca("333hhh");
+		vehiculo.setTipoVehiculo("BICICLETA");
 		return vehiculoService.tipoVehiculo(vehiculo);
 	}
 	
 	@PostMapping("/vehiculo")
 	public Vehiculo postVehiculo(@Valid @RequestBody Vehiculo vehiculo) {
-		return null;
+		return vehiculo;
 	}
 	
 }

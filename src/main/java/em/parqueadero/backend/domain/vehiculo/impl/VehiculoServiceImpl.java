@@ -18,7 +18,6 @@ public class VehiculoServiceImpl implements VehiculoService{
 	
 	@Autowired
 	private VehiculoService vehiculoService;
-		
 	
 	@Override
 	public Vehiculo tipoVehiculo(Vehiculo vehiculo) throws PreconditionException {

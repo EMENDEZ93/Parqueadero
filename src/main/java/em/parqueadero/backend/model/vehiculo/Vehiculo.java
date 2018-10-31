@@ -10,11 +10,6 @@ public class Vehiculo implements Serializable {
 
 	private String tipoVehiculo;
 
-	public Vehiculo(String placa, String tipoVehiculo) {
-		this.placa = placa;
-		this.tipoVehiculo = tipoVehiculo;
-	}
-
 	public String getTipoVehiculo() {
 		return tipoVehiculo;
 	}

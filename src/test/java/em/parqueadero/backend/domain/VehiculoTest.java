@@ -23,9 +23,8 @@ public class VehiculoTest {
 	@Autowired
 	@Qualifier("tipoVehiculoJpaRepository")
 	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
-
+	
 	private TipoVehiculoBuilder tipoVehiculoBuilder;
-
 	private TipoVehiculoTestDataBuilder tipoVehiculoTestDataBuilder;
 	private TipoVehiculoModel tipoVehiculoModel;
 

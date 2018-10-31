@@ -26,7 +26,11 @@ public class VehiculoTestDataBuilder {
 	}
 	
 	public Vehiculo build() {
-		return new Vehiculo(this.placa, this.tipoVehiculo);
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setPlaca(this.placa);
+		vehiculo.setTipoVehiculo(this.tipoVehiculo);
+		
+		return vehiculo;
 	}
 	
 }
