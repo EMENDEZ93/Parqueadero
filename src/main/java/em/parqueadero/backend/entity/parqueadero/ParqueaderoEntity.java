@@ -1,7 +1,7 @@
 package em.parqueadero.backend.entity.parqueadero;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +26,7 @@ public class ParqueaderoEntity implements Serializable {
 	@NotNull
 	private String placa;
 
-	private Calendar fechaIngreso;
+	private LocalDateTime fechaIngreso;
 	
 	private String tipoVehiculo;
 	
@@ -40,7 +40,7 @@ public class ParqueaderoEntity implements Serializable {
 
 	@PrePersist
 	public void prePersist() {
-		fechaIngreso = Calendar.getInstance();
+		fechaIngreso = LocalDateTime.now();
 	}
 	
 	public Integer getIdParqueadero() {
@@ -67,11 +67,11 @@ public class ParqueaderoEntity implements Serializable {
 		this.placa = placa;
 	}
 
-	public Calendar getFechaIngreso() {
+	public LocalDateTime getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(Calendar fechaIngreso) {
+	public void setFechaIngreso(LocalDateTime fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 

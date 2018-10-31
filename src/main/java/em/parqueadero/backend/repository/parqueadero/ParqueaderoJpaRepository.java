@@ -12,5 +12,5 @@ import em.parqueadero.backend.entity.parqueadero.ParqueaderoEntity;
 public interface ParqueaderoJpaRepository extends JpaRepository<ParqueaderoEntity, Serializable> {
 
 	public List<ParqueaderoEntity> findByTipoVehiculo(String tipoVehiculo);
-	
+
 }
