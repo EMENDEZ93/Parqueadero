@@ -6,8 +6,8 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.factory.vehiculo.VehiculoFactoryService;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
-import em.parqueadero.backend.domain.vehiculo.impl.CarroServiceImpl;
-import em.parqueadero.backend.domain.vehiculo.impl.MotoServiceImpl;
+import em.parqueadero.backend.domain.vehiculo.carro.impl.CarroServiceImpl;
+import em.parqueadero.backend.domain.vehiculo.moto.impl.MotoServiceImpl;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
 @Service("vehiculoFactoryService")

@@ -10,7 +10,7 @@ import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService{
+public class VehiculoServiceImpl implements VehiculoService {
 
 	@Autowired
 	@Qualifier("vehiculoFactoryService")
@@ -18,7 +18,7 @@ public class VehiculoServiceImpl implements VehiculoService{
 	
 	@Autowired
 	private VehiculoService vehiculoService;
-	
+
 	@Override
 	public Vehiculo tipoVehiculo(Vehiculo vehiculo) throws PreconditionException {
 		vehiculoService = vehiculoFactoryService.getService(vehiculo);

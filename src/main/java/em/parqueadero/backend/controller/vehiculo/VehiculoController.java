@@ -24,7 +24,7 @@ public class VehiculoController {
 	public Vehiculo index() throws PreconditionException {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca("333hhh");
-		vehiculo.setTipoVehiculo("BICICLETA");
+		vehiculo.setTipoVehiculo("MOTO");
 		return vehiculoService.tipoVehiculo(vehiculo);
 	}
 	
