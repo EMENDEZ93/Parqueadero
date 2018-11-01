@@ -2,13 +2,7 @@ package em.parqueadero.backend.domain.vehiculo;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.Calendar;
-import java.util.Date;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +12,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
+import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.impl.VehiculoServiceImpl;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
@@ -27,68 +23,68 @@ public class VehiculoServiceTest {
 
 	@InjectMocks
 	private VehiculoServiceImpl vehiculoService;
-	
+
+	private VehiculoServiceImpl vehiculoServiceMock;
+
 	private Vehiculo vehiculo;
-	
+
 	@Before
 	public void setUp() {
+		vehiculoServiceMock = mock(VehiculoServiceImpl.class);
 	}
-	
+
 	@Test
 	public void placaIniciaConATest() {
-		//arrange
+		// arrange
 		vehiculo = new VehiculoTestDataBuilder().setPlaca("ABC50").setTipoVehiculo("Moto").build();
 
-		//act
+		// act
 		boolean placaIniciaConA = vehiculoService.placaIniciConA(vehiculo);
-		
-		//assert
+
+		// assert
 		assertTrue(placaIniciaConA);
-		
+
 	}
 
 	@Test
 	public void placaIniciaDiferenteDeATest() {
-		//arrange
+		// arrange
 		vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50r").setTipoVehiculo("Carro").build();
 
-		//act
+		// act
 		boolean placaIniciaConA = vehiculoService.placaIniciConA(vehiculo);
-		
-		//assert
+
+		// assert
 		assertFalse(placaIniciaConA);
-		
+
 	}
 
 	@Test
-	public void vehiculolCondicionIngresoVehiculoDomingoLunes() throws Exception {
-		//arrange
-		vehiculo = new VehiculoTestDataBuilder().setPlaca("AAA").setTipoVehiculo("Carro").build();
-		
-		LocalDateTime localDateTime = LocalDateTime.now();
-		
-		Thread.sleep(3000);
-		
-		System.out.println( LocalDateTime.now() );
+	public void vehiculolCumpleConCondicionIngresoVehiculoDomingoLunes() throws Exception {
+		// arrange
+		when(vehiculoServiceMock.ingresoVehiculoSoloDomingoLunes()).thenReturn(true);
 
-		long numberOfHours = Duration.between( localDateTime , LocalDateTime.now()).toHours();
-	
-		long numberOfHours2 = Duration.between( localDateTime , LocalDateTime.now()).toMillis();
-		
-		System.out.println(numberOfHours);	    
-		System.out.println(numberOfHours2);
-		System.out.println(localDateTime.getDayOfWeek());
-		System.out.println(LocalDateTime.now().getDayOfWeek());
-		
-		LocalDateTime aDateTime = LocalDateTime.of(2018, Month.OCTOBER, 30, 16, 00, 40);
+		// act
+		boolean puedeIngresar = vehiculoServiceMock.ingresoVehiculoSoloDomingoLunes();
 
-		System.out.println("*************************");
-		System.out.println(aDateTime);
-		
-		System.out.println("*************************");
-		long number = Duration.between( aDateTime , LocalDateTime.now()).toHours();
-		System.out.println(number);
-		
+		// assert
+		assertTrue(puedeIngresar);
 	}
-	
+
+	@Test
+	public void vehiculolNoCumpleCondicionIngresoVehiculoDomingoLunes() throws Exception {
+		// arrange
+		when(vehiculoServiceMock.ingresoVehiculoSoloDomingoLunes())
+				.thenThrow(new PreconditionException(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES));
+		try {
+			// act
+			vehiculoServiceMock.ingresoVehiculoSoloDomingoLunes();
+			
+		} catch (PreconditionException e) {
+
+			// assert
+			assertEquals(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES, e.getMessage());
+		}
+
+	}
 }

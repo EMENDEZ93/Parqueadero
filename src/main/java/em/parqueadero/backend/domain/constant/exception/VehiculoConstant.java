@@ -10,4 +10,6 @@ public class VehiculoConstant {
 	public static final String CARRO = "Carro";
 	public static final int LIMITE_CARROS_PARQUEADOS = 20;
 	public static final int LIMITE_MOTOS_PARQUEADAS = 10;
+	
+	
 }

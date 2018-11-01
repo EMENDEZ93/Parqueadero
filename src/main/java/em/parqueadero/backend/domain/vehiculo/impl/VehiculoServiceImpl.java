@@ -1,26 +1,27 @@
 package em.parqueadero.backend.domain.vehiculo.impl;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.factory.vehiculo.VehiculoFactoryService;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
-import em.parqueadero.backend.domain.vehiculo.segregation.CondicionIngresoVehiculoDomingoLunes;
+import em.parqueadero.backend.domain.vehiculo.segregation.IngresoVehiculoSoloDomingoLunes;
 import em.parqueadero.backend.domain.vehiculo.segregation.PlacaIniciaConA;
 import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService, PlacaIniciaConA, CondicionIngresoVehiculoDomingoLunes {
+public class VehiculoServiceImpl implements VehiculoService, PlacaIniciaConA, IngresoVehiculoSoloDomingoLunes {
 
 	@Autowired
 	@Qualifier("vehiculoFactoryService")
 	private VehiculoFactoryService vehiculoFactoryService;
-	
+
 	@Autowired
 	private VehiculoService vehiculoService;
 
@@ -41,11 +42,12 @@ public class VehiculoServiceImpl implements VehiculoService, PlacaIniciaConA, Co
 	}
 
 	@Override
-	public boolean condicinIngresoVehiculoDomingoLunes(Vehiculo vehiculo) {
-		
-		//if(vehiculo.getFechaIngreso().getDayOfWeek() == Calendar.SUNDAY ) {}
-		return false;
+	public boolean ingresoVehiculoSoloDomingoLunes() throws PreconditionException {
+		if (LocalDateTime.now().getDayOfWeek() == DayOfWeek.SUNDAY
+				|| LocalDateTime.now().getDayOfWeek() == DayOfWeek.MONDAY) {
+			return true;
+		}
+		throw new PreconditionException(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES);
 	}
-
 
 }
