@@ -31,12 +31,12 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}
 	
-	public Vehiculo build() {
+	/*public Vehiculo build() {
 		Vehiculo vehiculo = new Vehiculo();
 		vehiculo.setPlaca(this.placa);
 		vehiculo.setTipoVehiculo(this.tipoVehiculo);
 		vehiculo.setFechaIngreso(this.fechaIngreso);
 		return vehiculo;
-	}
+	}*/
 	
 }

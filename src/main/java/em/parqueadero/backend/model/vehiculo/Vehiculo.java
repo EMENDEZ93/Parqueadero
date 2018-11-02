@@ -1,17 +1,12 @@
 package em.parqueadero.backend.model.vehiculo;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-public class Vehiculo implements Serializable {
-
-	private static final long serialVersionUID = 2065015136721602875L;
+public class Vehiculo {
 
 	private String placa;
 
 	private String tipoVehiculo;
-	
-	private LocalDateTime fechaIngreso;
+
+	private int cilindraje;
 
 	public String getTipoVehiculo() {
 		return tipoVehiculo;
@@ -29,12 +24,12 @@ public class Vehiculo implements Serializable {
 		this.placa = placa;
 	}
 
-	public LocalDateTime getFechaIngreso() {
-		return fechaIngreso;
+	public int getCilindraje() {
+		return cilindraje;
 	}
 
-	public void setFechaIngreso(LocalDateTime fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
+	public void setCilindraje(int cilindraje) {
+		this.cilindraje = cilindraje;
 	}
 
 }
