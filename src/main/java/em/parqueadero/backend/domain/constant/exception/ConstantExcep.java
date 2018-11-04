@@ -12,6 +12,7 @@ public class ConstantExcep {
 	public static final String NO_HAY_LUGAR_DISPONIBLE_CARRO = "NO HAY LUGAR DISPONIBLE PARA CARROS";
 	public static final String DATOS_NO_VALIDOS = "RECUERDE LLENAR LOS CAMPOS REQUERIDOS";
 	public static final String PLACA_NO_VALIDA = "LA PLACA ES UN CAMPO REQUERIDO";
-	public static final String TIPO_VEHICULO_NO_VALIDO = "LA PLACA ES UN CAMPO REQUERIDO";
+	public static final String TIPO_VEHICULO_NO_VALIDO = "EL TIPO DE VEHICULO ES UN CAMPO REQUERIDO";
+	public static final String CILINDRAJE_NO_VALIDO = "EL CILINDRAJE ES UN CAMPO REQUERIDO";
 	
 }

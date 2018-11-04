@@ -16,10 +16,7 @@ public class VehiculoController {
 	
 	@GetMapping("/")
 	public Vehiculo ingresoVehiculoParqueadero() throws PreconditionException {
-		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setPlaca("909");
-		vehiculo.setTipoVehiculo("Moto");
-		return vehiculoService.tipoVehiculo(vehiculo);
+		return null;
 	}
 	
 }

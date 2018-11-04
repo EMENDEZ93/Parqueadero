@@ -1,60 +1,93 @@
 package em.parqueadero.backend.domain.vehiculo;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.impl.VehiculoServiceImpl;
+import em.parqueadero.backend.model.vehiculo.Vehiculo;
 
 @RunWith(SpringRunner.class)
 public class VehiculoServiceTest {
-/*
+
+	@MockBean
 	private VehiculoServiceImpl vehiculoService;
+
+	private VehiculoServiceImpl vehiculoServiceImpl;
 
 	@Before
 	public void setUp() {
-		vehiculoService = mock(VehiculoServiceImpl.class);
+		vehiculoServiceImpl = new VehiculoServiceImpl();
 	}
 
 	@Test
-	public void lugarDisponibleEnParqueaderoMoto() throws PreconditionException {
+	public void placaIniciaConA() throws PreconditionException {
+
 		// arrange
-		when(vehiculoService.lugarDisponibleEnParqueaderoMoto()).thenReturn(true);
+		Vehiculo vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").build();
 
 		// act
-		boolean lugarDisponible = vehiculoService.lugarDisponibleEnParqueaderoMoto();
+		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
 
 		// assert
-		assertTrue(lugarDisponible);
+		assertTrue(vehiculoIniciaConA);
 
 	}
 
 	@Test
-	public void ExceptionNoDisponibleEnParqueaderoMoto() throws PreconditionException {
+	public void placaNoIniciaConA() throws PreconditionException {
+
 		// arrange
-		when(vehiculoService.lugarDisponibleEnParqueaderoMoto())
-				.thenThrow(new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_MOTO));
+		Vehiculo vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").build();
+
+		// act
+		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
+
+		// assert
+		assertFalse(vehiculoIniciaConA);
+
+	}
+
+	@Test
+	public void ingresoVehiculoEnDomingoLunes() throws PreconditionException {
+
+		// arrange
+		when(vehiculoService.ingresoVehiculoSoloDomingoLunes()).thenReturn(true);
+
+		// act
+		boolean ingresoDomingoLunes = vehiculoService.ingresoVehiculoSoloDomingoLunes();
+
+		// assert
+		assertTrue(ingresoDomingoLunes);
+
+	}
+
+	@Test
+	public void ingresoVehiculoDiferenteADomingoLunes() throws PreconditionException {
+
+		// arrange
+		when(vehiculoService.ingresoVehiculoSoloDomingoLunes())
+				.thenThrow(new PreconditionException(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES));
 
 		try {
+
 			// act
-			vehiculoService.lugarDisponibleEnParqueaderoMoto();
+			vehiculoService.ingresoVehiculoSoloDomingoLunes();
+
 		} catch (PreconditionException e) {
 
 			// assert
-			assertEquals(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_MOTO, e.getMessage());
+			assertEquals(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES, e.getMessage());
 		}
 
 	}
-*/
+
 }

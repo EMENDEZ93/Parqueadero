@@ -19,12 +19,6 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
 	
 	@Override
-	public Vehiculo tipoVehiculo(Vehiculo vehiculo) throws PreconditionException {
-		lugarDisponibleParqueo();
-		return vehiculo;
-	}
-
-	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
 		if(parqueaderoJpaRepository.findByTipoVehiculo(VehiculoConstant.CARRO).size() < VehiculoConstant.LIMITE_CARROS_PARQUEADOS) {
 			return true;

@@ -22,13 +22,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 	
 	@Autowired
 	private Factory factory;
-	
-	@Override
-	public Vehiculo tipoVehiculo(Vehiculo vehiculo) throws PreconditionException {
-		return factory.getService(vehiculo).tipoVehiculo(vehiculo);
-	}
-
-	
+		
 	public VehiculoEntity ingresoVehiculoParqueaderoEntity(VehiculoEntity vehiculoEntity) {
 		return vehiculoJpaRepository.save(vehiculoEntity);
 	}

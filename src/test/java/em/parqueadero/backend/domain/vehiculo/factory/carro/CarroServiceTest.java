@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,7 +21,7 @@ public class CarroServiceTest {
 	@MockBean
 	private CarroServiceImpl carroService;
 
-	CarroServiceImpl carroServiceImpl;
+	private CarroServiceImpl carroServiceImpl;
 
 	@Before
 	public void setUp() {
@@ -28,7 +29,7 @@ public class CarroServiceTest {
 	}
 
 	@Test
-	public void lugarDisponibleParqueoTest() throws PreconditionException {
+	public void lugarDisponibleParqueoCarroTest() throws PreconditionException {
 
 		// arrange
 		when(carroService.lugarDisponibleParqueo()).thenReturn(true);
@@ -42,7 +43,7 @@ public class CarroServiceTest {
 	}
 
 	@Test
-	public void lugarNoDisponibleParqueoTest() throws PreconditionException {
+	public void lugarNoDisponibleParqueoCarroTest() throws PreconditionException {
 
 		// arrange
 		when(carroService.lugarDisponibleParqueo())
