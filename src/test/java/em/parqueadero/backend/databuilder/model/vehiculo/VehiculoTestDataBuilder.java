@@ -1,7 +1,7 @@
 package em.parqueadero.backend.databuilder.model.vehiculo;
 
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
 
 public class VehiculoTestDataBuilder {
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
-import em.parqueadero.backend.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
 
 @RestController
 public class VehiculoController {

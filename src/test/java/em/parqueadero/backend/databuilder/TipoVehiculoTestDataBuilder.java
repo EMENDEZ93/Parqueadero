@@ -2,7 +2,7 @@ package em.parqueadero.backend.databuilder;
 
 import org.springframework.stereotype.Component;
 
-import em.parqueadero.backend.model.tipovehiculo.TipoVehiculoModel;
+import em.parqueadero.backend.persistence.model.tipovehiculo.TipoVehiculoModel;
 
 @Component
 public class TipoVehiculoTestDataBuilder {

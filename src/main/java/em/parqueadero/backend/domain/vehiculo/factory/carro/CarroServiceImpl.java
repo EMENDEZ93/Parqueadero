@@ -9,8 +9,8 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
-import em.parqueadero.backend.model.vehiculo.Vehiculo;
-import em.parqueadero.backend.repository.parqueadero.ParqueaderoJpaRepository;
+import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service
 public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid {

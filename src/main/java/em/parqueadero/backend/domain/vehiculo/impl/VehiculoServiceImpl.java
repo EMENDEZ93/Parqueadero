@@ -10,9 +10,9 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
-import em.parqueadero.backend.entity.vehiculo.VehiculoEntity;
-import em.parqueadero.backend.model.vehiculo.Vehiculo;
-import em.parqueadero.backend.repository.vehiculo.VehiculoJpaRepository;
+import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
+import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service("vehiculoService")
 public class VehiculoServiceImpl implements VehiculoService {
@@ -24,7 +24,9 @@ public class VehiculoServiceImpl implements VehiculoService {
 	private Factory factory;
 		
 	public VehiculoEntity ingresoVehiculoParqueaderoEntity(VehiculoEntity vehiculoEntity) {
+		
 		return vehiculoJpaRepository.save(vehiculoEntity);
+	
 	}
 	
 	public boolean placaIniciConA(Vehiculo vehiculo) {

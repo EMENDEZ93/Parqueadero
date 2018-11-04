@@ -11,10 +11,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
-import em.parqueadero.backend.entity.builder.TipoVehiculoBuilder;
-import em.parqueadero.backend.entity.tipovehiculo.TipoVehiculoEntity;
-import em.parqueadero.backend.model.tipovehiculo.TipoVehiculoModel;
-import em.parqueadero.backend.repository.tipovehiculo.TipoVehiculoJpaRepository;
+import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
+import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity;
+import em.parqueadero.backend.persistence.model.tipovehiculo.TipoVehiculoModel;
+import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
