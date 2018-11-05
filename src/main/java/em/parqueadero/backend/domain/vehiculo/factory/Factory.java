@@ -7,7 +7,7 @@ import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.carro.CarroServiceImpl;
 import em.parqueadero.backend.domain.vehiculo.factory.moto.MotoServiceImpl;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @Service
 public class Factory {
@@ -18,7 +18,7 @@ public class Factory {
 	@Autowired
 	private CarroServiceImpl carroService;
 
-	public VehiculoService getService(Vehiculo vehiculo) {
+	public VehiculoService getService(VehiculoModel vehiculo) {
 		
 		switch (vehiculo.getTipoVehiculo()) {
 

@@ -1,18 +1,18 @@
 package em.parqueadero.backend.domain.builder.vehiculo;
 
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public class VehiculoBuilder {
 
 	private VehiculoBuilder() {
 	}
 
-	public static Vehiculo convertToModel(VehiculoEntity vehiculoEntity) {
-		Vehiculo vehiculo = null;
+	public static VehiculoModel convertToModel(VehiculoEntity vehiculoEntity) {
+		VehiculoModel vehiculo = null;
 
 		if (vehiculoEntity != null) {
-			vehiculo = new Vehiculo();
+			vehiculo = new VehiculoModel();
 			vehiculo.setPlaca(vehiculoEntity.getPlaca());
 			vehiculo.setTipoVehiculo(vehiculoEntity.getTipoVehiculo());
 			vehiculo.setCilindraje(vehiculoEntity.getCilindraje());
@@ -21,7 +21,7 @@ public class VehiculoBuilder {
 		return vehiculo;
 	}
 
-	public static VehiculoEntity convertToEntity(Vehiculo vehiculo) {
+	public static VehiculoEntity convertToEntity(VehiculoModel vehiculo) {
 		VehiculoEntity vehiculoEntity = new VehiculoEntity();
 		
 		vehiculoEntity.setPlaca(vehiculo.getPlaca());

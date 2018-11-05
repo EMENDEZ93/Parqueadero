@@ -10,4 +10,8 @@ import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 @Repository
 public interface VehiculoJpaRepository extends JpaRepository<VehiculoEntity, Serializable>  {
 
+	public abstract boolean existsByPlaca(String placa);
+	
+	public abstract VehiculoEntity findByPlaca(String placa);
+	
 }

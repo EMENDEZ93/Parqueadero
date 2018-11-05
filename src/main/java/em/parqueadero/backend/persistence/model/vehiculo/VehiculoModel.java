@@ -1,6 +1,6 @@
 package em.parqueadero.backend.persistence.model.vehiculo;
 
-public class Vehiculo {
+public class VehiculoModel {
 
 	private String placa;
 

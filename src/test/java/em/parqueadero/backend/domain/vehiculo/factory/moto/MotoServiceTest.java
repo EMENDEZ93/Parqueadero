@@ -13,7 +13,7 @@ import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
 public class MotoServiceTest {
@@ -67,7 +67,7 @@ public class MotoServiceTest {
 	public void validarDatosVehiculoTipoMoto() throws PreconditionException {
 
 		// arrange
-		Vehiculo moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).build();
 	
 		// act
 		boolean datosValidos = motoServiceImpl.isValid(moto);
@@ -81,7 +81,7 @@ public class MotoServiceTest {
 	public void placaNoValidaMoto() throws PreconditionException {
 
 		// arrange
-		Vehiculo moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).build();
 	
 		try {
 
@@ -101,7 +101,7 @@ public class MotoServiceTest {
 	public void tipoVehiculoNoValidoVacioMoto() throws PreconditionException {
 
 		// arrange
-		Vehiculo moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100).build();
 
 		try {
 			
@@ -121,7 +121,7 @@ public class MotoServiceTest {
 	public void cilingrajeNoValidoEnCeroMoto() throws PreconditionException {
 
 		// arrange
-		Vehiculo moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(0).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(0).build();
 
 		try {
 			

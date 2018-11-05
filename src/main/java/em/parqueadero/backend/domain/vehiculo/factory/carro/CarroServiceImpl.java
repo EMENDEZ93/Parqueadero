@@ -7,16 +7,23 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
+import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
+import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid {
+public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo {
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
+	
+	@Autowired
+	private VehiculoJpaRepository vehiculoJpaRepository;
 	
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
@@ -27,7 +34,7 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 	}
 
 	@Override
-	public boolean isValid(Vehiculo vehiculo) throws PreconditionException {
+	public boolean isValid(VehiculoModel vehiculo) throws PreconditionException {
 		
 		if(vehiculo.getPlaca().trim().equals("")) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
@@ -41,10 +48,21 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 	}
 
 	@Override
-	public Vehiculo ingresoVehiculoParqueadero(Vehiculo vehiculo) throws PreconditionException {
+	public VehiculoModel ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
 		isValid(vehiculo);
 		lugarDisponibleParqueo();
+		crearVehiculo(vehiculo);
+		
 		return vehiculo;
+	}
+
+	@Override
+	public VehiculoEntity crearVehiculo(VehiculoModel vehiculo) {
+		if( vehiculoJpaRepository.existsByPlaca(vehiculo.getPlaca()) ) {
+			return vehiculoJpaRepository.findByPlaca(vehiculo.getPlaca());
+		}
+		
+		return vehiculoJpaRepository.save(VehiculoBuilder.convertirVehiculoModelAEntity(vehiculo));
 	}
 
 }

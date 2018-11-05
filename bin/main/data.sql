@@ -25,3 +25,9 @@ insert into parqueadero_entity (cilindraje, placa, tipo_vehiculo)
 
 insert into parqueadero_entity (cilindraje, placa, tipo_vehiculo, fecha_ingreso) 
  values (200, '701-god', 'Carro', '2018-10-30T16:00:40');
+ 
+ insert into vehiculo_entity (placa, tipo_vehiculo, cilindraje) 
+ values ('701-god', 'Carro', 0);
+ 
+ 
+ 	

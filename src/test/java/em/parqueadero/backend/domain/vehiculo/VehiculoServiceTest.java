@@ -13,7 +13,7 @@ import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.impl.VehiculoServiceImpl;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
 public class VehiculoServiceTest {
@@ -32,7 +32,7 @@ public class VehiculoServiceTest {
 	public void placaIniciaConA() throws PreconditionException {
 
 		// arrange
-		Vehiculo vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").build();
+		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").build();
 
 		// act
 		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
@@ -46,7 +46,7 @@ public class VehiculoServiceTest {
 	public void placaNoIniciaConA() throws PreconditionException {
 
 		// arrange
-		Vehiculo vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").build();
+		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").build();
 
 		// act
 		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);

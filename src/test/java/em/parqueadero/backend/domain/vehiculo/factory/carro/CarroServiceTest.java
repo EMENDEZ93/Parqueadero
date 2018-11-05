@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
 public class CarroServiceTest {
@@ -67,7 +67,7 @@ public class CarroServiceTest {
 	public void validarDatosVehiculoTipoCarro() throws PreconditionException {
 
 		// arrange
-		Vehiculo carro = new VehiculoTestDataBuilder().build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().build();
 
 		// act
 		boolean datosValidos = carroServiceImpl.isValid(carro);
@@ -81,7 +81,7 @@ public class CarroServiceTest {
 	public void placaNoValidaCarro() throws PreconditionException {
 
 		// arrange
-		Vehiculo carro = new VehiculoTestDataBuilder().setPlaca("").build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().setPlaca("").build();
 
 		try {
 
@@ -100,7 +100,7 @@ public class CarroServiceTest {
 	public void tipoVehiculoNoValidoVacioCarro() throws PreconditionException {
 
 		// arrange
-		Vehiculo carro = new VehiculoTestDataBuilder().setTipoVehiculo("").build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("").build();
 
 		try {
 

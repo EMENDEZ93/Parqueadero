@@ -10,7 +10,7 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @Service("vehiculoService")
 public class VehiculoServiceImpl implements VehiculoService {
@@ -18,7 +18,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 	@Autowired
 	private Factory factory;
 
-	public boolean placaIniciConA(Vehiculo vehiculo) {
+	public boolean placaIniciConA(VehiculoModel vehiculo) {
 		return String.valueOf(vehiculo.getPlaca()).startsWith("A");
 	}
 
@@ -31,7 +31,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 	}
 
 	@Override
-	public Vehiculo ingresoVehiculoParqueadero(Vehiculo vehiculo) throws PreconditionException {
+	public VehiculoModel ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
 
 		if (placaIniciConA(vehiculo)) {
 			ingresoVehiculoSoloDomingoLunes();
@@ -40,6 +40,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 		} else {
 			
 			return factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			
 		}
 
 	}

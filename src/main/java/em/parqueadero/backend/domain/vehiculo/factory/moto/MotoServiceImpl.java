@@ -9,7 +9,7 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service
@@ -27,7 +27,7 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 	}
 
 	@Override
-	public boolean isValid(Vehiculo vehiculo) throws PreconditionException {
+	public boolean isValid(VehiculoModel vehiculo) throws PreconditionException {
 		
 		if(vehiculo.getPlaca().trim().equals("")) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
@@ -46,7 +46,7 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 	}
 
 	@Override
-	public Vehiculo ingresoVehiculoParqueadero(Vehiculo vehiculo) {
+	public VehiculoModel ingresoVehiculoParqueadero(VehiculoModel vehiculo) {
 		System.out.println("*********************");
 		System.out.println("Moto");
 		return vehiculo;

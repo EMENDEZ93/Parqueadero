@@ -1,10 +1,10 @@
 package em.parqueadero.backend.domain.vehiculo;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.persistence.model.vehiculo.Vehiculo;
+import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public interface VehiculoService {
 
-	public Vehiculo ingresoVehiculoParqueadero(Vehiculo vehiculo) throws PreconditionException;
+	public VehiculoModel ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException;
 	
 }
