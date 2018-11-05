@@ -12,12 +12,13 @@ import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CambioEstadoParqueo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.ExisteVehiculoParquedo;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.ObtenerFechaSalida;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo, CambioEstadoParqueo {
+public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo, CambioEstadoParqueo, ObtenerFechaSalida {
 
 	@Autowired
 	private Factory factory;
@@ -65,7 +66,7 @@ public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParqu
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
 		ParqueaderoEntity parqueaderoEntity = cambioEstadoParqueoAFalse(idParqueaderoEntity);
-
+		parqueaderoEntity.setFechaSalida( obtenerFechaSalida() );	
 		return parqueaderoJpaRepository.save(parqueaderoEntity);
 	}
 
@@ -75,5 +76,11 @@ public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParqu
 		parqueaderoEntity.setParqueado(false);
 		return parqueaderoEntity;
 	}
+
+	@Override
+	public LocalDateTime obtenerFechaSalida() {
+		return LocalDateTime.now();
+	}
+
 
 }

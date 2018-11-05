@@ -28,15 +28,20 @@ public class ParqueaderoEntity implements Serializable {
 	private LocalDateTime fechaIngreso;
 
 	@ManyToOne
-	@JoinColumn(referencedColumnName="placa")
+	@JoinColumn(referencedColumnName = "placa")
 	private VehiculoEntity vehiculoEntity;
 
 	private boolean parqueado;
+
+	private double costo;
+
+	private LocalDateTime fechaSalida;
 
 	@PrePersist
 	public void prePersist() {
 		fechaIngreso = LocalDateTime.now();
 		parqueado = true;
+		costo = 0;
 	}
 
 	public int getIdParqueadero() {
@@ -69,6 +74,22 @@ public class ParqueaderoEntity implements Serializable {
 
 	public void setParqueado(boolean parqueado) {
 		this.parqueado = parqueado;
+	}
+
+	public LocalDateTime getFechaSalida() {
+		return fechaSalida;
+	}
+
+	public void setFechaSalida(LocalDateTime fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
 	}
 
 }
