@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
+
 import javax.persistence.PrePersist;
 
 @Entity
@@ -21,28 +25,20 @@ public class ParqueaderoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idParqueadero;
 
-	private Integer cilindraje;
-
-	@NotNull
-	private String placa;
-
 	private LocalDateTime fechaIngreso;
-	
-	private String tipoVehiculo;
-	
-	public String getTipoVehiculo() {
-		return tipoVehiculo;
-	}
 
-	public void setTipoVehiculo(String tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
-	}
+	@ManyToOne
+	@JoinColumn(referencedColumnName="placa")
+	private VehiculoEntity vehiculoEntity;
+
+	private boolean parqueado;
 
 	@PrePersist
 	public void prePersist() {
 		fechaIngreso = LocalDateTime.now();
+		parqueado = true;
 	}
-	
+
 	public Integer getIdParqueadero() {
 		return idParqueadero;
 	}
@@ -51,28 +47,28 @@ public class ParqueaderoEntity implements Serializable {
 		this.idParqueadero = idParqueadero;
 	}
 
-	public Integer getCilindraje() {
-		return cilindraje;
-	}
-
-	public void setCilindraje(Integer cilindraje) {
-		this.cilindraje = cilindraje;
-	}
-
-	public String getPlaca() {
-		return placa;
-	}
-
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
 	public LocalDateTime getFechaIngreso() {
 		return fechaIngreso;
 	}
 
 	public void setFechaIngreso(LocalDateTime fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
+	}
+
+	public VehiculoEntity getVehiculoEntity() {
+		return vehiculoEntity;
+	}
+
+	public void setVehiculoEntity(VehiculoEntity vehiculoEntity) {
+		this.vehiculoEntity = vehiculoEntity;
+	}
+
+	public boolean isParqueado() {
+		return parqueado;
+	}
+
+	public void setParqueado(boolean parqueado) {
+		this.parqueado = parqueado;
 	}
 
 }

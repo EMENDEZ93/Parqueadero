@@ -10,6 +10,7 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
+import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @Service("vehiculoService")
@@ -31,7 +32,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 	}
 
 	@Override
-	public VehiculoModel ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
+	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
 
 		if (placaIniciConA(vehiculo)) {
 			ingresoVehiculoSoloDomingoLunes();

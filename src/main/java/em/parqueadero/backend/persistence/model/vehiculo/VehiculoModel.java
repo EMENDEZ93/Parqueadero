@@ -2,11 +2,21 @@ package em.parqueadero.backend.persistence.model.vehiculo;
 
 public class VehiculoModel {
 
+	private int idVehiculo;
+
 	private String placa;
 
 	private String tipoVehiculo;
 
 	private int cilindraje;
+
+	public int getIdVehiculo() {
+		return idVehiculo;
+	}
+
+	public void setIdVehiculo(int idVehiculo) {
+		this.idVehiculo = idVehiculo;
+	}
 
 	public String getTipoVehiculo() {
 		return tipoVehiculo;

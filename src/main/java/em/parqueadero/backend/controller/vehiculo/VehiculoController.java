@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RestController
@@ -18,7 +19,7 @@ public class VehiculoController {
 	private VehiculoService vehiculoService;
 	
 	@PostMapping("/ingreso/vehiculo")
-	public VehiculoModel ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
+	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
 		return vehiculoService.ingresoVehiculoParqueadero(vehiculo);
 	}
 	
