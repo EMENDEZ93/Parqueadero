@@ -23,7 +23,7 @@ public class ParqueaderoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idParqueadero;
+	private int idParqueadero;
 
 	private LocalDateTime fechaIngreso;
 
@@ -39,11 +39,11 @@ public class ParqueaderoEntity implements Serializable {
 		parqueado = true;
 	}
 
-	public Integer getIdParqueadero() {
+	public int getIdParqueadero() {
 		return idParqueadero;
 	}
 
-	public void setIdParqueadero(Integer idParqueadero) {
+	public void setIdParqueadero(int idParqueadero) {
 		this.idParqueadero = idParqueadero;
 	}
 

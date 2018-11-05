@@ -19,8 +19,8 @@ import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaR
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class CarroServiceImpl
-		implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo, RegistroParqueadero {
+public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
+		RegistroParqueadero{
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -30,7 +30,8 @@ public class CarroServiceImpl
 
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
-		if (parqueaderoJpaRepository.getAllParqueaderoEntityByCarroAndParqueado().size() < VehiculoConstant.LIMITE_CARROS_PARQUEADOS) {
+		if (parqueaderoJpaRepository.getAllParqueaderoEntityByCarroAndParqueado()
+				.size() < VehiculoConstant.LIMITE_CARROS_PARQUEADOS) {
 			return true;
 		}
 		throw new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_CARRO);
@@ -74,6 +75,11 @@ public class CarroServiceImpl
 		parqueaderoEntity.setVehiculoEntity(vehiculoEntity);
 
 		return parqueaderoJpaRepository.save(parqueaderoEntity);
+	}
+
+	@Override
+	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
+		return null;
 	}
 
 }

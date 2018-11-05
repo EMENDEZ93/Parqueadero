@@ -7,5 +7,7 @@ import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 public interface VehiculoService {
 
 	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException;
+
+	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException;
 	
 }
