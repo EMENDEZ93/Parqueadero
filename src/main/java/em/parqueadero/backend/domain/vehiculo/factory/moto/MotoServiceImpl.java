@@ -45,4 +45,11 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 
 	}
 
+	@Override
+	public Vehiculo ingresoVehiculoParqueadero(Vehiculo vehiculo) {
+		System.out.println("*********************");
+		System.out.println("Moto");
+		return vehiculo;
+	}
+
 }

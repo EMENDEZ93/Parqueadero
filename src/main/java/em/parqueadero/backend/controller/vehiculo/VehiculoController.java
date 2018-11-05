@@ -1,7 +1,11 @@
 package em.parqueadero.backend.controller.vehiculo;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
@@ -14,9 +18,9 @@ public class VehiculoController {
 	@Autowired
 	private VehiculoService vehiculoService;
 	
-	@GetMapping("/")
-	public Vehiculo ingresoVehiculoParqueadero() throws PreconditionException {
-		return null;
+	@PostMapping("/ingreso/vehiculo")
+	public Vehiculo ingresoVehiculoParqueadero(@Valid @RequestBody Vehiculo vehiculo) throws PreconditionException {
+		return vehiculoService.ingresoVehiculoParqueadero(vehiculo);
 	}
 	
 }

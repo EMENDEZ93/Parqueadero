@@ -40,4 +40,11 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 		return true;
 	}
 
+	@Override
+	public Vehiculo ingresoVehiculoParqueadero(Vehiculo vehiculo) throws PreconditionException {
+		isValid(vehiculo);
+		lugarDisponibleParqueo();
+		return vehiculo;
+	}
+
 }
