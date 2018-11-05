@@ -8,7 +8,6 @@ import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
-import em.parqueadero.backend.domain.vehiculo.factory.segregration.ExisteVehiculoParquedo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.RegistroParqueadero;
@@ -21,7 +20,7 @@ import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaReposit
 
 @Service
 public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
-		RegistroParqueadero, ExisteVehiculoParquedo {
+		RegistroParqueadero {
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -31,7 +30,7 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
-		if (parqueaderoJpaRepository.count() < VehiculoConstant.LIMITE_MOTOS_PARQUEADAS) {
+		if (parqueaderoJpaRepository.getAllParqueaderoEntityByMotoAndParqueado().size() < VehiculoConstant.LIMITE_MOTOS_PARQUEADAS) {
 			return true;
 		}
 		throw new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_MOTO);
@@ -65,17 +64,7 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 	}
 
 	@Override
-	public boolean existeVehiculoParquedo(String placa) throws PreconditionException {
-		if (!parqueaderoJpaRepository.existsByParqueadoJoinPlaca(true, placa).isEmpty()) {
-			throw new PreconditionException(ConstantExcep.VEHICULO_PARQUEADO_CON_ESTAS_PLACAS + placa);
-		}
-
-		return true;
-	}
-
-	@Override
 	public ParqueaderoEntity registroParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
-		existeVehiculoParquedo(vehiculoEntity.getPlaca());
 
 		ParqueaderoEntity parqueaderoEntity = new ParqueaderoEntity();
 		parqueaderoEntity.setVehiculoEntity(vehiculoEntity);

@@ -14,7 +14,13 @@ import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 @Repository
 public interface ParqueaderoJpaRepository extends JpaRepository<ParqueaderoEntity, Serializable> {
 
-	@Query("select p.vehiculoEntity from ParqueaderoEntity p where p.parqueado =?1 and p.vehiculoEntity.placa = ?2")
-	public List<VehiculoEntity> existsByParqueadoJoinPlaca(@Param("parqueado")boolean parqueado, @Param("placa") String placa);
+	@Query("select p.vehiculoEntity from ParqueaderoEntity p where p.parqueado=true and p.vehiculoEntity.placa = ?1")
+	public List<VehiculoEntity> existsByParqueadoJoinPlaca(@Param("placa") String placa);
+
+	@Query("select p from ParqueaderoEntity p where p.vehiculoEntity.tipoVehiculo ='Moto' and p.parqueado=true ")
+	public List<ParqueaderoEntity> getAllParqueaderoEntityByMotoAndParqueado();
+
+	@Query("select p from ParqueaderoEntity p where p.vehiculoEntity.tipoVehiculo ='Carro' and p.parqueado=true ")
+	public List<ParqueaderoEntity> getAllParqueaderoEntityByCarroAndParqueado();
 	
 }
