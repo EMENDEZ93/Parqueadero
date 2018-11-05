@@ -7,21 +7,31 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.ExisteVehiculoParquedo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.RegistroParqueadero;
+import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
+import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid {
+public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
+		RegistroParqueadero, ExisteVehiculoParquedo {
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
-	
+
+	@Autowired
+	private VehiculoJpaRepository vehiculoJpaRepository;
+
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
-		if(parqueaderoJpaRepository.count() < VehiculoConstant.LIMITE_MOTOS_PARQUEADAS) {
+		if (parqueaderoJpaRepository.count() < VehiculoConstant.LIMITE_MOTOS_PARQUEADAS) {
 			return true;
 		}
 		throw new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_MOTO);
@@ -29,28 +39,57 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 
 	@Override
 	public boolean isValid(VehiculoModel vehiculo) throws PreconditionException {
-		
-		if(vehiculo.getPlaca().trim().equals("")) {
+
+		if (vehiculo.getPlaca().trim().equals("")) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
 		}
-		
-		if(vehiculo.getTipoVehiculo().trim().equals("")) {
-			throw new PreconditionException(ConstantExcep.TIPO_VEHICULO_NO_VALIDO);	
+
+		if (vehiculo.getTipoVehiculo().trim().equals("")) {
+			throw new PreconditionException(ConstantExcep.TIPO_VEHICULO_NO_VALIDO);
 		}
 
-		if(vehiculo.getCilindraje() == 0 ) {
-			throw new PreconditionException(ConstantExcep.CILINDRAJE_NO_VALIDO);	
+		if (vehiculo.getCilindraje() == 0) {
+			throw new PreconditionException(ConstantExcep.CILINDRAJE_NO_VALIDO);
 		}
-		
+
 		return true;
 
 	}
 
 	@Override
-	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) {
-		System.out.println("*********************");
-		System.out.println("Moto");
-		return null;
+	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
+		isValid(vehiculo);
+		lugarDisponibleParqueo();
+		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
+		return registroParqueadero(vehiculoEntity);
+	}
+
+	@Override
+	public boolean existeVehiculoParquedo(String placa) throws PreconditionException {
+		if (!parqueaderoJpaRepository.existsByParqueadoJoinPlaca(true, placa).isEmpty()) {
+			throw new PreconditionException(ConstantExcep.VEHICULO_PARQUEADO_CON_ESTAS_PLACAS + placa);
+		}
+
+		return true;
+	}
+
+	@Override
+	public ParqueaderoEntity registroParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
+		existeVehiculoParquedo(vehiculoEntity.getPlaca());
+
+		ParqueaderoEntity parqueaderoEntity = new ParqueaderoEntity();
+		parqueaderoEntity.setVehiculoEntity(vehiculoEntity);
+
+		return parqueaderoJpaRepository.save(parqueaderoEntity);
+	}
+
+	@Override
+	public VehiculoEntity crearVehiculo(VehiculoModel vehiculo) {
+		if (vehiculoJpaRepository.existsByPlaca(vehiculo.getPlaca())) {
+			return vehiculoJpaRepository.findByPlaca(vehiculo.getPlaca());
+		}
+
+		return vehiculoJpaRepository.save(VehiculoBuilder.convertirVehiculoModelAEntity(vehiculo));
 	}
 
 }
