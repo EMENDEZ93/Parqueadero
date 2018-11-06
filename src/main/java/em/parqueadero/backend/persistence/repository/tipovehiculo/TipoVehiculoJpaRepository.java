@@ -10,4 +10,6 @@ import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity
 @Repository("tipoVehiculoJpaRepository")
 public interface TipoVehiculoJpaRepository extends JpaRepository<TipoVehiculoEntity, Serializable> {
 
+	public abstract TipoVehiculoEntity findByNombre(String nombre);
+	
 }

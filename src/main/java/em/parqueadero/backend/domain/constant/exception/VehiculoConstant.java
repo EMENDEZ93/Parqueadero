@@ -10,6 +10,7 @@ public class VehiculoConstant {
 	public static final String CARRO = "Carro";
 	public static final int LIMITE_CARROS_PARQUEADOS = 20;
 	public static final int LIMITE_MOTOS_PARQUEADAS = 10;
-	
+	public static final int HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA = 9;
+	public static final int HORAS_AL_DIA = 24;
 	
 }

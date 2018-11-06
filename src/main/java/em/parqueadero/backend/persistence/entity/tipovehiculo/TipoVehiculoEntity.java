@@ -13,12 +13,16 @@ import javax.persistence.Table;
 public class TipoVehiculoEntity implements Serializable {
 
 	private static final long serialVersionUID = 5686253391476674271L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTipoVehiculo;
 
 	private String nombre;
+
+	private double costoHora;
+
+	private double costoDia;
 
 	public int getIdTipoVehiculo() {
 		return idTipoVehiculo;
@@ -35,5 +39,21 @@ public class TipoVehiculoEntity implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
+	public double getCostoHora() {
+		return costoHora;
+	}
+
+	public void setCostoHora(double costoHora) {
+		this.costoHora = costoHora;
+	}
+
+	public double getCostoDia() {
+		return costoDia;
+	}
+
+	public void setCostoDia(double costoDia) {
+		this.costoDia = costoDia;
+	}
+
 }

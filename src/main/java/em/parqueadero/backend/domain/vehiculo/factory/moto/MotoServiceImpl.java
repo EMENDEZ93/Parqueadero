@@ -16,6 +16,7 @@ import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponib
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.RegistroParqueadero;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
@@ -97,6 +98,12 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 
 	@Override
 	public double calcularCostoParqueo(ParqueaderoEntity parqueaderoEntity) {
+		return 0;
+	}
+
+	@Override
+	public double obtenerCostoLogica(TipoVehiculoEntity tipoVehiculoEntity, int horasDeParqueo) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
