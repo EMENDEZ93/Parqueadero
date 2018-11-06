@@ -1,5 +1,6 @@
 package em.parqueadero.backend.controller.vehiculo;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,33 +13,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
+import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.VehiculosParqueados;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
+import em.parqueadero.backend.persistence.model.trm.TrmModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
+import em.parqueadero.trm.action.TCRMServicesInterface;
+import em.parqueadero.trm.action.TCRMServicesInterfaceProxy;
+import em.parqueadero.trm.action.TcrmResponse;
 
 @RestController
 public class VehiculoController {
 
 	@Autowired
 	private VehiculoService vehiculoService;
-	
+
 	@Autowired
 	private VehiculosParqueados vehiculosParqueados;
 	
+	@Autowired
+	private TrmService trmService;
+	
 	@PostMapping("/ingreso/vehiculo/parqueadero")
-	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
+	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo)
+			throws PreconditionException {
 		return vehiculoService.ingresoVehiculoParqueadero(vehiculo);
 	}
 
 	@GetMapping("/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
-	public ParqueaderoEntity salidaVehiculoParqueadero(@PathVariable(value="idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
+	public ParqueaderoEntity salidaVehiculoParqueadero(
+			@PathVariable(value = "idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
 		return vehiculoService.salidaVehiculoParqueadero(idParqueaderoEntity);
-	}	
-	
+	}
+
 	@GetMapping("/vehiculos/parqueados")
 	public List<ParqueaderoModel> vehiculosParqueados() {
 		return vehiculosParqueados.vehiculosParqueados();
 	}
+
+	@GetMapping("/trm")
+	public TrmModel getTrm() {
+		return trmService.getTrm();
+	}
+
 }
