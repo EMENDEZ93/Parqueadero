@@ -9,13 +9,13 @@ public final class ParqueaderoBuilder {
 	}
 
 	public static ParqueaderoModel convertirParqueaderoEntityAModel(ParqueaderoEntity parqueaderoEntity) {
-
+ 
 		ParqueaderoModel parqueaderoModel = null;
 		
 		if(parqueaderoEntity != null) {
 			parqueaderoModel = new ParqueaderoModel();
 			parqueaderoModel.setPlaca( parqueaderoEntity.getVehiculoEntity().getPlaca() );
-			parqueaderoModel.setTipoVehiculo( parqueaderoEntity.getVehiculoEntity().getTipoVehiculo() );
+			parqueaderoModel.setTipo( parqueaderoEntity.getVehiculoEntity().getTipoVehiculo() );
 			parqueaderoModel.setFechaIngreso( parqueaderoEntity.getFechaIngreso() );
 		}
 		

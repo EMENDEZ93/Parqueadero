@@ -9,7 +9,7 @@ public class ParqueaderoModel implements Serializable {
 
 	private String placa;
 
-	private String tipoVehiculo;
+	private String tipo;
 
 	private LocalDateTime fechaIngreso;
 
@@ -21,12 +21,12 @@ public class ParqueaderoModel implements Serializable {
 		this.placa = placa;
 	}
 
-	public String getTipoVehiculo() {
-		return tipoVehiculo;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setTipoVehiculo(String tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
+	public void setTipo(String tipoVehiculo) {
+		this.tipo = tipoVehiculo;
 	}
 
 	public LocalDateTime getFechaIngreso() {
