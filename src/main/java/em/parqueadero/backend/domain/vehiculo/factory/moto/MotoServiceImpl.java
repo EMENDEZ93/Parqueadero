@@ -1,5 +1,6 @@
 package em.parqueadero.backend.domain.vehiculo.factory.moto;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CalcularCostoParqueo;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.CondicionCilindrajeRecargo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
@@ -20,17 +22,21 @@ import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
+import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
 public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
-		RegistroParqueadero, CalcularCostoParqueo{
+		RegistroParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
 
 	@Autowired
 	private VehiculoJpaRepository vehiculoJpaRepository;
+	
+	@Autowired
+	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
 
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
@@ -98,12 +104,44 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 
 	@Override
 	public double calcularCostoParqueo(ParqueaderoEntity parqueaderoEntity) {
-		return 0;
+		TipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
+				.findByNombre(parqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
+
+		int horasDeParqueo = (int) Duration
+				.between(parqueaderoEntity.getFechaIngreso(), parqueaderoEntity.getFechaSalida()).plusHours(1)
+				.toHours();
+		
+		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo) + condicionCilindrajeRecargo(parqueaderoEntity);
 	}
 
 	@Override
 	public double obtenerCostoLogica(TipoVehiculoEntity tipoVehiculoEntity, int horasDeParqueo) {
-		// TODO Auto-generated method stub
+		int diasPorPagar = horasDeParqueo / VehiculoConstant.HORAS_AL_DIA;
+		double totalPagar = 0;
+
+		if (diasPorPagar > 0) {
+			horasDeParqueo = horasDeParqueo - (VehiculoConstant.HORAS_AL_DIA * diasPorPagar);
+			totalPagar = diasPorPagar * tipoVehiculoEntity.getCostoDia();
+			if (horasDeParqueo >= VehiculoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
+				diasPorPagar++;
+				totalPagar = diasPorPagar * tipoVehiculoEntity.getCostoDia();
+			} else {
+				totalPagar = totalPagar + (horasDeParqueo * tipoVehiculoEntity.getCostoHora());
+			}
+		} else if (horasDeParqueo >= VehiculoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
+			totalPagar = tipoVehiculoEntity.getCostoDia();
+		} else {
+			totalPagar = horasDeParqueo * tipoVehiculoEntity.getCostoHora();
+		}
+		
+		return totalPagar;
+	}
+
+	@Override
+	public double condicionCilindrajeRecargo(ParqueaderoEntity parqueaderoEntity) {
+		if( parqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO ) {
+			return VehiculoConstant.COSTO_RECARGO_CILINDRAJE;
+		}
 		return 0;
 	}
 

@@ -12,5 +12,6 @@ public class VehiculoConstant {
 	public static final int LIMITE_MOTOS_PARQUEADAS = 10;
 	public static final int HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA = 9;
 	public static final int HORAS_AL_DIA = 24;
-	
+	public static final int CILINDRAJE_LIMITE_SIN_RECARGO = 500;
+	public static final double COSTO_RECARGO_CILINDRAJE = 2000;
 }
