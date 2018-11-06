@@ -10,15 +10,14 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
-import em.parqueadero.backend.domain.vehiculo.factory.segregration.CambioEstadoParqueo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.ExisteVehiculoParquedo;
-import em.parqueadero.backend.domain.vehiculo.factory.segregration.ObtenerFechaSalida;
+import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo, CambioEstadoParqueo, ObtenerFechaSalida {
+public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo {
 
 	@Autowired
 	private Factory factory;
@@ -65,22 +64,11 @@ public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParqu
 
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		ParqueaderoEntity parqueaderoEntity = cambioEstadoParqueoAFalse(idParqueaderoEntity);
-		parqueaderoEntity.setFechaSalida( obtenerFechaSalida() );	
-		return parqueaderoJpaRepository.save(parqueaderoEntity);
-	}
+		VehiculoModel vehiculo = VehiculoBuilder.convertirVehiculoEntityAModel(
+				parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
-	@Override
-	public ParqueaderoEntity cambioEstadoParqueoAFalse(int idParqueaderoEntity) {
-		ParqueaderoEntity parqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
-		parqueaderoEntity.setParqueado(false);
-		return parqueaderoEntity;
-	}
+		return factory.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
 
-	@Override
-	public LocalDateTime obtenerFechaSalida() {
-		return LocalDateTime.now();
 	}
-
 
 }

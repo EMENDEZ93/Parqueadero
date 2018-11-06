@@ -1,5 +1,7 @@
 package em.parqueadero.backend.domain.vehiculo.factory.moto;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.CalcularCostoParqueo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
@@ -19,8 +22,8 @@ import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaR
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class MotoServiceImpl
-		implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo, RegistroParqueadero {
+public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
+		RegistroParqueadero, CalcularCostoParqueo{
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -84,7 +87,18 @@ public class MotoServiceImpl
 
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		return null;
+		ParqueaderoEntity parqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
+		
+		parqueaderoEntity.setParqueado(false);
+		parqueaderoEntity.setFechaSalida( LocalDateTime.now() );
+		parqueaderoEntity.setCosto( calcularCostoParqueo(parqueaderoEntity) );
+		return parqueaderoJpaRepository.save(parqueaderoEntity);
 	}
+
+	@Override
+	public double calcularCostoParqueo(ParqueaderoEntity parqueaderoEntity) {
+		return 0;
+	}
+
 
 }

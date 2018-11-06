@@ -1,5 +1,8 @@
 package em.parqueadero.backend.domain.vehiculo.factory.carro;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +10,7 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.CalcularCostoParqueo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.IsValid;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponibleParqueo;
@@ -20,7 +24,7 @@ import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaReposit
 
 @Service
 public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
-		RegistroParqueadero{
+		RegistroParqueadero, CalcularCostoParqueo {
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -79,7 +83,22 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		return null;
+		ParqueaderoEntity parqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
+
+		parqueaderoEntity.setParqueado(false);
+		parqueaderoEntity.setFechaSalida(LocalDateTime.now());
+		parqueaderoEntity.setCosto(calcularCostoParqueo(parqueaderoEntity));
+		return parqueaderoJpaRepository.save(parqueaderoEntity);
+	}
+
+	@Override
+	public double calcularCostoParqueo(ParqueaderoEntity parqueaderoEntity) {
+
+		Duration horas = Duration.between(parqueaderoEntity.getFechaIngreso(), parqueaderoEntity.getFechaSalida())
+				.plusHours(1);
+
+		
+		return 0;
 	}
 
 }
