@@ -115,29 +115,6 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 	}
 
 	@Override
-	public double obtenerCostoLogica(TipoVehiculoEntity tipoVehiculoEntity, int horasDeParqueo) {
-		int diasPorPagar = horasDeParqueo / VehiculoConstant.HORAS_AL_DIA;
-		double totalPagar = 0;
-
-		if (diasPorPagar > 0) {
-			horasDeParqueo = horasDeParqueo - (VehiculoConstant.HORAS_AL_DIA * diasPorPagar);
-			totalPagar = diasPorPagar * tipoVehiculoEntity.getCostoDia();
-			if (horasDeParqueo >= VehiculoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
-				diasPorPagar++;
-				totalPagar = diasPorPagar * tipoVehiculoEntity.getCostoDia();
-			} else {
-				totalPagar = totalPagar + (horasDeParqueo * tipoVehiculoEntity.getCostoHora());
-			}
-		} else if (horasDeParqueo >= VehiculoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
-			totalPagar = tipoVehiculoEntity.getCostoDia();
-		} else {
-			totalPagar = horasDeParqueo * tipoVehiculoEntity.getCostoHora();
-		}
-		
-		return totalPagar;
-	}
-
-	@Override
 	public double condicionCilindrajeRecargo(ParqueaderoEntity parqueaderoEntity) {
 		if( parqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO ) {
 			return VehiculoConstant.COSTO_RECARGO_CILINDRAJE;

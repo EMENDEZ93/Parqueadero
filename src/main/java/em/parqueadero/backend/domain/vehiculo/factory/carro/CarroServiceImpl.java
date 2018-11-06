@@ -106,31 +106,6 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 				.toHours(); 
 
 		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo);
-	}
-
-	@Override
-	public double obtenerCostoLogica(TipoVehiculoEntity tipoVehiculoEntity, int horasDeParqueo) {
-		int diasPorPagar = horasDeParqueo / VehiculoConstant.HORAS_AL_DIA;
-		double totalPagar = 0;
-
-		if (diasPorPagar > 0) {
-			horasDeParqueo = horasDeParqueo - (VehiculoConstant.HORAS_AL_DIA * diasPorPagar);
-			totalPagar = diasPorPagar * tipoVehiculoEntity.getCostoDia();
-
-			if (horasDeParqueo >= VehiculoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
-				diasPorPagar++;
-				totalPagar = diasPorPagar * tipoVehiculoEntity.getCostoDia();
-			} else {
-				totalPagar = totalPagar + (horasDeParqueo * tipoVehiculoEntity.getCostoHora());
-			}
-
-		} else if (horasDeParqueo >= VehiculoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
-			totalPagar = tipoVehiculoEntity.getCostoDia();
-		} else {
-			totalPagar = horasDeParqueo * tipoVehiculoEntity.getCostoHora();
-		}
-
-		return totalPagar;
-	}
+	} 
 
 }
