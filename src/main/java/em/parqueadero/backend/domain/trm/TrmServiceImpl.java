@@ -4,6 +4,8 @@ import java.rmi.RemoteException;
 
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.persistence.model.trm.TrmModel;
 import em.parqueadero.trm.action.TCRMServicesInterface;
 import em.parqueadero.trm.action.TCRMServicesInterfaceProxy;
@@ -13,7 +15,7 @@ import em.parqueadero.trm.action.TcrmResponse;
 public class TrmServiceImpl implements TrmService {
 
 	@Override
-	public TrmModel getTrm() {
+	public TrmModel getTrm() throws PreconditionException {
 
 		TrmModel trm = new TrmModel();
 
@@ -27,9 +29,10 @@ public class TrmServiceImpl implements TrmService {
 				return trm;
 			}
 		} catch (RemoteException e) {
-			trm.setValue(0.0f);
 
+			throw new PreconditionException(ConstantExcep.FALLO_SERVICIO_TRM);
 		}
+		trm.setValue(0.0f);
 		return trm;
 	}
 
