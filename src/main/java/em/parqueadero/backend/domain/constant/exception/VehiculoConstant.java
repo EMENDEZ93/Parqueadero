@@ -1,6 +1,6 @@
 package em.parqueadero.backend.domain.constant.exception;
 
-public class VehiculoConstant {
+public final class VehiculoConstant {
 
 	private VehiculoConstant() {
 		throw new IllegalStateException("VehiculoConstant class");
