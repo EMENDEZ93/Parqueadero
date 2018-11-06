@@ -49,11 +49,11 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 	@Override
 	public boolean isValid(VehiculoModel vehiculo) throws PreconditionException {
 
-		if (vehiculo.getPlaca().trim().equals("")) {
+		if (vehiculo.getPlaca().trim().isEmpty()) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
 		}
 
-		if (vehiculo.getTipoVehiculo().trim().equals("")) {
+		if (vehiculo.getTipoVehiculo().trim().isEmpty()) {
 			throw new PreconditionException(ConstantExcep.TIPO_VEHICULO_NO_VALIDO);
 		}
 
@@ -103,7 +103,7 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 
 		int horasDeParqueo = (int) Duration
 				.between(parqueaderoEntity.getFechaIngreso(), parqueaderoEntity.getFechaSalida()).plusHours(1)
-				.toHours();
+				.toHours(); 
 
 		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo);
 	}
