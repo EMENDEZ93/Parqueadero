@@ -3,7 +3,7 @@ package em.parqueadero.backend.persistence.builder.vehiculo;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
-public class VehiculoBuilder {
+public final class VehiculoBuilder {
 
 	private VehiculoBuilder() {}
 	

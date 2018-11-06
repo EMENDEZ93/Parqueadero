@@ -1,6 +1,5 @@
 package em.parqueadero.backend.domain.vehiculo.factory.carro;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import em.parqueadero.backend.domain.vehiculo.factory.segregration.LugarDisponib
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.RegistroParqueadero;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
