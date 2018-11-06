@@ -1,6 +1,5 @@
 package em.parqueadero.backend.controller.vehiculo;
 
-import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,9 +19,6 @@ import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.model.trm.TrmModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
-import em.parqueadero.trm.action.TCRMServicesInterface;
-import em.parqueadero.trm.action.TCRMServicesInterfaceProxy;
-import em.parqueadero.trm.action.TcrmResponse;
 
 @RestController
 public class VehiculoController {
@@ -31,7 +27,7 @@ public class VehiculoController {
 	private VehiculoService vehiculoService;
 
 	@Autowired
-	private VehiculosParqueados vehiculosParqueados;
+	private VehiculosParqueados vehiculosParqueados; 
 	
 	@Autowired
 	private TrmService trmService;

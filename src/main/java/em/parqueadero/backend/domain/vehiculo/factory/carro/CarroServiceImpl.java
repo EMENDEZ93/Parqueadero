@@ -91,21 +91,9 @@ public class CarroServiceImpl implements VehiculoService, LugarDisponibleParqueo
 		ParqueaderoEntity parqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
 		parqueaderoEntity.setParqueado(false);
 		parqueaderoEntity.setFechaSalida(LocalDateTime.now());
-		parqueaderoEntity.setCosto(calcularCostoParqueo(parqueaderoEntity));
+		parqueaderoEntity.setCosto(calcularCostoParqueo(parqueaderoEntity, tipoVehiculoJpaRepository));
 
 		return parqueaderoJpaRepository.save(parqueaderoEntity);
-	}
-
-	@Override
-	public double calcularCostoParqueo(ParqueaderoEntity parqueaderoEntity) {
-		TipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
-				.findByNombre(parqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
-
-		int horasDeParqueo = (int) Duration
-				.between(parqueaderoEntity.getFechaIngreso(), parqueaderoEntity.getFechaSalida()).plusHours(1)
-				.toHours(); 
-
-		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo);
 	} 
 
 }

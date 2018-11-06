@@ -65,7 +65,7 @@ public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParqu
 		}
 
 		return true;
-	}
+	} 
 
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {

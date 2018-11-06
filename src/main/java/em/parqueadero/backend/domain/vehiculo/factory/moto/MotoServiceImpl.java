@@ -98,28 +98,17 @@ public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo,
 		
 		parqueaderoEntity.setParqueado(false);
 		parqueaderoEntity.setFechaSalida( LocalDateTime.now() );
-		parqueaderoEntity.setCosto( calcularCostoParqueo(parqueaderoEntity) );
+		parqueaderoEntity.setCosto( calcularCostoParqueo(parqueaderoEntity, tipoVehiculoJpaRepository) + condicionCilindrajeRecargo(parqueaderoEntity) );
 		return parqueaderoJpaRepository.save(parqueaderoEntity);
 	}
 
-	@Override
-	public double calcularCostoParqueo(ParqueaderoEntity parqueaderoEntity) {
-		TipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
-				.findByNombre(parqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
-
-		int horasDeParqueo = (int) Duration
-				.between(parqueaderoEntity.getFechaIngreso(), parqueaderoEntity.getFechaSalida()).plusHours(1)
-				.toHours();
-		
-		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo) + condicionCilindrajeRecargo(parqueaderoEntity);
-	}
 
 	@Override
 	public double condicionCilindrajeRecargo(ParqueaderoEntity parqueaderoEntity) {
 		if( parqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO ) {
 			return VehiculoConstant.COSTO_RECARGO_CILINDRAJE;
 		}
-		return 0;
+		return 0; 
 	}
 
 
