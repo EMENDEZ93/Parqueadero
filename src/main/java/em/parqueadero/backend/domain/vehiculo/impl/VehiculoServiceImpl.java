@@ -2,6 +2,8 @@ package em.parqueadero.backend.domain.vehiculo.impl;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +13,16 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.ExisteVehiculoParquedo;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.VehiculosParqueados;
+import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo {
+public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo, VehiculosParqueados {
 
 	@Autowired
 	private Factory factory;
@@ -69,6 +74,17 @@ public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParqu
 
 		return factory.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
 
+	}
+
+	@Override
+	public List<ParqueaderoModel> vehiculosParqueados() {
+
+		List<ParqueaderoModel> parqueaderoModels = new ArrayList<>();
+		parqueaderoJpaRepository.getAllByParqueadoIsTrue().stream().forEach(parqueaderoEntity -> {
+			parqueaderoModels.add( ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity) );
+		});
+
+		return parqueaderoModels;
 	}
 
 }

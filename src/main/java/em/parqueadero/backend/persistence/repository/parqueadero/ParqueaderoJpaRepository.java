@@ -22,5 +22,7 @@ public interface ParqueaderoJpaRepository extends JpaRepository<ParqueaderoEntit
 
 	@Query("select p from ParqueaderoEntity p where p.vehiculoEntity.tipoVehiculo ='Carro' and p.parqueado=true ")
 	public List<ParqueaderoEntity> getAllParqueaderoEntityByCarroAndParqueado();
-	
+
+	public abstract List<ParqueaderoEntity> getAllByParqueadoIsTrue();
+
 }

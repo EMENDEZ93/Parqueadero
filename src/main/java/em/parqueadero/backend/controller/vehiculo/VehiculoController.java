@@ -1,5 +1,7 @@
 package em.parqueadero.backend.controller.vehiculo;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.factory.segregration.VehiculosParqueados;
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RestController
@@ -19,6 +23,9 @@ public class VehiculoController {
 
 	@Autowired
 	private VehiculoService vehiculoService;
+	
+	@Autowired
+	private VehiculosParqueados vehiculosParqueados;
 	
 	@PostMapping("/ingreso/vehiculo/parqueadero")
 	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
@@ -29,4 +36,9 @@ public class VehiculoController {
 	public ParqueaderoEntity salidaVehiculoParqueadero(@PathVariable(value="idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
 		return vehiculoService.salidaVehiculoParqueadero(idParqueaderoEntity);
 	}	
+	
+	@GetMapping("/vehiculos/parqueados")
+	public List<ParqueaderoModel> vehiculosParqueados() {
+		return vehiculosParqueados.vehiculosParqueados();
+	}
 }
