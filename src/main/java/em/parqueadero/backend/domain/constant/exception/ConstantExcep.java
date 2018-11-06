@@ -1,6 +1,6 @@
 package em.parqueadero.backend.domain.constant.exception;
 
-public class ConstantExcep {
+public final class ConstantExcep {
 
 	private ConstantExcep() {
 		throw new IllegalStateException("ConstantExcep class");
