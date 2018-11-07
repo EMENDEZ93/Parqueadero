@@ -29,7 +29,7 @@ public class FactoryTest {
 	public void factorygetServiceMotoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).buildModel();
 		when(factory.getService(moto)).thenReturn(new MotoServiceImpl());
 
 		// act
@@ -44,7 +44,7 @@ public class FactoryTest {
 	public void factorygetServiceCarroTest() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().buildModel();
 		when(factory.getService(carro)).thenReturn(new CarroServiceImpl());
 
 		// act
@@ -59,7 +59,7 @@ public class FactoryTest {
 	public void factorygetServiceNullTipoVehiculoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("Camioneta").build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("Camioneta").buildModel();
 		
 		try {
 			

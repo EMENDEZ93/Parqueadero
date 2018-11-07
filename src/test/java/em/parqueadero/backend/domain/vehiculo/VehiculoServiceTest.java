@@ -32,7 +32,7 @@ public class VehiculoServiceTest {
 	public void placaIniciaConA() throws PreconditionException {
 
 		// arrange
-		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").build();
+		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").buildModel();
 
 		// act
 		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
@@ -46,7 +46,7 @@ public class VehiculoServiceTest {
 	public void placaNoIniciaConA() throws PreconditionException {
 
 		// arrange
-		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").build();
+		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").buildModel();
 
 		// act
 		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);

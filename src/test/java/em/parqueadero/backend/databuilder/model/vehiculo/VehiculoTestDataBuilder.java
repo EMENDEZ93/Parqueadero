@@ -1,6 +1,7 @@
 package em.parqueadero.backend.databuilder.model.vehiculo;
 
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public class VehiculoTestDataBuilder {
@@ -34,12 +35,21 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}	
 	
-	public VehiculoModel build() {
+	public VehiculoModel buildModel() {
 		VehiculoModel vehiculo = new VehiculoModel();
 		vehiculo.setPlaca(this.placa);
 		vehiculo.setTipoVehiculo(this.tipoVehiculo);
 		vehiculo.setCilindraje(this.cilindraje);
 		return vehiculo;
+	}
+
+	public VehiculoEntity buildEntity() {
+		VehiculoEntity vehiculoEntity = new VehiculoEntity();
+		vehiculoEntity.setCilindraje(this.cilindraje);
+		vehiculoEntity.setPlaca(this.placa);
+		vehiculoEntity.setTipoVehiculo(this.tipoVehiculo);
+		vehiculoEntity.setIdVehiculo(1);
+		return vehiculoEntity;
 	}
 	
 }

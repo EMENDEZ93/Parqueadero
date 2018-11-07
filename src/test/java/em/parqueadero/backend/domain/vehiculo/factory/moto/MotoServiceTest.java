@@ -67,7 +67,7 @@ public class MotoServiceTest {
 	public void validarDatosVehiculoTipoMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).buildModel();
 	
 		// act
 		boolean datosValidos = motoServiceImpl.isValid(moto);
@@ -81,7 +81,7 @@ public class MotoServiceTest {
 	public void placaNoValidaMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).buildModel();
 	
 		try {
 
@@ -101,7 +101,7 @@ public class MotoServiceTest {
 	public void tipoVehiculoNoValidoVacioMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100).buildModel();
 
 		try {
 			
@@ -121,7 +121,7 @@ public class MotoServiceTest {
 	public void cilingrajeNoValidoEnCeroMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(0).build();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(0).buildModel();
 
 		try {
 			

@@ -5,10 +5,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
@@ -66,7 +63,7 @@ public class CarroServiceTest {
 	public void validarDatosVehiculoTipoCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().buildModel();
 
 		// act
 		boolean datosValidos = carroServiceImpl.isValid(carro);
@@ -80,7 +77,7 @@ public class CarroServiceTest {
 	public void placaNoValidaCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().setPlaca("").build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().setPlaca("").buildModel();
 
 		try {
 
@@ -99,7 +96,7 @@ public class CarroServiceTest {
 	public void tipoVehiculoNoValidoVacioCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("").build();
+		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("").buildModel();
 
 		try {
 
