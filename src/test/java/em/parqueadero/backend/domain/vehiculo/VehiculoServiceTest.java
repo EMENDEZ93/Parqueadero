@@ -5,7 +5,9 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
@@ -13,13 +15,17 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.vehiculo.impl.VehiculoServiceImpl;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
+@RunWith(SpringRunner.class)
 public class VehiculoServiceTest {
 
+	@MockBean
 	private VehiculoServiceImpl vehiculoService;
-	
+
+	private VehiculoServiceImpl vehiculoServiceImpl;
+
 	@Before
 	public void setUp() {
-		vehiculoService = Mockito.mock(VehiculoServiceImpl.class);
+		vehiculoServiceImpl = new VehiculoServiceImpl();
 	}
 
 	@Test
@@ -27,10 +33,9 @@ public class VehiculoServiceTest {
 
 		// arrange
 		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").buildModel();
-		when( vehiculoService.placaIniciConA(vehiculo) ).thenCallRealMethod();
-		
+
 		// act
-		boolean vehiculoIniciaConA = vehiculoService.placaIniciConA(vehiculo);
+		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
 
 		// assert
 		assertTrue(vehiculoIniciaConA);
@@ -42,9 +47,9 @@ public class VehiculoServiceTest {
 
 		// arrange
 		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").buildModel();
-		
+
 		// act
-		boolean vehiculoIniciaConA = vehiculoService.placaIniciConA(vehiculo);
+		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
 
 		// assert
 		assertFalse(vehiculoIniciaConA);
