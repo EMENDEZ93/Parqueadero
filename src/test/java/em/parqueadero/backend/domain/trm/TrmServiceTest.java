@@ -17,11 +17,11 @@ import em.parqueadero.backend.persistence.model.trm.TrmModel;
 @RunWith(SpringRunner.class)
 public class TrmServiceTest {
 
-	@MockBean
 	private TrmServiceImpl trmService;
 
 	@Before
 	public void setUp() {
+		trmService = new TrmServiceImpl();
 	}
 
 	@Test
@@ -37,5 +37,5 @@ public class TrmServiceTest {
 		assertEquals(trmModel, trmModel);
 
 	}
-	
+
 }
