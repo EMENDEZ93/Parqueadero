@@ -27,6 +27,20 @@ public class VehiculoBuilderTest {
 	}
 
 	@Test
+	public void convertirVehiculoModelAEntityNullTest() {
+	
+		// arrange
+		VehiculoModel vehiculoModel = null;
+		VehiculoEntity vehiculoEntity = null;
+		
+		// act
+		vehiculoEntity = VehiculoBuilder.convertirVehiculoModelAEntity(vehiculoModel);
+	
+		assertTrue(vehiculoEntity == null);
+	
+	}	
+	
+	@Test
 	public void convertirVehiculoEntityAModelTest() {
 	
 		// arrange
@@ -39,5 +53,18 @@ public class VehiculoBuilderTest {
 		assertTrue(vehiculoModel instanceof VehiculoModel);
 	
 	}	
+
+	@Test
+	public void convertirVehiculoEntityAModelNullTest() {
 	
+		// arrange
+		VehiculoEntity vehiculoEntity= null;
+		VehiculoModel vehiculoModel = null;
+		
+		// act
+		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityAModel(vehiculoEntity);
+	
+		assertTrue(vehiculoModel == null);
+	
+	}
 }
