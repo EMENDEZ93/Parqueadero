@@ -16,12 +16,13 @@ import em.parqueadero.trm.action.TcrmResponse;
 @Service
 public class TrmServiceImpl implements TrmService {
 
+	private static final Logger logger = LoggerFactory.getLogger(TrmServiceImpl.class);
+	
 	@Override
 	public TrmModel getTrm() throws PreconditionException {
 
 		TrmModel trm = new TrmModel();
 		
-		final Logger LOG = LoggerFactory.getLogger(TrmServiceImpl.class);
 		
 		
 		TCRMServicesInterface proxy = new TCRMServicesInterfaceProxy(
@@ -34,7 +35,7 @@ public class TrmServiceImpl implements TrmService {
 				return trm;
 			}
 		} catch (RemoteException e) {
-			LOG.info("Error en /ingresarVehiculo",e);
+			logger.info("Error en /ingresarVehiculo",e);
 			throw new PreconditionException(ConstantExcep.FALLO_SERVICIO_TRM);
 		}
 		trm.setValue(0.0f);
