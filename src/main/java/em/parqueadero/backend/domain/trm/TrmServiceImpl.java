@@ -18,7 +18,7 @@ public class TrmServiceImpl implements TrmService {
 	public TrmModel getTrm() throws PreconditionException {
 
 		TrmModel trm = new TrmModel();
-
+		
 		TCRMServicesInterface proxy = new TCRMServicesInterfaceProxy(
 				"https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService?WSDL");
 		TcrmResponse tcrmResponse;
