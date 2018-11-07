@@ -3,7 +3,9 @@ package em.parqueadero.backend.domain.vehiculo.factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.carro.CarroServiceImpl;
 import em.parqueadero.backend.domain.vehiculo.factory.moto.MotoServiceImpl;
@@ -18,7 +20,7 @@ public class Factory {
 	@Autowired
 	private CarroServiceImpl carroService;
 
-	public VehiculoService getService(VehiculoModel vehiculo) {
+	public VehiculoService getService(VehiculoModel vehiculo) throws PreconditionException {
 		
 		switch (vehiculo.getTipoVehiculo()) {
 
@@ -29,7 +31,7 @@ public class Factory {
 			return motoService;
 
 		default:
-			return null;
+			throw new PreconditionException(ConstantExcep.TIPO_VEHICULO_NO_EXISTE);
 		}
 
 	}
