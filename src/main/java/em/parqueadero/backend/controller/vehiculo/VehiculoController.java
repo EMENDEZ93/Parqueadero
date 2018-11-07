@@ -32,7 +32,7 @@ public class VehiculoController {
 	@Autowired
 	private TrmService trmService;
 	
-	@PostMapping("/ingreso/vehiculo/parqueadero")
+	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
 	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo)
 			throws PreconditionException {
 		return vehiculoService.ingresoVehiculoParqueadero(vehiculo);
