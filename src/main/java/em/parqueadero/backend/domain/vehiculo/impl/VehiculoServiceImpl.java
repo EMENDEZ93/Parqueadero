@@ -80,9 +80,9 @@ public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParqu
 	public List<ParqueaderoModel> vehiculosParqueados() {
 
 		List<ParqueaderoModel> parqueaderoModels = new ArrayList<>();
-		parqueaderoJpaRepository.getAllByParqueadoIsTrue().stream().forEach(parqueaderoEntity -> {
-			parqueaderoModels.add( ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity) );
-		});
+		parqueaderoJpaRepository.getAllByParqueadoIsTrue().stream().forEach(parqueaderoEntity -> 
+			parqueaderoModels.add( ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity) )
+		);
 
 		return parqueaderoModels;
 	}
