@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
+import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -15,16 +15,15 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
-@RunWith(SpringRunner.class)
 public class CarroServiceTest {
 
-	@MockBean
 	private CarroServiceImpl carroService;
 
 	private CarroServiceImpl carroServiceImpl;
 
 	@Before
 	public void setUp() {
+		carroService =Mockito.mock(CarroServiceImpl.class) ;
 		carroServiceImpl = new CarroServiceImpl();
 	}
 
