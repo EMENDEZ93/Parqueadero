@@ -9,10 +9,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import em.parqueadero.backend.databuilder.model.parqueadero.ParqueaderoTestDataBuilder;
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
+import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
@@ -62,13 +65,14 @@ public class MotoServiceTest {
 		}
 
 	}
-	
+
 	@Test
 	public void validarDatosVehiculoTipoMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).buildModel();
-	
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(VehiculoConstant.MOTO)
+				.setCilindraje(100).buildModel();
+
 		// act
 		boolean datosValidos = motoServiceImpl.isValid(moto);
 
@@ -76,23 +80,24 @@ public class MotoServiceTest {
 		assertTrue(datosValidos);
 
 	}
-	
+
 	@Test
 	public void placaNoValidaMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(100).buildModel();
-	
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(VehiculoConstant.MOTO)
+				.setCilindraje(100).buildModel();
+
 		try {
 
 			// act
 			motoServiceImpl.isValid(moto);
-			
-		}catch (PreconditionException e) {
+
+		} catch (PreconditionException e) {
 
 			// assert
 			assertEquals(ConstantExcep.PLACA_NO_VALIDA, e.getMessage());
-			
+
 		}
 
 	}
@@ -101,40 +106,74 @@ public class MotoServiceTest {
 	public void tipoVehiculoNoValidoVacioMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100).buildModel();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100)
+				.buildModel();
 
 		try {
-			
+
 			// act
 			motoServiceImpl.isValid(moto);
-			
-		}catch (PreconditionException e) {
+
+		} catch (PreconditionException e) {
 
 			// assert
 			assertEquals(ConstantExcep.TIPO_VEHICULO_NO_VALIDO, e.getMessage());
-			
+
 		}
-		
-	}	
+
+	}
 
 	@Test
 	public void cilingrajeNoValidoEnCeroMoto() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO).setCilindraje(0).buildModel();
+		VehiculoModel moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO)
+				.setCilindraje(0).buildModel();
 
 		try {
-			
+
 			// act
 			motoServiceImpl.isValid(moto);
-			
-		}catch (PreconditionException e) {
+
+		} catch (PreconditionException e) {
 
 			// assert
 			assertEquals(ConstantExcep.CILINDRAJE_NO_VALIDO, e.getMessage());
-			
+
 		}
-		
-	}	
-	
+
+	}
+
+	@Test
+	public void condicionCilindrajeRecargoMayorACilindrajeLimite() throws PreconditionException {
+
+		// arrange
+		VehiculoEntity moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO)
+				.setCilindraje(600).buildEntity();
+		ParqueaderoEntity parqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
+		parqueaderoEntity.setVehiculoEntity(moto);
+
+		// act
+		double recargo = motoServiceImpl.condicionCilindrajeRecargo(parqueaderoEntity);
+
+		// assert
+		assertEquals(VehiculoConstant.COSTO_RECARGO_CILINDRAJE, recargo, 0.0);
+	}
+
+	@Test
+	public void condicionCilindrajeRecargoMenorACilindrajeLimite() throws PreconditionException {
+
+		// arrange
+		VehiculoEntity moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO)
+				.setCilindraje(400).buildEntity();
+		ParqueaderoEntity parqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
+		parqueaderoEntity.setVehiculoEntity(moto);
+
+		// act
+		double recargo = motoServiceImpl.condicionCilindrajeRecargo(parqueaderoEntity);
+
+		// assert
+		assertEquals(0.0, recargo, 0.0);
+	}
+
 }
