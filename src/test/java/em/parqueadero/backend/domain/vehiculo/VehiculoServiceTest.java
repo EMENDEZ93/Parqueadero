@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -23,8 +24,11 @@ public class VehiculoServiceTest {
 
 	private VehiculoServiceImpl vehiculoServiceImpl;
 
+	private VehiculoServiceImpl vehiculoServicet;
+	
 	@Before
 	public void setUp() {
+		vehiculoServicet = Mockito.mock(VehiculoServiceImpl.class);
 		vehiculoServiceImpl = new VehiculoServiceImpl();
 	}
 
@@ -60,10 +64,10 @@ public class VehiculoServiceTest {
 	public void ingresoVehiculoEnDomingoLunes() throws PreconditionException {
 
 		// arrange
-		when(vehiculoService.ingresoVehiculoSoloDomingoLunes()).thenReturn(true);
+		when(vehiculoServicet.ingresoVehiculoSoloDomingoLunes()).thenReturn(true);
 
 		// act
-		boolean ingresoDomingoLunes = vehiculoService.ingresoVehiculoSoloDomingoLunes();
+		boolean ingresoDomingoLunes = vehiculoServicet.ingresoVehiculoSoloDomingoLunes();
 
 		// assert
 		assertTrue(ingresoDomingoLunes);
@@ -74,13 +78,13 @@ public class VehiculoServiceTest {
 	public void ingresoVehiculoDiferenteADomingoLunes() throws PreconditionException {
 
 		// arrange
-		when(vehiculoService.ingresoVehiculoSoloDomingoLunes())
+		when(vehiculoServicet.ingresoVehiculoSoloDomingoLunes())
 				.thenThrow(new PreconditionException(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES));
 
 		try {
 
 			// act
-			vehiculoService.ingresoVehiculoSoloDomingoLunes();
+			vehiculoServicet.ingresoVehiculoSoloDomingoLunes();
 
 		} catch (PreconditionException e) {
 
