@@ -5,10 +5,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
@@ -16,20 +13,13 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.vehiculo.impl.VehiculoServiceImpl;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
-@RunWith(SpringRunner.class)
 public class VehiculoServiceTest {
 
-	@MockBean
 	private VehiculoServiceImpl vehiculoService;
-
-	private VehiculoServiceImpl vehiculoServiceImpl;
-
-	private VehiculoServiceImpl vehiculoServicet;
 	
 	@Before
 	public void setUp() {
-		vehiculoServicet = Mockito.mock(VehiculoServiceImpl.class);
-		vehiculoServiceImpl = new VehiculoServiceImpl();
+		vehiculoService = Mockito.mock(VehiculoServiceImpl.class);
 	}
 
 	@Test
@@ -37,9 +27,10 @@ public class VehiculoServiceTest {
 
 		// arrange
 		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").buildModel();
-
+		when( vehiculoService.placaIniciConA(vehiculo) ).thenCallRealMethod();
+		
 		// act
-		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
+		boolean vehiculoIniciaConA = vehiculoService.placaIniciConA(vehiculo);
 
 		// assert
 		assertTrue(vehiculoIniciaConA);
@@ -51,9 +42,9 @@ public class VehiculoServiceTest {
 
 		// arrange
 		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").buildModel();
-
+		
 		// act
-		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
+		boolean vehiculoIniciaConA = vehiculoService.placaIniciConA(vehiculo);
 
 		// assert
 		assertFalse(vehiculoIniciaConA);
@@ -64,10 +55,10 @@ public class VehiculoServiceTest {
 	public void ingresoVehiculoEnDomingoLunes() throws PreconditionException {
 
 		// arrange
-		when(vehiculoServicet.ingresoVehiculoSoloDomingoLunes()).thenReturn(true);
+		when(vehiculoService.ingresoVehiculoSoloDomingoLunes()).thenReturn(true);
 
 		// act
-		boolean ingresoDomingoLunes = vehiculoServicet.ingresoVehiculoSoloDomingoLunes();
+		boolean ingresoDomingoLunes = vehiculoService.ingresoVehiculoSoloDomingoLunes();
 
 		// assert
 		assertTrue(ingresoDomingoLunes);
@@ -78,13 +69,13 @@ public class VehiculoServiceTest {
 	public void ingresoVehiculoDiferenteADomingoLunes() throws PreconditionException {
 
 		// arrange
-		when(vehiculoServicet.ingresoVehiculoSoloDomingoLunes())
+		when(vehiculoService.ingresoVehiculoSoloDomingoLunes())
 				.thenThrow(new PreconditionException(ConstantExcep.PARQUEAR_SOLO_DOMINGO_LUNES));
 
 		try {
 
 			// act
-			vehiculoServicet.ingresoVehiculoSoloDomingoLunes();
+			vehiculoService.ingresoVehiculoSoloDomingoLunes();
 
 		} catch (PreconditionException e) {
 
