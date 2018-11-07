@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
@@ -16,11 +17,11 @@ import em.parqueadero.backend.persistence.model.trm.TrmModel;
 @RunWith(SpringRunner.class)
 public class TrmServiceTest {
 
+	@MockBean
 	private TrmServiceImpl trmService;
 
 	@Before
 	public void setUp() {
-		trmService = mock(TrmServiceImpl.class);
 	}
 
 	@Test
@@ -36,23 +37,5 @@ public class TrmServiceTest {
 		assertEquals(trmModel, trmModel);
 
 	}
-
-	@Test
-	public void getTrmExceptionTest() throws PreconditionException {
-
-		// arrange
-		when(trmService.getTrm()).thenThrow(new PreconditionException(ConstantExcep.FALLO_SERVICIO_TRM));
-
-		try {
-			// act
-			trmService.getTrm();
-
-		} catch (PreconditionException e) {
-
-			// assert
-			assertEquals(ConstantExcep.FALLO_SERVICIO_TRM, e.getMessage());
-		}
-
-	}
-
+	
 }
