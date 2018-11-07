@@ -1,6 +1,8 @@
 package em.parqueadero.backend.domain.vehiculo.factory;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,16 +17,13 @@ import em.parqueadero.backend.domain.vehiculo.VehiculoService;
 import em.parqueadero.backend.domain.vehiculo.factory.moto.MotoServiceImpl;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class FactoryTest {
 
-	@Autowired
 	private Factory factory;
 
 	@Before
 	public void setUp() {
+		factory = mock(Factory.class);
 	}
 	
 	@Test
@@ -32,7 +31,8 @@ public class FactoryTest {
 		
 		// arrange
 		VehiculoModel moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).build();
-
+		when(factory.getService(moto)).thenReturn( new MotoServiceImpl() );
+		
 		// act
 		VehiculoService vehiculoService = factory.getService(moto);
 		
