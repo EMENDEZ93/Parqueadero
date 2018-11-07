@@ -2,6 +2,8 @@ package em.parqueadero.backend.domain.trm;
 
 import java.rmi.RemoteException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
@@ -19,6 +21,9 @@ public class TrmServiceImpl implements TrmService {
 
 		TrmModel trm = new TrmModel();
 		
+		final Logger LOG = LoggerFactory.getLogger(TrmServiceImpl.class);
+		
+		
 		TCRMServicesInterface proxy = new TCRMServicesInterfaceProxy(
 				"https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService?WSDL");
 		TcrmResponse tcrmResponse;
@@ -29,7 +34,7 @@ public class TrmServiceImpl implements TrmService {
 				return trm;
 			}
 		} catch (RemoteException e) {
-
+			LOG.info("Error en /ingresarVehiculo",e);
 			throw new PreconditionException(ConstantExcep.FALLO_SERVICIO_TRM);
 		}
 		trm.setValue(0.0f);
