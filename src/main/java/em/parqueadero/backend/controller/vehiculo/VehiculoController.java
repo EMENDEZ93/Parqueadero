@@ -53,8 +53,8 @@ public class VehiculoController {
 	}
 
 	@GetMapping("/trm")
-	public TrmModel getTrm() throws PreconditionException {
-		return trmService.getTrm();
+	public float getTrm() throws PreconditionException {
+		return trmService.getTrm().getValue();
 	}
 
 }
