@@ -9,16 +9,17 @@ public final class ParqueaderoBuilder {
 	}
 
 	public static ParqueaderoModel convertirParqueaderoEntityAModel(ParqueaderoEntity parqueaderoEntity) {
- 
+
 		ParqueaderoModel parqueaderoModel = null;
-		
-		if(parqueaderoEntity != null) {
+
+		if (parqueaderoEntity != null) {
 			parqueaderoModel = new ParqueaderoModel();
-			parqueaderoModel.setPlaca( parqueaderoEntity.getVehiculoEntity().getPlaca() );
-			parqueaderoModel.setTipo( parqueaderoEntity.getVehiculoEntity().getTipoVehiculo() );
-			parqueaderoModel.setFechaIngreso( parqueaderoEntity.getFechaIngreso() );
+			parqueaderoModel.setId(parqueaderoEntity.getIdParqueadero());
+			parqueaderoModel.setPlaca(parqueaderoEntity.getVehiculoEntity().getPlaca());
+			parqueaderoModel.setTipo(parqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
+			parqueaderoModel.setFechaIngreso(parqueaderoEntity.getFechaIngreso());
 		}
-		
+
 		return parqueaderoModel;
 	}
 

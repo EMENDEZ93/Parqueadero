@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,7 @@ public class VehiculoController {
 	@Autowired
 	private TrmService trmService;
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
 	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo)
 			throws PreconditionException {
@@ -44,6 +46,7 @@ public class VehiculoController {
 		return vehiculoService.salidaVehiculoParqueadero(idParqueaderoEntity);
 	}
 
+	@CrossOrigin(origins = "*")
 	@GetMapping("/vehiculos/parqueados")
 	public List<ParqueaderoModel> vehiculosParqueados() {
 		return vehiculosParqueados.vehiculosParqueados();

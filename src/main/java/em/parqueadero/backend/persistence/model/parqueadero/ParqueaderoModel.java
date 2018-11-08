@@ -7,11 +7,21 @@ public class ParqueaderoModel implements Serializable {
 
 	private static final long serialVersionUID = 3574019000671490684L;
 
+	private int id;
+
 	private String placa;
 
 	private String tipo;
 
 	private LocalDateTime fechaIngreso;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getPlaca() {
 		return placa;
