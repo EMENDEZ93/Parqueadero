@@ -21,6 +21,7 @@ import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.model.trm.TrmModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
+@CrossOrigin
 @RestController
 public class VehiculoController {
 
@@ -33,7 +34,7 @@ public class VehiculoController {
 	@Autowired
 	private TrmService trmService;
 	
-	@CrossOrigin(origins = "*")
+	
 	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
 	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo)
 			throws PreconditionException {
@@ -46,7 +47,6 @@ public class VehiculoController {
 		return vehiculoService.salidaVehiculoParqueadero(idParqueaderoEntity);
 	}
 
-	@CrossOrigin(origins = "*")
 	@GetMapping("/vehiculos/parqueados")
 	public List<ParqueaderoModel> vehiculosParqueados() {
 		return vehiculosParqueados.vehiculosParqueados();
