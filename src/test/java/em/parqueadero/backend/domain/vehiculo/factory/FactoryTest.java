@@ -11,9 +11,10 @@ import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vehiculo.VigilanteService;
-import em.parqueadero.backend.domain.vehiculo.factory.carro.CarroServiceImpl;
-import em.parqueadero.backend.domain.vehiculo.factory.moto.MotoServiceImpl;
+import em.parqueadero.backend.domain.vigilante.VigilanteService;
+import em.parqueadero.backend.domain.vigilante.factory.Factory;
+import em.parqueadero.backend.domain.vigilante.factory.carro.CarroServiceImpl;
+import em.parqueadero.backend.domain.vigilante.factory.moto.MotoServiceImpl;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public class FactoryTest {

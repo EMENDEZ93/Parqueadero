@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.domain.vehiculo.factory.moto.MotoServiceImpl;
+import em.parqueadero.backend.domain.vigilante.factory.moto.MotoServiceImpl;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
