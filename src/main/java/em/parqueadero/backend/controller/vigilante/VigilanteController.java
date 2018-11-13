@@ -1,4 +1,4 @@
-package em.parqueadero.backend.controller.vehiculo;
+package em.parqueadero.backend.controller.vigilante;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @CrossOrigin
 @RestController
-public class VehiculoController {
+public class VigilanteController {
 
 	@Autowired
 	private VigilanteService vehiculoService;
