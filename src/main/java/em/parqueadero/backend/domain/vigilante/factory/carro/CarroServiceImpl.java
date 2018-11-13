@@ -59,11 +59,11 @@ public class CarroServiceImpl implements VigilanteService, LugarDisponibleParque
 	}
 
 	@Override
-	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
+	public void ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
 		isValid(vehiculo);
 		lugarDisponibleParqueo();
 		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
-		return registroParqueadero(vehiculoEntity);
+		registroParqueadero(vehiculoEntity);
 	}
 
 	@Override

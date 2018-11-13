@@ -28,16 +28,14 @@ public class VigilanteController {
 	private VigilanteService vehiculoService;
 
 	@Autowired
-	private VehiculosParqueados vehiculosParqueados; 
-	
+	private VehiculosParqueados vehiculosParqueados;
+
 	@Autowired
 	private TrmService trmService;
-	
-	
+
 	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
-	public ParqueaderoEntity ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo)
-			throws PreconditionException {
-		return vehiculoService.ingresoVehiculoParqueadero(vehiculo);
+	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
+		vehiculoService.ingresoVehiculoParqueadero(vehiculo);
 	}
 
 	@GetMapping("/salida/vehiculo/parqueadero/{idParqueaderoEntity}")

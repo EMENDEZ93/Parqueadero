@@ -43,16 +43,16 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
+	public void ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
 		existeVehiculoParquedo(vehiculo.getPlaca());
 
 		if (placaIniciConA(vehiculo)) {
 			ingresoVehiculoSoloDomingoLunes();
-			return factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
 
 		} else {
 
-			return factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
 
 		}
 
@@ -65,7 +65,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 		}
 
 		return true;
-	} 
+	}
 
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
@@ -80,9 +80,8 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	public List<ParqueaderoModel> vehiculosParqueados() {
 
 		List<ParqueaderoModel> parqueaderoModels = new ArrayList<>();
-		parqueaderoJpaRepository.getAllByParqueadoIsTrue().stream().forEach(parqueaderoEntity -> 
-			parqueaderoModels.add( ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity) )
-		);
+		parqueaderoJpaRepository.getAllByParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels
+				.add(ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity)));
 
 		return parqueaderoModels;
 	}

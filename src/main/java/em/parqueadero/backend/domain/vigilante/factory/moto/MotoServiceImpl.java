@@ -32,7 +32,7 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo
 
 	@Autowired
 	private VehiculoJpaRepository vehiculoJpaRepository;
-	
+
 	@Autowired
 	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
 
@@ -65,11 +65,11 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo
 	}
 
 	@Override
-	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
+	public void ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
 		isValid(vehiculo);
 		lugarDisponibleParqueo();
 		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
-		return registroParqueadero(vehiculoEntity);
+		registroParqueadero(vehiculoEntity);
 	}
 
 	@Override
@@ -93,21 +93,20 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo
 	@Override
 	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
 		ParqueaderoEntity parqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
-		
+
 		parqueaderoEntity.setParqueado(false);
-		parqueaderoEntity.setFechaSalida( LocalDateTime.now() );
-		parqueaderoEntity.setCosto( calcularCostoParqueo(parqueaderoEntity, tipoVehiculoJpaRepository) + condicionCilindrajeRecargo(parqueaderoEntity) );
+		parqueaderoEntity.setFechaSalida(LocalDateTime.now());
+		parqueaderoEntity.setCosto(calcularCostoParqueo(parqueaderoEntity, tipoVehiculoJpaRepository)
+				+ condicionCilindrajeRecargo(parqueaderoEntity));
 		return parqueaderoJpaRepository.save(parqueaderoEntity);
 	}
 
-
 	@Override
 	public double condicionCilindrajeRecargo(ParqueaderoEntity parqueaderoEntity) {
-		if( parqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO ) {
+		if (parqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
 			return VehiculoConstant.COSTO_RECARGO_CILINDRAJE;
 		}
-		return 0; 
+		return 0;
 	}
-
 
 }
