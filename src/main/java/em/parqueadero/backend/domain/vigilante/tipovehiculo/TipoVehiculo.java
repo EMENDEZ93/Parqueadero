@@ -12,7 +12,7 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.moto.MotoServiceImpl
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @Service
-public class Factory { 
+public class TipoVehiculo { 
 
 	@Autowired
 	private MotoServiceImpl motoService;

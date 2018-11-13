@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.Factory;
+import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculo;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.ExisteVehiculoParquedo;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
@@ -25,7 +25,7 @@ import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaR
 public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParquedo, VehiculosParqueados {
 
 	@Autowired
-	private Factory factory;
+	private TipoVehiculo tipoVehiculo;
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -48,11 +48,11 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 
 		if (placaIniciConA(vehiculo)) {
 			ingresoVehiculoSoloDomingoLunes();
-			factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			tipoVehiculo.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
 
 		} else {
 
-			factory.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			tipoVehiculo.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
 
 		}
 
@@ -72,7 +72,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 		VehiculoModel vehiculo = VehiculoBuilder.convertirVehiculoEntityAModel(
 				parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
-		return factory.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
+		return tipoVehiculo.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
 
 	}
 
