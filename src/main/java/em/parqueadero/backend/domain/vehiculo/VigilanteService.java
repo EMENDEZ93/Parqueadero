@@ -4,7 +4,7 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
-public interface VehiculoService {
+public interface VigilanteService {
 
 	public ParqueaderoEntity ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException;
 

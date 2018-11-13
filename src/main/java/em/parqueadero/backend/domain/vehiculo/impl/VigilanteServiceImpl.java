@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.VigilanteService;
 import em.parqueadero.backend.domain.vehiculo.factory.Factory;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.ExisteVehiculoParquedo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.VehiculosParqueados;
@@ -22,7 +22,7 @@ import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service("vehiculoService")
-public class VehiculoServiceImpl implements VehiculoService, ExisteVehiculoParquedo, VehiculosParqueados {
+public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParquedo, VehiculosParqueados {
 
 	@Autowired
 	private Factory factory;

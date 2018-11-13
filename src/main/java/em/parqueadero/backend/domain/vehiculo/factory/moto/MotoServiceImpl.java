@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vehiculo.VehiculoService;
+import em.parqueadero.backend.domain.vehiculo.VigilanteService;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CalcularCostoParqueo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CondicionCilindrajeRecargo;
 import em.parqueadero.backend.domain.vehiculo.factory.segregration.CrearVehiculo;
@@ -24,7 +24,7 @@ import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJp
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class MotoServiceImpl implements VehiculoService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
+public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
 		RegistroParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired

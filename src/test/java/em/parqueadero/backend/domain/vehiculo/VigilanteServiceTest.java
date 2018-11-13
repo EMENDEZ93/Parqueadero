@@ -12,20 +12,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vehiculo.impl.VehiculoServiceImpl;
+import em.parqueadero.backend.domain.vehiculo.impl.VigilanteServiceImpl;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
-public class VehiculoServiceTest {
+public class VigilanteServiceTest {
 
 	@MockBean
-	private VehiculoServiceImpl vehiculoService;
+	private VigilanteServiceImpl vehiculoService;
 
-	private VehiculoServiceImpl vehiculoServiceImpl;
+	private VigilanteServiceImpl vehiculoServiceImpl;
 
 	@Before
 	public void setUp() {
-		vehiculoServiceImpl = new VehiculoServiceImpl();
+		vehiculoServiceImpl = new VigilanteServiceImpl();
 	}
 
 	@Test
