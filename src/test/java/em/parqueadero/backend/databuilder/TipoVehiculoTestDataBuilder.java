@@ -2,7 +2,7 @@ package em.parqueadero.backend.databuilder;
 
 import org.springframework.stereotype.Component;
 
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.tipovehiculo.TarifaTipoVehiculoEntity;
 import em.parqueadero.backend.persistence.model.tipovehiculo.TipoVehiculoModel;
 
 @Component
@@ -35,8 +35,8 @@ public class TipoVehiculoTestDataBuilder {
 		return new TipoVehiculoModel(this.idTipoVehiculo, this.nombre);
 	}
 
-	public TipoVehiculoEntity buildEntity() {
-		TipoVehiculoEntity tipoVehiculoEntity = new TipoVehiculoEntity();
+	public TarifaTipoVehiculoEntity buildEntity() {
+		TarifaTipoVehiculoEntity tipoVehiculoEntity = new TarifaTipoVehiculoEntity();
 		tipoVehiculoEntity.setCostoDia(COSTO_DIA);
 		tipoVehiculoEntity.setCostoHora(COSTO_HORA);
 		tipoVehiculoEntity.setNombre(NOMBRE);

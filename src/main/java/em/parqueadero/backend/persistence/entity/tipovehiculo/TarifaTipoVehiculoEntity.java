@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class TipoVehiculoEntity implements Serializable {
+public class TarifaTipoVehiculoEntity implements Serializable {
 
 	private static final long serialVersionUID = 5686253391476674271L;
 

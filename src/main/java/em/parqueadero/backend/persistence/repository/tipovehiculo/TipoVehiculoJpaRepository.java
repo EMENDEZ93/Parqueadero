@@ -5,11 +5,11 @@ import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.tipovehiculo.TarifaTipoVehiculoEntity;
 
 @Repository("tipoVehiculoJpaRepository")
-public interface TipoVehiculoJpaRepository extends JpaRepository<TipoVehiculoEntity, Serializable> {
+public interface TipoVehiculoJpaRepository extends JpaRepository<TarifaTipoVehiculoEntity, Serializable> {
 
-	public abstract TipoVehiculoEntity findByNombre(String nombre);
+	public abstract TarifaTipoVehiculoEntity findByNombre(String nombre);
 	
 }

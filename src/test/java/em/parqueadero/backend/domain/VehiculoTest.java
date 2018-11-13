@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.tipovehiculo.TarifaTipoVehiculoEntity;
 import em.parqueadero.backend.persistence.model.tipovehiculo.TipoVehiculoModel;
 import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
 
@@ -34,7 +34,7 @@ public class VehiculoTest {
 		tipoVehiculoTestDataBuilder = new TipoVehiculoTestDataBuilder();
 		tipoVehiculoModel = tipoVehiculoTestDataBuilder.build();
 
-		TipoVehiculoEntity tipoVehiculoEntity2 = new TipoVehiculoEntity();
+		TarifaTipoVehiculoEntity tipoVehiculoEntity2 = new TarifaTipoVehiculoEntity();
 		tipoVehiculoEntity2.setIdTipoVehiculo(1);
 		tipoVehiculoEntity2.setNombre("Carro");
 
@@ -44,7 +44,7 @@ public class VehiculoTest {
 
 	@Test
 	public void test() {
-		TipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository.getOne(2);
+		TarifaTipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository.getOne(2);
 		assertThat(tipoVehiculoEntity.getNombre()).isEqualTo("Carro");
 	}
 
