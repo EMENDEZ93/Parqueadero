@@ -13,11 +13,11 @@ import em.parqueadero.backend.databuilder.model.parqueadero.ParqueaderoTestDataB
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.moto.MotoServiceImpl;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
 public class MotoServiceTest {

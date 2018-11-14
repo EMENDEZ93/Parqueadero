@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.model.parqueadero;
+package em.parqueadero.backend.domain.dto.parqueadero;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

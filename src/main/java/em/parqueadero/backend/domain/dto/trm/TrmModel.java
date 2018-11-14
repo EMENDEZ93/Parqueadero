@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.model.trm;
+package em.parqueadero.backend.domain.dto.trm;
 
 import java.io.Serializable;
 

@@ -1,8 +1,8 @@
 package em.parqueadero.backend.domain.vigilante;
 
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public interface VigilanteService {
 

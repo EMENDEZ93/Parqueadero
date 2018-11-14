@@ -1,7 +1,7 @@
 package em.parqueadero.backend.persistence.builder.vehiculo;
 
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public final class VehiculoBuilder {
 

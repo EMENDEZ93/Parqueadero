@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.model.parqueadero.ParqueaderoTestDataBuilder;
+import em.parqueadero.backend.domain.dto.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
-import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 
 public class ParqueaderoBuilderTest {
 

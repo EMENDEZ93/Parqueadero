@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.dto.trm.TrmModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.persistence.model.trm.TrmModel;
 
 @RunWith(SpringRunner.class)
 public class TrmServiceTest {

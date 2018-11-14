@@ -10,12 +10,12 @@ import org.mockito.Mockito;
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.carro.CarroServiceImpl;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.moto.MotoServiceImpl;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 public class FactoryTest {
 

@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.dto.trm.TrmModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.persistence.model.trm.TrmModel;
 import em.parqueadero.trm.action.TCRMServicesInterface;
 import em.parqueadero.trm.action.TCRMServicesInterfaceProxy;
 import em.parqueadero.trm.action.TcrmResponse;

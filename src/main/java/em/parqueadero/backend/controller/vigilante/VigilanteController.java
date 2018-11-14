@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import em.parqueadero.backend.domain.dto.parqueadero.ParqueaderoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
-import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @CrossOrigin
 @RestController

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.dto.parqueadero.ParqueaderoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
@@ -17,8 +19,6 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.Vehiculo
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
-import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 
 @Service("vigilante")

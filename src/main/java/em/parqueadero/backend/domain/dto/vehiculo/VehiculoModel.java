@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.model.vehiculo;
+package em.parqueadero.backend.domain.dto.vehiculo;
 
 public class VehiculoModel {
 

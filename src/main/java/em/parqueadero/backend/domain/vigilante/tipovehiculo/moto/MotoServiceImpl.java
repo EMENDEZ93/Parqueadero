@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.CalcularCostoParqueo;
@@ -18,7 +19,6 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.Registro
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
 import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;

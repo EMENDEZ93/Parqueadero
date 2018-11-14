@@ -11,9 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.impl.VigilanteServiceImpl;
-import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
 @RunWith(SpringRunner.class)
 public class VigilanteServiceTest {
