@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
@@ -31,7 +32,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
 
 	public boolean placaIniciConA(VehiculoDto vehiculo) {
-		return String.valueOf(vehiculo.getPlaca()).startsWith("A");
+		return String.valueOf(vehiculo.getPlaca().toUpperCase()).startsWith(CondicionesParqueaderoConstant.LETRA_INICIAL);
 	}
 
 	public boolean ingresoVehiculoSoloDomingoLunes() throws PreconditionException {
