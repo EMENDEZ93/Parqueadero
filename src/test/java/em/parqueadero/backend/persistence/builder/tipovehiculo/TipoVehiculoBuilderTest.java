@@ -8,7 +8,7 @@ import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.precios.PreciosEntity;
 
 public class TipoVehiculoBuilderTest {
 
@@ -16,7 +16,7 @@ public class TipoVehiculoBuilderTest {
 	public void convertirTipoVehiculoEntityAModelTest() {
 
 		// arrange
-		TarifaTipoVehiculoEntity tipoVehiculoEntity = new TipoVehiculoTestDataBuilder().buildEntity(); 
+		PreciosEntity tipoVehiculoEntity = new TipoVehiculoTestDataBuilder().buildEntity(); 
 		TipoVehiculoModel tipoVehiculoModel = null;
 		
 		// act
@@ -30,7 +30,7 @@ public class TipoVehiculoBuilderTest {
 	public void convertirTipoVehiculoEntityAModelNullTest() {
 
 		// arrange
-		TarifaTipoVehiculoEntity tipoVehiculoEntity = null; 
+		PreciosEntity tipoVehiculoEntity = null; 
 		TipoVehiculoModel tipoVehiculoModel = null;
 		
 		// act

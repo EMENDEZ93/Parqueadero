@@ -3,14 +3,14 @@ package em.parqueadero.backend.domain.vigilante.parqueadero.segregation;
 import java.time.Duration;
 
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.persistence.entity.precios.PreciosEntity;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
-import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
 import em.parqueadero.backend.persistence.repository.tarifatipovehiculo.TarifaTipoVehiculoJpaRepository;
 
 public interface CalcularCostoParqueo {
 
 	public default double calcularCostoParqueo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity, TarifaTipoVehiculoJpaRepository tipoVehiculoJpaRepository ) {
-		TarifaTipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
+		PreciosEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
 				.findByNombre(registroVehiculoParqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
 
 		int horasDeParqueo = (int) Duration
@@ -20,7 +20,7 @@ public interface CalcularCostoParqueo {
 		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo);
 	}
 	
-	public default double obtenerCostoLogica(TarifaTipoVehiculoEntity tipoVehiculoEntity, int horasDeParqueo) {
+	public default double obtenerCostoLogica(PreciosEntity tipoVehiculoEntity, int horasDeParqueo) {
 		int diasPorPagar = horasDeParqueo / VehiculoConstant.HORAS_AL_DIA;
 		double totalPagar = 0;
 

@@ -1,13 +1,13 @@
 package em.parqueadero.backend.persistence.builder.vehiculo;
 
 import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
-import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.precios.PreciosEntity;
 
 public final class TipoVehiculoBuilder {
 
 	private TipoVehiculoBuilder() {}
 	
-	public static TipoVehiculoModel convertirTipoVehiculoEntityAModel(TarifaTipoVehiculoEntity tipoVehiculoEntity) {
+	public static TipoVehiculoModel convertirTipoVehiculoEntityAModel(PreciosEntity tipoVehiculoEntity) {
 
 		TipoVehiculoModel tipoVehiculoModel = null;
 
@@ -19,9 +19,9 @@ public final class TipoVehiculoBuilder {
 		return tipoVehiculoModel;
 	}
 
-	public static TarifaTipoVehiculoEntity convertirTipoVehiculoModelAEntity(TipoVehiculoModel tipoVehiculoModel) {
+	public static PreciosEntity convertirTipoVehiculoModelAEntity(TipoVehiculoModel tipoVehiculoModel) {
 		
-		TarifaTipoVehiculoEntity tipoVehiculoEntity = new TarifaTipoVehiculoEntity();
+		PreciosEntity tipoVehiculoEntity = new PreciosEntity();
 		tipoVehiculoEntity.setNombre(tipoVehiculoModel.getNombre());
 		
 		return tipoVehiculoEntity;

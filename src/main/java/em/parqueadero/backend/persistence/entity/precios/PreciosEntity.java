@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.entity.tarifatipovehiculo;
+package em.parqueadero.backend.persistence.entity.precios;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class TarifaTipoVehiculoEntity implements Serializable {
+public class PreciosEntity implements Serializable {
 
 	private static final long serialVersionUID = 5686253391476674271L;
 
