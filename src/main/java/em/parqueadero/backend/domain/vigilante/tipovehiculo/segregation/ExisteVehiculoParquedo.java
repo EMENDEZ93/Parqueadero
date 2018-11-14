@@ -4,6 +4,6 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 
 public interface ExisteVehiculoParquedo {
 
-	public boolean existeVehiculoParquedo (String placa) throws PreconditionException;
+	public boolean existeVehiculoParqueado (String placa) throws PreconditionException;
 	
 }

@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.parqueadero.ParqueaderoModel;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.parqueadero.RegistroVehiculoParqueaderoDto;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
@@ -30,7 +30,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
 
-	public boolean placaIniciConA(VehiculoModel vehiculo) {
+	public boolean placaIniciConA(VehiculoDto vehiculo) {
 		return String.valueOf(vehiculo.getPlaca()).startsWith("A");
 	}
 
@@ -43,8 +43,8 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public void ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
-		existeVehiculoParquedo(vehiculo.getPlaca());
+	public void ingresoVehiculoParqueadero(VehiculoDto vehiculo) throws PreconditionException {
+		existeVehiculoParqueado(vehiculo.getPlaca());
 
 		if (placaIniciConA(vehiculo)) {
 			ingresoVehiculoSoloDomingoLunes();
@@ -59,9 +59,9 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public boolean existeVehiculoParquedo(String placa) throws PreconditionException {
+	public boolean existeVehiculoParqueado(String placa) throws PreconditionException {
 		if (!parqueaderoJpaRepository.existsByParqueadoJoinPlaca(placa).isEmpty()) {
-			throw new PreconditionException(ConstantExcep.VEHICULO_PARQUEADO_CON_ESTAS_PLACAS + placa);
+			throw new PreconditionException(ConstantExcep.VEHICULO_PARQUEADO_CON_ESTA_PLACA + placa);
 		}
 
 		return true;
@@ -69,7 +69,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 
 	@Override
 	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		VehiculoModel vehiculo = VehiculoBuilder.convertirVehiculoEntityAModel(
+		VehiculoDto vehiculo = VehiculoBuilder.convertirVehiculoEntityAModel(
 				parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
 		return tipoVehiculo.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
@@ -77,9 +77,9 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public List<ParqueaderoModel> vehiculosParqueados() {
+	public List<RegistroVehiculoParqueaderoDto> vehiculosParqueados() {
 
-		List<ParqueaderoModel> parqueaderoModels = new ArrayList<>();
+		List<RegistroVehiculoParqueaderoDto> parqueaderoModels = new ArrayList<>();
 		parqueaderoJpaRepository.getAllBySeEncuentraParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels
 				.add(ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity)));
 

@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.impl.VigilanteServiceImpl;
 
@@ -32,7 +32,7 @@ public class VigilanteServiceTest {
 	public void placaIniciaConA() throws PreconditionException {
 
 		// arrange
-		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").buildModel();
+		VehiculoDto vehiculo = new VehiculoTestDataBuilder().setPlaca("AC50").buildModel();
 
 		// act
 		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);
@@ -46,7 +46,7 @@ public class VigilanteServiceTest {
 	public void placaNoIniciaConA() throws PreconditionException {
 
 		// arrange
-		VehiculoModel vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").buildModel();
+		VehiculoDto vehiculo = new VehiculoTestDataBuilder().setPlaca("BC50").buildModel();
 
 		// act
 		boolean vehiculoIniciaConA = vehiculoServiceImpl.placaIniciConA(vehiculo);

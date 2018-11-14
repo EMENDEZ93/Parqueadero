@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.CalcularCostoParqueo;
@@ -45,7 +45,7 @@ public class CarroServiceImpl implements VigilanteService, LugarDisponibleParque
 	}
 
 	@Override
-	public boolean isValid(VehiculoModel vehiculo) throws PreconditionException {
+	public boolean isValid(VehiculoDto vehiculo) throws PreconditionException {
 
 		if (vehiculo.getPlaca().trim().isEmpty()) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
@@ -59,7 +59,7 @@ public class CarroServiceImpl implements VigilanteService, LugarDisponibleParque
 	}
 
 	@Override
-	public void ingresoVehiculoParqueadero(VehiculoModel vehiculo) throws PreconditionException {
+	public void ingresoVehiculoParqueadero(VehiculoDto vehiculo) throws PreconditionException {
 		isValid(vehiculo);
 		lugarDisponibleParqueo();
 		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
@@ -67,7 +67,7 @@ public class CarroServiceImpl implements VigilanteService, LugarDisponibleParque
 	}
 
 	@Override
-	public VehiculoEntity crearVehiculo(VehiculoModel vehiculo) {
+	public VehiculoEntity crearVehiculo(VehiculoDto vehiculo) {
 		if (vehiculoJpaRepository.existsByPlaca(vehiculo.getPlaca())) {
 			return vehiculoJpaRepository.findByPlaca(vehiculo.getPlaca());
 		}

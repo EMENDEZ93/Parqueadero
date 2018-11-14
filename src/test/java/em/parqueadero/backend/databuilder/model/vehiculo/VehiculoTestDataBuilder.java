@@ -1,7 +1,7 @@
 package em.parqueadero.backend.databuilder.model.vehiculo;
 
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
 public class VehiculoTestDataBuilder {
@@ -35,8 +35,8 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}	
 	
-	public VehiculoModel buildModel() {
-		VehiculoModel vehiculo = new VehiculoModel();
+	public VehiculoDto buildModel() {
+		VehiculoDto vehiculo = new VehiculoDto();
 		vehiculo.setPlaca(this.placa);
 		vehiculo.setTipoVehiculo(this.tipoVehiculo);
 		vehiculo.setCilindraje(this.cilindraje);

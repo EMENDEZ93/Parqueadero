@@ -1,6 +1,6 @@
 package em.parqueadero.backend.domain.dto.vehiculo;
 
-public class VehiculoModel {
+public class VehiculoDto {
 
 	private int idVehiculo;
 

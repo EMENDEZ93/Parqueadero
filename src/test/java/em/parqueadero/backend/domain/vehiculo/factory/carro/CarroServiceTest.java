@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.carro.CarroServiceImpl;
 
@@ -64,7 +64,7 @@ public class CarroServiceTest {
 	public void validarDatosVehiculoTipoCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().buildModel();
 
 		// act
 		boolean datosValidos = carroServiceImpl.isValid(carro);
@@ -78,7 +78,7 @@ public class CarroServiceTest {
 	public void placaNoValidaCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().setPlaca("").buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().setPlaca("").buildModel();
 
 		try {
 
@@ -97,7 +97,7 @@ public class CarroServiceTest {
 	public void tipoVehiculoNoValidoVacioCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("").buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().setTipoVehiculo("").buildModel();
 
 		try {
 

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import em.parqueadero.backend.domain.dto.parqueadero.ParqueaderoModel;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.parqueadero.RegistroVehiculoParqueaderoDto;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -34,7 +34,7 @@ public class VigilanteController {
 	private TrmService trmService;
 
 	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
-	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
+	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoDto vehiculo) throws PreconditionException {
 		vigilante.ingresoVehiculoParqueadero(vehiculo);
 	}
 
@@ -45,7 +45,7 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/vehiculos/parqueados")
-	public List<ParqueaderoModel> vehiculosParqueados() {
+	public List<RegistroVehiculoParqueaderoDto> vehiculosParqueados() {
 		return vehiculosParqueados.vehiculosParqueados();
 	}
 

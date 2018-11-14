@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.carro.CarroServiceImpl;
@@ -20,7 +20,7 @@ public class TipoVehiculoFactory {
 	@Autowired
 	private CarroServiceImpl carroService;
 
-	public VigilanteService getService(VehiculoModel vehiculo) throws PreconditionException {
+	public VigilanteService getService(VehiculoDto vehiculo) throws PreconditionException {
 		
 		switch (vehiculo.getTipoVehiculo()) {
 

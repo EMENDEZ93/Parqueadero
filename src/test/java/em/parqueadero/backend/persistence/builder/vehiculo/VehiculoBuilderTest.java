@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.moto.MotoServiceImpl;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
@@ -16,7 +16,7 @@ public class VehiculoBuilderTest {
 	public void convertirVehiculoModelAEntityTest() {
 	
 		// arrange
-		VehiculoModel vehiculoModel = new VehiculoTestDataBuilder().buildModel();
+		VehiculoDto vehiculoModel = new VehiculoTestDataBuilder().buildModel();
 		VehiculoEntity vehiculoEntity = null;
 		
 		// act
@@ -30,7 +30,7 @@ public class VehiculoBuilderTest {
 	public void convertirVehiculoModelAEntityNullTest() {
 	
 		// arrange
-		VehiculoModel vehiculoModel = null;
+		VehiculoDto vehiculoModel = null;
 		VehiculoEntity vehiculoEntity = null;
 		
 		// act
@@ -45,12 +45,12 @@ public class VehiculoBuilderTest {
 	
 		// arrange
 		VehiculoEntity vehiculoEntity= new VehiculoTestDataBuilder().buildEntity();
-		VehiculoModel vehiculoModel = null;
+		VehiculoDto vehiculoModel = null;
 		
 		// act
 		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityAModel(vehiculoEntity);
 	
-		assertTrue(vehiculoModel instanceof VehiculoModel);
+		assertTrue(vehiculoModel instanceof VehiculoDto);
 	
 	}	
 
@@ -59,7 +59,7 @@ public class VehiculoBuilderTest {
 	
 		// arrange
 		VehiculoEntity vehiculoEntity= null;
-		VehiculoModel vehiculoModel = null;
+		VehiculoDto vehiculoModel = null;
 		
 		// act
 		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityAModel(vehiculoEntity);

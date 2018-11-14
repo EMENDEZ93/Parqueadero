@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoModel;
+import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
@@ -30,7 +30,7 @@ public class FactoryTest {
 	public void factorygetServiceMotoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoModel moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).buildModel();
+		VehiculoDto moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).buildModel();
 		when(factory.getService(moto)).thenReturn(new MotoServiceImpl());
 
 		// act
@@ -45,7 +45,7 @@ public class FactoryTest {
 	public void factorygetServiceCarroTest() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().buildModel();
 		when(factory.getService(carro)).thenReturn(new CarroServiceImpl());
 
 		// act
@@ -60,7 +60,7 @@ public class FactoryTest {
 	public void factorygetServiceNullTipoVehiculoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoModel carro = new VehiculoTestDataBuilder().setTipoVehiculo("Camioneta").buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().setTipoVehiculo("Camioneta").buildModel();
 		
 		try {
 			
