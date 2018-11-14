@@ -75,7 +75,7 @@ public class MotoServiceTest {
 				.setCilindraje(100).buildModel();
 
 		// act
-		boolean datosValidos = motoServiceImpl.isValid(moto);
+		boolean datosValidos = motoServiceImpl.esValidoVehiculoDto(moto);
 
 		// assert
 		assertTrue(datosValidos);
@@ -92,7 +92,7 @@ public class MotoServiceTest {
 		try {
 
 			// act
-			motoServiceImpl.isValid(moto);
+			motoServiceImpl.esValidoVehiculoDto(moto);
 
 		} catch (PreconditionException e) {
 
@@ -113,7 +113,7 @@ public class MotoServiceTest {
 		try {
 
 			// act
-			motoServiceImpl.isValid(moto);
+			motoServiceImpl.esValidoVehiculoDto(moto);
 
 		} catch (PreconditionException e) {
 
@@ -134,7 +134,7 @@ public class MotoServiceTest {
 		try {
 
 			// act
-			motoServiceImpl.isValid(moto);
+			motoServiceImpl.esValidoVehiculoDto(moto);
 
 		} catch (PreconditionException e) {
 

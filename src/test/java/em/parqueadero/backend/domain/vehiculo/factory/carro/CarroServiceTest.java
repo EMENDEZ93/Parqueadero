@@ -67,7 +67,7 @@ public class CarroServiceTest {
 		VehiculoDto carro = new VehiculoTestDataBuilder().buildModel();
 
 		// act
-		boolean datosValidos = carroServiceImpl.isValid(carro);
+		boolean datosValidos = carroServiceImpl.esValidoVehiculoDto(carro);
 
 		// assert
 		assertTrue(datosValidos);
@@ -83,7 +83,7 @@ public class CarroServiceTest {
 		try {
 
 			// act
-			carroServiceImpl.isValid(carro);
+			carroServiceImpl.esValidoVehiculoDto(carro);
 
 		} catch (PreconditionException e) {
 
@@ -102,7 +102,7 @@ public class CarroServiceTest {
 		try {
 
 			// act
-			carroServiceImpl.isValid(carro);
+			carroServiceImpl.esValidoVehiculoDto(carro);
 
 		} catch (PreconditionException e) {
 

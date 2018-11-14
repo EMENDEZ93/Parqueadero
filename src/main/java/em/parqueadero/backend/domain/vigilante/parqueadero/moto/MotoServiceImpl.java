@@ -13,9 +13,9 @@ import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.CalcularCostoParqueo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.CondicionCilindrajeRecargo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.CrearVehiculo;
-import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.IsValid;
+import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.EsValidoVehiculoDto;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.LugarDisponibleParqueadero;
-import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.RegistroParqueadero;
+import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.CrearRegistroVehiculoEnParqueadero;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
@@ -24,8 +24,8 @@ import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueadero, IsValid, CrearVehiculo,
-		RegistroParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
+public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto, CrearVehiculo,
+		CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired
 	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -46,7 +46,7 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParquea
 	}
 
 	@Override
-	public boolean isValid(VehiculoDto vehiculo) throws PreconditionException {
+	public boolean esValidoVehiculoDto(VehiculoDto vehiculo) throws PreconditionException {
 
 		if (vehiculo.getPlaca().trim().isEmpty()) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
@@ -66,14 +66,14 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParquea
 
 	@Override
 	public void ingresoVehiculoParqueadero(VehiculoDto vehiculo) throws PreconditionException {
-		isValid(vehiculo);
+		esValidoVehiculoDto(vehiculo);
 		lugarDisponibleParqueo();
 		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
-		registroParqueadero(vehiculoEntity);
+		crearRegistroVehiculoEnParqueadero(vehiculoEntity);
 	}
 
 	@Override
-	public RegistroVehiculoParqueaderoEntity registroParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
+	public RegistroVehiculoParqueaderoEntity crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
 
 		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new RegistroVehiculoParqueaderoEntity();
 		registroVehiculoParqueaderoEntity.setVehiculoEntity(vehiculoEntity);

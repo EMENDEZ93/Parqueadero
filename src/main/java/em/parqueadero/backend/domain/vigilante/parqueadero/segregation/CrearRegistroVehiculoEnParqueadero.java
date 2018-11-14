@@ -4,8 +4,8 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
-public interface RegistroParqueadero {
+public interface CrearRegistroVehiculoEnParqueadero {
 
-	public RegistroVehiculoParqueaderoEntity registroParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException;
+	public RegistroVehiculoParqueaderoEntity crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException;
 	
 }
