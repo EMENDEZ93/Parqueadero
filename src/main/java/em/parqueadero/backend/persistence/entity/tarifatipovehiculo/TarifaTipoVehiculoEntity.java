@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.entity.tipovehiculo;
+package em.parqueadero.backend.persistence.entity.tarifatipovehiculo;
 
 import java.io.Serializable;
 

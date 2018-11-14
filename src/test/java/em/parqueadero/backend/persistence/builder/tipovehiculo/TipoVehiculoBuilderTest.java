@@ -8,7 +8,7 @@ import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TarifaTipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
 
 public class TipoVehiculoBuilderTest {
 

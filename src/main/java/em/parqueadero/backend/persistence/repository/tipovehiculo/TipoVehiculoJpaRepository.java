@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TarifaTipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
 
 @Repository("tipoVehiculoJpaRepository")
 public interface TipoVehiculoJpaRepository extends JpaRepository<TarifaTipoVehiculoEntity, Serializable> {

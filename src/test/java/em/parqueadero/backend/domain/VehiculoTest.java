@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
 import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.tipovehiculo.TarifaTipoVehiculoEntity;
+import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
 import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
 
 @RunWith(SpringRunner.class)
