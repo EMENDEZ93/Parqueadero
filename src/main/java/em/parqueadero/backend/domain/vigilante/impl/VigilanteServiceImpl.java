@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculo;
+import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.ExisteVehiculoParquedo;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
@@ -25,7 +25,7 @@ import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaR
 public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParquedo, VehiculosParqueados {
 
 	@Autowired
-	private TipoVehiculo tipoVehiculo;
+	private TipoVehiculoFactory tipoVehiculo;
 
 	@Autowired
 	private ParqueaderoJpaRepository parqueaderoJpaRepository;
