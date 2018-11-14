@@ -2,8 +2,8 @@ package em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 
-public interface LugarDisponibleParqueo {
+public interface ExisteVehiculoParqueado {
 
-	public boolean lugarDisponibleParqueo() throws PreconditionException;
+	public boolean existeVehiculoParqueado (String placa) throws PreconditionException;
 	
 }

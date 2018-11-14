@@ -14,7 +14,7 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.Calcular
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.CondicionCilindrajeRecargo;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.CrearVehiculo;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.IsValid;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.LugarDisponibleParqueo;
+import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.LugarDisponibleParqueadero;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.RegistroParqueadero;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
@@ -24,7 +24,7 @@ import em.parqueadero.backend.persistence.repository.tarifatipovehiculo.TarifaTi
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo, IsValid, CrearVehiculo,
+public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueadero, IsValid, CrearVehiculo,
 		RegistroParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired

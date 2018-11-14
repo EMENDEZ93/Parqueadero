@@ -14,7 +14,7 @@ import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.ExisteVehiculoParquedo;
+import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.ExisteVehiculoParqueado;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
@@ -22,7 +22,7 @@ import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.Reg
 import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
 
 @Service("vigilante")
-public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParquedo, VehiculosParqueados {
+public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParqueado, VehiculosParqueados {
 
 	@Autowired
 	private TipoVehiculoFactory tipoVehiculo;
