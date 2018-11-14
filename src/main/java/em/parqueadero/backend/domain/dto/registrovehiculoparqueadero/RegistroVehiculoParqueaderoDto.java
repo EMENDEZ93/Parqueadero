@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.dto.parqueadero;
+package em.parqueadero.backend.domain.dto.registrovehiculoparqueadero;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

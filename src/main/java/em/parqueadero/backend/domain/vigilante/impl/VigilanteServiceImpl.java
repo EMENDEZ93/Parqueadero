@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.parqueadero.RegistroVehiculoParqueaderoDto;
+import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
