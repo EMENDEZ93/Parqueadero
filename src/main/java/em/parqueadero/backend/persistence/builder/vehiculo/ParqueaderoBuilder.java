@@ -1,6 +1,6 @@
 package em.parqueadero.backend.persistence.builder.vehiculo;
 
-import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 
 public final class ParqueaderoBuilder {

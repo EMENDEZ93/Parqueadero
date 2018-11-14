@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.entity.parqueadero;
+package em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation;
 
-import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 
 public interface CondicionCilindrajeRecargo {
 
