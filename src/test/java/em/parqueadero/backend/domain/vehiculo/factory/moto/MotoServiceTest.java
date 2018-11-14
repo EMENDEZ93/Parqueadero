@@ -15,7 +15,7 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vigilante.parqueadero.moto.MotoServiceImpl;
+import em.parqueadero.backend.domain.vigilante.parqueadero.moto.ServicioParqueaderoTipoMoto;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
@@ -23,13 +23,13 @@ import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 public class MotoServiceTest {
 
 	@MockBean
-	private MotoServiceImpl motoService;
+	private ServicioParqueaderoTipoMoto motoService;
 
-	private MotoServiceImpl motoServiceImpl;
+	private ServicioParqueaderoTipoMoto motoServiceImpl;
 
 	@Before
 	public void setUp() {
-		motoServiceImpl = new MotoServiceImpl();
+		motoServiceImpl = new ServicioParqueaderoTipoMoto();
 	}
 
 	@Test

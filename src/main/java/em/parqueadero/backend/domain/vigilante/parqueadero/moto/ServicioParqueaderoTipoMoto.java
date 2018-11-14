@@ -24,7 +24,7 @@ import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto, CrearVehiculo,
+public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto, CrearVehiculo,
 		CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired

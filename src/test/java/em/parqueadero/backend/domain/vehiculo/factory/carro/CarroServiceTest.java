@@ -11,18 +11,18 @@ import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vigilante.parqueadero.carro.CarroServiceImpl;
+import em.parqueadero.backend.domain.vigilante.parqueadero.carro.ServicioParqueaderoTipoCarro;
 
 public class CarroServiceTest {
 
-	private CarroServiceImpl carroService;
+	private ServicioParqueaderoTipoCarro carroService;
 
-	private CarroServiceImpl carroServiceImpl;
+	private ServicioParqueaderoTipoCarro carroServiceImpl;
 
 	@Before
 	public void setUp() {
-		carroService =Mockito.mock(CarroServiceImpl.class) ;
-		carroServiceImpl = new CarroServiceImpl();
+		carroService =Mockito.mock(ServicioParqueaderoTipoCarro.class) ;
+		carroServiceImpl = new ServicioParqueaderoTipoCarro();
 	}
 
 	@Test

@@ -14,8 +14,8 @@ import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.TipoVehiculoFactory;
-import em.parqueadero.backend.domain.vigilante.parqueadero.carro.CarroServiceImpl;
-import em.parqueadero.backend.domain.vigilante.parqueadero.moto.MotoServiceImpl;
+import em.parqueadero.backend.domain.vigilante.parqueadero.carro.ServicioParqueaderoTipoCarro;
+import em.parqueadero.backend.domain.vigilante.parqueadero.moto.ServicioParqueaderoTipoMoto;
 
 public class FactoryTest {
 
@@ -31,13 +31,13 @@ public class FactoryTest {
 
 		// arrange
 		VehiculoDto moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).buildModel();
-		when(factory.getService(moto)).thenReturn(new MotoServiceImpl());
+		when(factory.getService(moto)).thenReturn(new ServicioParqueaderoTipoMoto());
 
 		// act
 		VigilanteService vehiculoService = factory.getService(moto);
 
 		// assert
-		assertTrue(vehiculoService instanceof MotoServiceImpl);
+		assertTrue(vehiculoService instanceof ServicioParqueaderoTipoMoto);
 
 	}
 
@@ -46,13 +46,13 @@ public class FactoryTest {
 
 		// arrange
 		VehiculoDto carro = new VehiculoTestDataBuilder().buildModel();
-		when(factory.getService(carro)).thenReturn(new CarroServiceImpl());
+		when(factory.getService(carro)).thenReturn(new ServicioParqueaderoTipoCarro());
 
 		// act
 		VigilanteService vehiculoService = factory.getService(carro);
 
 		// assert
-		assertTrue(vehiculoService instanceof CarroServiceImpl);
+		assertTrue(vehiculoService instanceof ServicioParqueaderoTipoCarro);
 
 	}
 
