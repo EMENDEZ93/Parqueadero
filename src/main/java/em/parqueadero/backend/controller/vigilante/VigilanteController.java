@@ -25,7 +25,7 @@ import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 public class VigilanteController {
 
 	@Autowired
-	private VigilanteService vehiculoService;
+	private VigilanteService vigilante;
 
 	@Autowired
 	private VehiculosParqueados vehiculosParqueados;
@@ -35,13 +35,13 @@ public class VigilanteController {
 
 	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
 	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoModel vehiculo) throws PreconditionException {
-		vehiculoService.ingresoVehiculoParqueadero(vehiculo);
+		vigilante.ingresoVehiculoParqueadero(vehiculo);
 	}
 
 	@GetMapping("/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
 	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(
 			@PathVariable(value = "idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
-		return vehiculoService.salidaVehiculoParqueadero(idParqueaderoEntity);
+		return vigilante.salidaVehiculoParqueadero(idParqueaderoEntity);
 	}
 
 	@GetMapping("/vehiculos/parqueados")
