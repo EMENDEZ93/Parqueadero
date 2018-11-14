@@ -37,6 +37,8 @@ public class RegistroVehiculoParqueaderoEntity implements Serializable {
 
 	private LocalDateTime fechaSalida;
 
+	private String tiempoParqueado;
+	
 	@PrePersist
 	public void prePersist() {
 		fechaIngreso = LocalDateTime.now();
@@ -90,6 +92,14 @@ public class RegistroVehiculoParqueaderoEntity implements Serializable {
 
 	public void setCosto(double costo) {
 		this.costo = costo;
+	}
+
+	public String getTiempoParqueado() {
+		return tiempoParqueado;
+	}
+
+	public void setTiempoParqueado(String tiempoParqueado) {
+		this.tiempoParqueado = tiempoParqueado;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.dto.factura.FacturaDto;
 import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
@@ -17,7 +18,7 @@ import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.TipoVehiculoFactory;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.ExisteVehiculoParqueado;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.VehiculosParqueados;
-import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
+import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
@@ -69,7 +70,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
+	public FacturaDto salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
 		VehiculoDto vehiculo = VehiculoBuilder.convertirVehiculoEntityADto(
 				parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
@@ -82,7 +83,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 
 		List<RegistroVehiculoParqueaderoDto> parqueaderoModels = new ArrayList<>();
 		parqueaderoJpaRepository.getAllBySeEncuentraParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels
-				.add(ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity)));
+				.add(RegistroVehiculoParqueaderoBuilder.convertirParqueaderoEntityADto(parqueaderoEntity)));
 
 		return parqueaderoModels;
 	}

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import em.parqueadero.backend.domain.dto.factura.FacturaDto;
 import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.VehiculosParqueados;
-import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 
 @CrossOrigin
 @RestController
@@ -39,7 +39,7 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
-	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(
+	public FacturaDto salidaVehiculoParqueadero(
 			@PathVariable(value = "idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
 		return vigilante.salidaVehiculoParqueadero(idParqueaderoEntity);
 	}

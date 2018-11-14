@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
+import em.parqueadero.backend.domain.dto.factura.FacturaDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -16,6 +17,7 @@ import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.CrearVehi
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.EsValidoVehiculoDto;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.LugarDisponibleParqueadero;
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.CrearRegistroVehiculoEnParqueadero;
+import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
@@ -24,8 +26,8 @@ import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto, CrearVehiculo,
-		CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
+public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto,
+		CrearVehiculo, CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired
 	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -91,19 +93,26 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 	}
 
 	@Override
-	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
+	public FacturaDto salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = parqueaderoJpaRepository
+				.getOne(idParqueaderoEntity);
 
 		registroVehiculoParqueaderoEntity.setSeEncuentraParqueado(false);
 		registroVehiculoParqueaderoEntity.setFechaSalida(LocalDateTime.now());
-		registroVehiculoParqueaderoEntity.setCosto(calcularCostoParqueo(registroVehiculoParqueaderoEntity, tipoVehiculoJpaRepository)
-				+ condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity));
-		return parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
+		registroVehiculoParqueaderoEntity
+				.setCosto(calcularCostoParqueo(registroVehiculoParqueaderoEntity, tipoVehiculoJpaRepository)
+						+ condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity));
+		registroVehiculoParqueaderoEntity
+				.setTiempoParqueado(obtenerTiempoParqueado(registroVehiculoParqueaderoEntity.getFechaIngreso(),
+						registroVehiculoParqueaderoEntity.getFechaSalida()));
+		return RegistroVehiculoParqueaderoBuilder.convertirRegistroVehiculoParqueaderoEntityAFacturaDto(
+				parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity));
 	}
 
 	@Override
 	public double condicionCilindrajeRecargo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity) {
-		if (registroVehiculoParqueaderoEntity.getVehiculoEntity().getCilindraje() > CondicionesParqueaderoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
+		if (registroVehiculoParqueaderoEntity.getVehiculoEntity()
+				.getCilindraje() > CondicionesParqueaderoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
 			return CondicionesParqueaderoConstant.COSTO_RECARGO_CILINDRAJE;
 		}
 		return 0;
