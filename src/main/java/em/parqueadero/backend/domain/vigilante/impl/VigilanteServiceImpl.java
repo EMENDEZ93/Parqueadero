@@ -19,7 +19,7 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.Vehiculo
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
-import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
+import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
 
 @Service("vigilante")
 public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParquedo, VehiculosParqueados {
@@ -28,7 +28,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	private TipoVehiculoFactory tipoVehiculo;
 
 	@Autowired
-	private ParqueaderoJpaRepository parqueaderoJpaRepository;
+	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
 
 	public boolean placaIniciConA(VehiculoDto vehiculo) {
 		return String.valueOf(vehiculo.getPlaca()).startsWith("A");

@@ -14,7 +14,7 @@ import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
 import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
-import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
+import em.parqueadero.backend.persistence.repository.tarifatipovehiculo.TarifaTipoVehiculoJpaRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -22,7 +22,7 @@ public class VehiculoTest {
 
 	@Autowired
 	@Qualifier("tipoVehiculoJpaRepository")
-	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
+	private TarifaTipoVehiculoJpaRepository tipoVehiculoJpaRepository;
 	
 	private TipoVehiculoBuilder tipoVehiculoBuilder;
 	private TipoVehiculoTestDataBuilder tipoVehiculoTestDataBuilder;

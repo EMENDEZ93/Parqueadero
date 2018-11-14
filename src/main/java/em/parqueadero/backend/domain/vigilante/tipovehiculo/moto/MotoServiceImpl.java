@@ -19,8 +19,8 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.Registro
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
-import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
-import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
+import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
+import em.parqueadero.backend.persistence.repository.tarifatipovehiculo.TarifaTipoVehiculoJpaRepository;
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
@@ -28,13 +28,13 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo
 		RegistroParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
 
 	@Autowired
-	private ParqueaderoJpaRepository parqueaderoJpaRepository;
+	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
 
 	@Autowired
 	private VehiculoJpaRepository vehiculoJpaRepository;
 
 	@Autowired
-	private TipoVehiculoJpaRepository tipoVehiculoJpaRepository;
+	private TarifaTipoVehiculoJpaRepository tipoVehiculoJpaRepository;
 
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {

@@ -5,11 +5,11 @@ import java.time.Duration;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.tarifatipovehiculo.TarifaTipoVehiculoEntity;
-import em.parqueadero.backend.persistence.repository.tipovehiculo.TipoVehiculoJpaRepository;
+import em.parqueadero.backend.persistence.repository.tarifatipovehiculo.TarifaTipoVehiculoJpaRepository;
 
 public interface CalcularCostoParqueo {
 
-	public default double calcularCostoParqueo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity, TipoVehiculoJpaRepository tipoVehiculoJpaRepository ) {
+	public default double calcularCostoParqueo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity, TarifaTipoVehiculoJpaRepository tipoVehiculoJpaRepository ) {
 		TarifaTipoVehiculoEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
 				.findByNombre(registroVehiculoParqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
 

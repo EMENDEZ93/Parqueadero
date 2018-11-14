@@ -1,4 +1,4 @@
-package em.parqueadero.backend.persistence.repository.parqueadero;
+package em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +12,7 @@ import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.Reg
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
 @Repository
-public interface ParqueaderoJpaRepository extends JpaRepository<RegistroVehiculoParqueaderoEntity, Serializable> {
+public interface RegistroVehiculoParqueaderoJpaRepository extends JpaRepository<RegistroVehiculoParqueaderoEntity, Serializable> {
 
 	@Query("select p.vehiculo from RegistroVehiculoParqueaderoEntity p where p.seEncuentraParqueado=true and p.vehiculo.placa = ?1")
 	public List<VehiculoEntity> existsByParqueadoJoinPlaca(@Param("placa") String placa);
