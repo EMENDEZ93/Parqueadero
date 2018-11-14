@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.model.parqueadero.ParqueaderoTestDataBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
-import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 
 public class ParqueaderoBuilderTest {
@@ -15,10 +15,10 @@ public class ParqueaderoBuilderTest {
 	public void convertirParqueaderoEntityAModelTest() {
 
 		// arrange
-		ParqueaderoEntity parqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
 
 		// act
-		ParqueaderoModel parqueaderoModel = ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity);
+		ParqueaderoModel parqueaderoModel = ParqueaderoBuilder.convertirParqueaderoEntityAModel(registroVehiculoParqueaderoEntity);
 
 		// assert
 		assertTrue(parqueaderoModel instanceof ParqueaderoModel);
@@ -29,10 +29,10 @@ public class ParqueaderoBuilderTest {
 	public void convertirParqueaderoEntityAModelNullTest() {
 
 		// arrange
-		ParqueaderoEntity parqueaderoEntity = null;
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = null;
 
 		// act
-		ParqueaderoModel parqueaderoModel = ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity);
+		ParqueaderoModel parqueaderoModel = ParqueaderoBuilder.convertirParqueaderoEntityAModel(registroVehiculoParqueaderoEntity);
 
 		// assert
 		assertTrue(parqueaderoModel == null);

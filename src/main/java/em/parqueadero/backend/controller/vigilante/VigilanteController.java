@@ -16,7 +16,7 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
-import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
@@ -39,7 +39,7 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
-	public ParqueaderoEntity salidaVehiculoParqueadero(
+	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(
 			@PathVariable(value = "idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
 		return vehiculoService.salidaVehiculoParqueadero(idParqueaderoEntity);
 	}

@@ -17,7 +17,7 @@ import javax.persistence.PrePersist;
 
 @Entity
 @Table()
-public class ParqueaderoEntity implements Serializable {
+public class RegistroVehiculoParqueaderoEntity implements Serializable {
 
 	private static final long serialVersionUID = -6585773340404494121L;
 
@@ -29,9 +29,9 @@ public class ParqueaderoEntity implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "placa")
-	private VehiculoEntity vehiculoEntity;
+	private VehiculoEntity vehiculo;
 
-	private boolean parqueado;
+	private boolean seEncuentraParqueado;
 
 	private double costo;
 
@@ -40,7 +40,7 @@ public class ParqueaderoEntity implements Serializable {
 	@PrePersist
 	public void prePersist() {
 		fechaIngreso = LocalDateTime.now();
-		parqueado = true;
+		seEncuentraParqueado = true;
 		costo = 0;
 	}
 
@@ -61,19 +61,19 @@ public class ParqueaderoEntity implements Serializable {
 	}
 
 	public VehiculoEntity getVehiculoEntity() {
-		return vehiculoEntity;
+		return vehiculo;
 	}
 
 	public void setVehiculoEntity(VehiculoEntity vehiculoEntity) {
-		this.vehiculoEntity = vehiculoEntity;
+		this.vehiculo = vehiculoEntity;
 	}
 
 	public boolean isParqueado() {
-		return parqueado;
+		return seEncuentraParqueado;
 	}
 
-	public void setParqueado(boolean parqueado) {
-		this.parqueado = parqueado;
+	public void setSeEncuentraParqueado(boolean parqueado) {
+		this.seEncuentraParqueado = parqueado;
 	}
 
 	public LocalDateTime getFechaSalida() {

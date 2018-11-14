@@ -15,7 +15,7 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.moto.MotoServiceImpl;
-import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 
@@ -151,11 +151,11 @@ public class MotoServiceTest {
 		// arrange
 		VehiculoEntity moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO)
 				.setCilindraje(600).buildEntity();
-		ParqueaderoEntity parqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
-		parqueaderoEntity.setVehiculoEntity(moto);
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
+		registroVehiculoParqueaderoEntity.setVehiculoEntity(moto);
 
 		// act
-		double recargo = motoServiceImpl.condicionCilindrajeRecargo(parqueaderoEntity);
+		double recargo = motoServiceImpl.condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity);
 
 		// assert
 		assertEquals(VehiculoConstant.COSTO_RECARGO_CILINDRAJE, recargo, 0.0);
@@ -167,11 +167,11 @@ public class MotoServiceTest {
 		// arrange
 		VehiculoEntity moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(VehiculoConstant.MOTO)
 				.setCilindraje(400).buildEntity();
-		ParqueaderoEntity parqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
-		parqueaderoEntity.setVehiculoEntity(moto);
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new ParqueaderoTestDataBuilder().buildEntity();
+		registroVehiculoParqueaderoEntity.setVehiculoEntity(moto);
 
 		// act
-		double recargo = motoServiceImpl.condicionCilindrajeRecargo(parqueaderoEntity);
+		double recargo = motoServiceImpl.condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity);
 
 		// assert
 		assertEquals(0.0, recargo, 0.0);

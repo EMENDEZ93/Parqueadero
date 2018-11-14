@@ -8,21 +8,21 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
 @Repository
-public interface ParqueaderoJpaRepository extends JpaRepository<ParqueaderoEntity, Serializable> {
+public interface ParqueaderoJpaRepository extends JpaRepository<RegistroVehiculoParqueaderoEntity, Serializable> {
 
-	@Query("select p.vehiculoEntity from ParqueaderoEntity p where p.parqueado=true and p.vehiculoEntity.placa = ?1")
+	@Query("select p.vehiculo from RegistroVehiculoParqueaderoEntity p where p.seEncuentraParqueado=true and p.vehiculo.placa = ?1")
 	public List<VehiculoEntity> existsByParqueadoJoinPlaca(@Param("placa") String placa);
 
-	@Query("select p from ParqueaderoEntity p where p.vehiculoEntity.tipoVehiculo ='Moto' and p.parqueado=true ")
-	public List<ParqueaderoEntity> getAllParqueaderoEntityByMotoAndParqueado();
+	@Query("select p from RegistroVehiculoParqueaderoEntity p where p.vehiculo.tipoVehiculo ='Moto' and p.seEncuentraParqueado=true ")
+	public List<RegistroVehiculoParqueaderoEntity> getAllParqueaderoEntityByMotoAndParqueado();
 
-	@Query("select p from ParqueaderoEntity p where p.vehiculoEntity.tipoVehiculo ='Carro' and p.parqueado=true ")
-	public List<ParqueaderoEntity> getAllParqueaderoEntityByCarroAndParqueado();
+	@Query("select p from RegistroVehiculoParqueaderoEntity p where p.vehiculo.tipoVehiculo ='Carro' and p.seEncuentraParqueado=true ")
+	public List<RegistroVehiculoParqueaderoEntity> getAllParqueaderoEntityByCarroAndParqueado();
 
-	public abstract List<ParqueaderoEntity> getAllByParqueadoIsTrue();
+	public abstract List<RegistroVehiculoParqueaderoEntity> getAllBySeEncuentraParqueadoIsTrue();
 
 }

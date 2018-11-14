@@ -16,7 +16,7 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.ExisteVe
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.model.parqueadero.ParqueaderoModel;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
@@ -68,7 +68,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
+	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
 		VehiculoModel vehiculo = VehiculoBuilder.convertirVehiculoEntityAModel(
 				parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
@@ -80,7 +80,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	public List<ParqueaderoModel> vehiculosParqueados() {
 
 		List<ParqueaderoModel> parqueaderoModels = new ArrayList<>();
-		parqueaderoJpaRepository.getAllByParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels
+		parqueaderoJpaRepository.getAllBySeEncuentraParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels
 				.add(ParqueaderoBuilder.convertirParqueaderoEntityAModel(parqueaderoEntity)));
 
 		return parqueaderoModels;

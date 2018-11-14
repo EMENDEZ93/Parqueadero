@@ -16,7 +16,7 @@ import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.IsValid;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.LugarDisponibleParqueo;
 import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.RegistroParqueadero;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.parqueadero.ParqueaderoEntity;
+import em.parqueadero.backend.persistence.entity.parqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 import em.parqueadero.backend.persistence.model.vehiculo.VehiculoModel;
 import em.parqueadero.backend.persistence.repository.parqueadero.ParqueaderoJpaRepository;
@@ -73,12 +73,12 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo
 	}
 
 	@Override
-	public ParqueaderoEntity registroParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
+	public RegistroVehiculoParqueaderoEntity registroParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
 
-		ParqueaderoEntity parqueaderoEntity = new ParqueaderoEntity();
-		parqueaderoEntity.setVehiculoEntity(vehiculoEntity);
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new RegistroVehiculoParqueaderoEntity();
+		registroVehiculoParqueaderoEntity.setVehiculoEntity(vehiculoEntity);
 
-		return parqueaderoJpaRepository.save(parqueaderoEntity);
+		return parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
 	}
 
 	@Override
@@ -91,19 +91,19 @@ public class MotoServiceImpl implements VigilanteService, LugarDisponibleParqueo
 	}
 
 	@Override
-	public ParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		ParqueaderoEntity parqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
+	public RegistroVehiculoParqueaderoEntity salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
 
-		parqueaderoEntity.setParqueado(false);
-		parqueaderoEntity.setFechaSalida(LocalDateTime.now());
-		parqueaderoEntity.setCosto(calcularCostoParqueo(parqueaderoEntity, tipoVehiculoJpaRepository)
-				+ condicionCilindrajeRecargo(parqueaderoEntity));
-		return parqueaderoJpaRepository.save(parqueaderoEntity);
+		registroVehiculoParqueaderoEntity.setSeEncuentraParqueado(false);
+		registroVehiculoParqueaderoEntity.setFechaSalida(LocalDateTime.now());
+		registroVehiculoParqueaderoEntity.setCosto(calcularCostoParqueo(registroVehiculoParqueaderoEntity, tipoVehiculoJpaRepository)
+				+ condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity));
+		return parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
 	}
 
 	@Override
-	public double condicionCilindrajeRecargo(ParqueaderoEntity parqueaderoEntity) {
-		if (parqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
+	public double condicionCilindrajeRecargo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity) {
+		if (registroVehiculoParqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
 			return VehiculoConstant.COSTO_RECARGO_CILINDRAJE;
 		}
 		return 0;
