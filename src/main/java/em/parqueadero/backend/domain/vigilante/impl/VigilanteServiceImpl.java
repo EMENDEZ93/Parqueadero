@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.factura.FacturaDto;
-import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
+import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosParqueadosDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -20,7 +20,6 @@ import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.ExisteVeh
 import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
-import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
 
 @Service("vigilante")
@@ -79,9 +78,9 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public List<RegistroVehiculoParqueaderoDto> vehiculosParqueados() {
+	public List<VehiculosParqueadosDto> vehiculosParqueados() {
 
-		List<RegistroVehiculoParqueaderoDto> parqueaderoModels = new ArrayList<>();
+		List<VehiculosParqueadosDto> parqueaderoModels = new ArrayList<>();
 		parqueaderoJpaRepository.getAllBySeEncuentraParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels
 				.add(RegistroVehiculoParqueaderoBuilder.convertirParqueaderoEntityADto(parqueaderoEntity)));
 

@@ -1,7 +1,7 @@
 package em.parqueadero.backend.persistence.builder.vehiculo;
 
 import em.parqueadero.backend.domain.dto.factura.FacturaDto;
-import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
+import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosParqueadosDto;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 
 public final class RegistroVehiculoParqueaderoBuilder {
@@ -9,12 +9,12 @@ public final class RegistroVehiculoParqueaderoBuilder {
 	private RegistroVehiculoParqueaderoBuilder() {
 	}
 
-	public static RegistroVehiculoParqueaderoDto convertirParqueaderoEntityADto(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity) {
+	public static VehiculosParqueadosDto convertirParqueaderoEntityADto(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity) {
 
-		RegistroVehiculoParqueaderoDto parqueaderoModel = null;
+		VehiculosParqueadosDto parqueaderoModel = null;
 
 		if (registroVehiculoParqueaderoEntity != null) {
-			parqueaderoModel = new RegistroVehiculoParqueaderoDto();
+			parqueaderoModel = new VehiculosParqueadosDto();
 			parqueaderoModel.setId(registroVehiculoParqueaderoEntity.getIdParqueadero());
 			parqueaderoModel.setPlaca(registroVehiculoParqueaderoEntity.getVehiculoEntity().getPlaca());
 			parqueaderoModel.setTipo(registroVehiculoParqueaderoEntity.getVehiculoEntity().getTipoVehiculo());

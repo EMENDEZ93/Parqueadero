@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import em.parqueadero.backend.domain.dto.factura.FacturaDto;
-import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVehiculoParqueaderoDto;
+import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosParqueadosDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.trm.TrmService;
@@ -45,7 +45,7 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/vehiculos/parqueados")
-	public List<RegistroVehiculoParqueaderoDto> vehiculosParqueados() {
+	public List<VehiculosParqueadosDto> vehiculosParqueados() {
 		return vehiculosParqueados.vehiculosParqueados();
 	}
 

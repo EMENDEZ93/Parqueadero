@@ -3,7 +3,7 @@ package em.parqueadero.backend.domain.dto.registrovehiculoparqueadero;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class RegistroVehiculoParqueaderoDto implements Serializable {
+public class VehiculosParqueadosDto implements Serializable {
 
 	private static final long serialVersionUID = 3574019000671490684L;
 
