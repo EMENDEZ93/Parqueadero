@@ -8,8 +8,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -30,7 +30,7 @@ public class FactoryTest {
 	public void factorygetServiceMotoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoDto moto = new VehiculoTestDataBuilder().setTipoVehiculo(VehiculoConstant.MOTO).buildModel();
+		VehiculoDto moto = new VehiculoTestDataBuilder().setTipoVehiculo(CondicionesParqueaderoConstant.MOTO).buildModel();
 		when(factory.getService(moto)).thenReturn(new ServicioParqueaderoTipoMoto());
 
 		// act

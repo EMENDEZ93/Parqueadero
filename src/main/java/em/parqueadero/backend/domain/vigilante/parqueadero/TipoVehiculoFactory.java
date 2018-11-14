@@ -3,8 +3,8 @@ package em.parqueadero.backend.domain.vigilante.parqueadero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -24,10 +24,10 @@ public class TipoVehiculoFactory {
 		
 		switch (vehiculo.getTipoVehiculo()) {
 
-		case VehiculoConstant.CARRO:
+		case CondicionesParqueaderoConstant.CARRO:
 			return servicioParqueaderoTipoCarro;
 
-		case VehiculoConstant.MOTO:
+		case CondicionesParqueaderoConstant.MOTO:
 			return servicioParqueaderoTipoMoto;
 
 		default:

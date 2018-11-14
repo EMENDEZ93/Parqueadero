@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -39,7 +39,7 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
 		if (parqueaderoJpaRepository.getAllParqueaderoEntityByMotoAndParqueado()
-				.size() < VehiculoConstant.LIMITE_MOTOS_PARQUEADAS) {
+				.size() < CondicionesParqueaderoConstant.LIMITE_MOTOS_PARQUEADAS) {
 			return true;
 		}
 		throw new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_MOTO);
@@ -73,12 +73,12 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 	}
 
 	@Override
-	public RegistroVehiculoParqueaderoEntity crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
+	public void crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
 
 		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new RegistroVehiculoParqueaderoEntity();
 		registroVehiculoParqueaderoEntity.setVehiculoEntity(vehiculoEntity);
 
-		return parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
+		parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 			return vehiculoJpaRepository.findByPlaca(vehiculo.getPlaca());
 		}
 
-		return vehiculoJpaRepository.save(VehiculoBuilder.convertirVehiculoModelAEntity(vehiculo));
+		return vehiculoJpaRepository.save(VehiculoBuilder.convertirVehiculoDtoAEntity(vehiculo));
 	}
 
 	@Override
@@ -103,8 +103,8 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 
 	@Override
 	public double condicionCilindrajeRecargo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity) {
-		if (registroVehiculoParqueaderoEntity.getVehiculoEntity().getCilindraje() > VehiculoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
-			return VehiculoConstant.COSTO_RECARGO_CILINDRAJE;
+		if (registroVehiculoParqueaderoEntity.getVehiculoEntity().getCilindraje() > CondicionesParqueaderoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
+			return CondicionesParqueaderoConstant.COSTO_RECARGO_CILINDRAJE;
 		}
 		return 0;
 	}

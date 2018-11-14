@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
@@ -38,7 +38,7 @@ public class ServicioParqueaderoTipoCarro implements VigilanteService, LugarDisp
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
 		if (parqueaderoJpaRepository.getAllParqueaderoEntityByCarroAndParqueado()
-				.size() < VehiculoConstant.LIMITE_CARROS_PARQUEADOS) {
+				.size() < CondicionesParqueaderoConstant.LIMITE_CARROS_PARQUEADOS) {
 			return true;
 		}
 		throw new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_CARRO);
@@ -72,16 +72,15 @@ public class ServicioParqueaderoTipoCarro implements VigilanteService, LugarDisp
 			return vehiculoJpaRepository.findByPlaca(vehiculo.getPlaca());
 		}
 
-		return vehiculoJpaRepository.save(VehiculoBuilder.convertirVehiculoModelAEntity(vehiculo));
+		return vehiculoJpaRepository.save(VehiculoBuilder.convertirVehiculoDtoAEntity(vehiculo));
 	}
 
 	@Override
-	public RegistroVehiculoParqueaderoEntity crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
-
+	public void crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
 		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new RegistroVehiculoParqueaderoEntity();
 		registroVehiculoParqueaderoEntity.setVehiculoEntity(vehiculoEntity);
 
-		return parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
+		parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
 	}
 
 	@Override

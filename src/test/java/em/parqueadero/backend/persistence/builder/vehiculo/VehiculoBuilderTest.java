@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder;
-import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.vigilante.parqueadero.moto.ServicioParqueaderoTipoMoto;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
@@ -20,7 +20,7 @@ public class VehiculoBuilderTest {
 		VehiculoEntity vehiculoEntity = null;
 		
 		// act
-		vehiculoEntity = VehiculoBuilder.convertirVehiculoModelAEntity(vehiculoModel);
+		vehiculoEntity = VehiculoBuilder.convertirVehiculoDtoAEntity(vehiculoModel);
 	
 		assertTrue(vehiculoEntity instanceof VehiculoEntity);
 	
@@ -34,7 +34,7 @@ public class VehiculoBuilderTest {
 		VehiculoEntity vehiculoEntity = null;
 		
 		// act
-		vehiculoEntity = VehiculoBuilder.convertirVehiculoModelAEntity(vehiculoModel);
+		vehiculoEntity = VehiculoBuilder.convertirVehiculoDtoAEntity(vehiculoModel);
 	
 		assertTrue(vehiculoEntity == null);
 	
@@ -48,7 +48,7 @@ public class VehiculoBuilderTest {
 		VehiculoDto vehiculoModel = null;
 		
 		// act
-		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityAModel(vehiculoEntity);
+		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityADto(vehiculoEntity);
 	
 		assertTrue(vehiculoModel instanceof VehiculoDto);
 	
@@ -62,7 +62,7 @@ public class VehiculoBuilderTest {
 		VehiculoDto vehiculoModel = null;
 		
 		// act
-		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityAModel(vehiculoEntity);
+		vehiculoModel = VehiculoBuilder.convertirVehiculoEntityADto(vehiculoEntity);
 	
 		assertTrue(vehiculoModel == null);
 	

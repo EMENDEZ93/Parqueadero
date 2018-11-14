@@ -7,7 +7,7 @@ public final class VehiculoBuilder {
 
 	private VehiculoBuilder() {}
 	
-	public static VehiculoDto convertirVehiculoEntityAModel(VehiculoEntity vehiculoEntity) {
+	public static VehiculoDto convertirVehiculoEntityADto(VehiculoEntity vehiculoEntity) {
 		
 		VehiculoDto vehiculoModel = null;
 		
@@ -21,7 +21,7 @@ public final class VehiculoBuilder {
 		return vehiculoModel;
 	}
 	
-	public static VehiculoEntity convertirVehiculoModelAEntity(VehiculoDto vehiculoModel) {
+	public static VehiculoEntity convertirVehiculoDtoAEntity(VehiculoDto vehiculoModel) {
 		
 		VehiculoEntity vehiculoEntity = null;
 		

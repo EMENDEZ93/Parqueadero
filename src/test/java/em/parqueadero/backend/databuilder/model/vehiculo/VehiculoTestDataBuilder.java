@@ -1,13 +1,13 @@
 package em.parqueadero.backend.databuilder.model.vehiculo;
 
-import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
+import em.parqueadero.backend.domain.constant.condition.CondicionesParqueaderoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
 
 public class VehiculoTestDataBuilder {
 
 	private static final String PLACA = "333-EDW";
-	private static final String TIPOVEHICULO = VehiculoConstant.CARRO;
+	private static final String TIPOVEHICULO = CondicionesParqueaderoConstant.CARRO;
 	private static final int CILINDRAJE = 300;
 	
 	private String placa;

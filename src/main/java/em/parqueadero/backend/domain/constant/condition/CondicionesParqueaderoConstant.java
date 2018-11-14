@@ -1,8 +1,8 @@
-package em.parqueadero.backend.domain.constant.exception;
+package em.parqueadero.backend.domain.constant.condition;
 
-public final class VehiculoConstant {
+public final class CondicionesParqueaderoConstant {
 
-	private VehiculoConstant() {
+	private CondicionesParqueaderoConstant() {
 		throw new IllegalStateException("VehiculoConstant class");
 	}
 	
