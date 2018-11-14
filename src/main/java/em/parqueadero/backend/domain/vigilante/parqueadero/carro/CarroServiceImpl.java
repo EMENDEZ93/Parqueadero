@@ -18,8 +18,8 @@ import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.RegistroP
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 import em.parqueadero.backend.persistence.entity.vehiculo.VehiculoEntity;
+import em.parqueadero.backend.persistence.repository.precios.PreciosJpaRepository;
 import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
-import em.parqueadero.backend.persistence.repository.tarifatipovehiculo.TarifaTipoVehiculoJpaRepository;
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
@@ -33,7 +33,7 @@ public class CarroServiceImpl implements VigilanteService, LugarDisponibleParque
 	private VehiculoJpaRepository vehiculoJpaRepository;
 
 	@Autowired
-	private TarifaTipoVehiculoJpaRepository tipoVehiculoJpaRepository;
+	private PreciosJpaRepository tipoVehiculoJpaRepository;
 
 	@Override
 	public boolean lugarDisponibleParqueo() throws PreconditionException {
