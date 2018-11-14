@@ -11,7 +11,7 @@ import em.parqueadero.backend.databuilder.model.vehiculo.VehiculoTestDataBuilder
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.carro.CarroServiceImpl;
+import em.parqueadero.backend.domain.vigilante.parqueadero.carro.CarroServiceImpl;
 
 public class CarroServiceTest {
 

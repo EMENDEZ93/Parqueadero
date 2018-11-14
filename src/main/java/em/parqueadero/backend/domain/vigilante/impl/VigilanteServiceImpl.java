@@ -13,9 +13,9 @@ import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.RegistroVeh
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.ExisteVehiculoParqueado;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
+import em.parqueadero.backend.domain.vigilante.parqueadero.TipoVehiculoFactory;
+import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.ExisteVehiculoParqueado;
+import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.ParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;

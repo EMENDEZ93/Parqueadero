@@ -17,7 +17,7 @@ import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.segregation.VehiculosParqueados;
+import em.parqueadero.backend.domain.vigilante.parqueadero.segregation.VehiculosParqueados;
 import em.parqueadero.backend.persistence.entity.registrovehiculoparqueadero.RegistroVehiculoParqueaderoEntity;
 
 @CrossOrigin

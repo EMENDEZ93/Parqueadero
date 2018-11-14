@@ -13,9 +13,9 @@ import em.parqueadero.backend.domain.constant.exception.VehiculoConstant;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.TipoVehiculoFactory;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.carro.CarroServiceImpl;
-import em.parqueadero.backend.domain.vigilante.tipovehiculo.moto.MotoServiceImpl;
+import em.parqueadero.backend.domain.vigilante.parqueadero.TipoVehiculoFactory;
+import em.parqueadero.backend.domain.vigilante.parqueadero.carro.CarroServiceImpl;
+import em.parqueadero.backend.domain.vigilante.parqueadero.moto.MotoServiceImpl;
 
 public class FactoryTest {
 
