@@ -33,12 +33,12 @@ public class VigilanteController {
 	@Autowired
 	private TrmService trmService;
 
-	@PostMapping("/v1/ingreso/vehiculo/parqueadero")
+	@PostMapping("/registro/ingreso/vehiculo/parqueadero")
 	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoDto vehiculo) throws PreconditionException {
 		vigilante.ingresoVehiculoParqueadero(vehiculo);
 	}
 
-	@GetMapping("/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
+	@GetMapping("/registro/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
 	public FacturaDto salidaVehiculoParqueadero(
 			@PathVariable(value = "idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
 		return vigilante.salidaVehiculoParqueadero(idParqueaderoEntity);
