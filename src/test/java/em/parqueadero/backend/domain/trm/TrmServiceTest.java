@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.trm.TrmModel;
+import em.parqueadero.backend.domain.dto.trm.TrmDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 
 @RunWith(SpringRunner.class)
@@ -27,7 +27,7 @@ public class TrmServiceTest {
 	public void getTrmTest() throws PreconditionException {
 
 		// arrange
-		TrmModel trmModel = null;
+		TrmDto trmModel = null;
 
 		// act
 		trmModel = trmService.getTrm();

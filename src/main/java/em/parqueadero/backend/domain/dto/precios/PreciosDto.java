@@ -1,12 +1,12 @@
-package em.parqueadero.backend.domain.dto.tipovehiculo;
+package em.parqueadero.backend.domain.dto.precios;
 
-public class TipoVehiculoModel {
+public class PreciosDto {
 
 	private int idTipoVehiculo;
 
 	private String nombre;
 
-	public TipoVehiculoModel(int idTipoVehiculo, String nombre) {
+	public PreciosDto(int idTipoVehiculo, String nombre) {
 		this.idTipoVehiculo = idTipoVehiculo;
 		this.nombre = nombre;
 	}

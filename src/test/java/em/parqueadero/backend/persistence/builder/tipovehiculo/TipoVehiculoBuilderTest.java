@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
-import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
+import em.parqueadero.backend.domain.dto.precios.PreciosDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
-import em.parqueadero.backend.persistence.builder.vehiculo.TipoVehiculoBuilder;
+import em.parqueadero.backend.persistence.builder.vehiculo.PreciosBuilder;
 import em.parqueadero.backend.persistence.entity.precios.PreciosEntity;
 
 public class TipoVehiculoBuilderTest {
@@ -17,13 +17,13 @@ public class TipoVehiculoBuilderTest {
 
 		// arrange
 		PreciosEntity tipoVehiculoEntity = new TipoVehiculoTestDataBuilder().buildEntity(); 
-		TipoVehiculoModel tipoVehiculoModel = null;
+		PreciosDto tipoVehiculoModel = null;
 		
 		// act
-		tipoVehiculoModel = TipoVehiculoBuilder.convertirTipoVehiculoEntityAModel(tipoVehiculoEntity); 
+		tipoVehiculoModel = PreciosBuilder.convertirTipoVehiculoEntityAModel(tipoVehiculoEntity); 
 		
 		// assert
-		assertTrue(tipoVehiculoModel instanceof TipoVehiculoModel);
+		assertTrue(tipoVehiculoModel instanceof PreciosDto);
 	}
 	
 	@Test
@@ -31,10 +31,10 @@ public class TipoVehiculoBuilderTest {
 
 		// arrange
 		PreciosEntity tipoVehiculoEntity = null; 
-		TipoVehiculoModel tipoVehiculoModel = null;
+		PreciosDto tipoVehiculoModel = null;
 		
 		// act
-		tipoVehiculoModel = TipoVehiculoBuilder.convertirTipoVehiculoEntityAModel(tipoVehiculoEntity); 
+		tipoVehiculoModel = PreciosBuilder.convertirTipoVehiculoEntityAModel(tipoVehiculoEntity); 
 		
 		// assert
 		assertTrue(tipoVehiculoModel == null);

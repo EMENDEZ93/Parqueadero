@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.trm.TrmModel;
+import em.parqueadero.backend.domain.dto.trm.TrmDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.trm.action.TCRMServicesInterface;
 import em.parqueadero.trm.action.TCRMServicesInterfaceProxy;
@@ -19,9 +19,9 @@ public class TrmServiceImpl implements TrmService {
 	private static final Logger logger = LoggerFactory.getLogger(TrmServiceImpl.class);
 	
 	@Override
-	public TrmModel getTrm() throws PreconditionException {
+	public TrmDto getTrm() throws PreconditionException {
 
-		TrmModel trm = new TrmModel();
+		TrmDto trm = new TrmDto();
 		
 		
 		

@@ -2,7 +2,7 @@ package em.parqueadero.backend.databuilder;
 
 import org.springframework.stereotype.Component;
 
-import em.parqueadero.backend.domain.dto.tipovehiculo.TipoVehiculoModel;
+import em.parqueadero.backend.domain.dto.precios.PreciosDto;
 import em.parqueadero.backend.persistence.entity.precios.PreciosEntity;
 
 @Component
@@ -31,8 +31,8 @@ public class TipoVehiculoTestDataBuilder {
 		return this;
 	}
 	
-	public TipoVehiculoModel build() {
-		return new TipoVehiculoModel(this.idTipoVehiculo, this.nombre);
+	public PreciosDto build() {
+		return new PreciosDto(this.idTipoVehiculo, this.nombre);
 	}
 
 	public PreciosEntity buildEntity() {
