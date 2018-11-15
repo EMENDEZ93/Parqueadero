@@ -50,8 +50,8 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/trm")
-	public float getTrm() throws PreconditionException {
+	public float getTrm() throws Exception {
 		return trmService.getTrm().getValue();
-	}
+	} 
 
 }

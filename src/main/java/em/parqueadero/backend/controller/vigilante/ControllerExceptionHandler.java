@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
+import em.parqueadero.backend.domain.exception.preconditionexception.TrmException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -15,6 +16,10 @@ public class ControllerExceptionHandler {
 		return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(value = { TrmException.class })
+	protected ResponseEntity<Object> trmException(TrmException exception) {
+		return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
 }
  

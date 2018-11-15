@@ -24,7 +24,7 @@ public class TrmServiceTest {
 	}
 
 	@Test
-	public void getTrmTest() throws PreconditionException {
+	public void getTrmTest() throws Exception {
 
 		// arrange
 		TrmDto trmModel = null;
@@ -38,7 +38,7 @@ public class TrmServiceTest {
 	}
 
 	@Test
-	public void getTrmNotWorkingTest() throws PreconditionException {
+	public void getTrmNotWorkingTest() throws Exception {
 
 		// arrange
 
