@@ -30,10 +30,10 @@ public final class RegistroVehiculoParqueaderoBuilder {
 		
 		if(registroVehiculoParqueaderoEntity != null) {
 			factura = new FacturaDto(); 
-			factura.setFechaIngreso(registroVehiculoParqueaderoEntity.getFechaIngreso());
-			factura.setFechaSalida(registroVehiculoParqueaderoEntity.getFechaSalida());
 			factura.setCosto(registroVehiculoParqueaderoEntity.getCosto());
 			factura.setTiempoPorCancelar(registroVehiculoParqueaderoEntity.getTiempoParqueado());
+			factura.setPlaca(registroVehiculoParqueaderoEntity.getVehiculoEntity().getPlaca());
+			factura.setTipoVehiculo(registroVehiculoParqueaderoEntity.getVehiculoEntity().getTipoVehiculo()); 
 		}
 		
 		return factura; 
