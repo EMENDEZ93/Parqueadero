@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.vehiculo;
+package em.parqueadero.backend.domain.vigilante;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
