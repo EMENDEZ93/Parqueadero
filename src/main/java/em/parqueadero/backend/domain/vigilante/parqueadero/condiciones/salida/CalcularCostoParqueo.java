@@ -15,7 +15,7 @@ public interface CalcularCostoParqueo {
 		PreciosEntity tipoVehiculoEntity = tipoVehiculoJpaRepository
 				.findByNombre(registroVehiculoParqueaderoEntity.getVehiculoEntity().getTipoVehiculo());
 
-		int horasDeParqueo = (int) obtenerDiferenciaEnHoras(registroVehiculoParqueaderoEntity.getFechaIngreso(),
+		int horasDeParqueo = obtenerDiferenciaEnHoras(registroVehiculoParqueaderoEntity.getFechaIngreso(),
 				registroVehiculoParqueaderoEntity.getFechaSalida());
 
 		return obtenerCostoLogica(tipoVehiculoEntity, horasDeParqueo);
