@@ -17,7 +17,7 @@ public class TrmServiceImpl implements TrmService {
 	private static final Logger logger = LoggerFactory.getLogger(TrmServiceImpl.class);
 
 	@Override
-	public TrmDto getTrm() throws Exception {
+	public TrmDto getTrm() throws TrmException {
 
 		TrmDto trm = new TrmDto();
 

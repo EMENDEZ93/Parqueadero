@@ -1,6 +1,6 @@
 package em.parqueadero.backend.domain.exception.preconditionexception;
 
-public class TrmException extends RuntimeException {
+public class TrmException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 	private final String message;
