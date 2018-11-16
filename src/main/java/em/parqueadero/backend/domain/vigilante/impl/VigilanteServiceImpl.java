@@ -69,11 +69,14 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public FacturaDto salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		VehiculoDto vehiculo = VehiculoBuilder.convertirVehiculoEntityADto(
-				parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
+	public FacturaDto salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {		
+		if(parqueaderoJpaRepository.existsById(idParqueaderoEntity)) {
+			VehiculoDto vehiculo = VehiculoBuilder.convertirVehiculoEntityADto(
+					parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
-		return tipoVehiculo.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
+			return tipoVehiculo.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
+		}
+		throw new PreconditionException(ConstantExcep.VEHICULO_NO_SE_ENCUENTRA_PARQUEADERO);
 
 	}
 
