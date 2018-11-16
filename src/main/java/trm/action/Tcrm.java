@@ -1,5 +1,5 @@
 
-package em.parqueadero.trm.action;
+package trm.action;
 
 /**
  * TCRM business class

@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.trm.TrmDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.TrmException;
-import em.parqueadero.trm.action.TCRMServicesInterface;
-import em.parqueadero.trm.action.TCRMServicesInterfaceProxy;
-import em.parqueadero.trm.action.TcrmResponse;
+import trm.action.TCRMServicesInterface;
+import trm.action.TCRMServicesInterfaceProxy;
+import trm.action.TcrmResponse;
 
 @Service
 public class TrmServiceImpl implements TrmService {

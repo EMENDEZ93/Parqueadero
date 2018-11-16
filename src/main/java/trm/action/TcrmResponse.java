@@ -1,12 +1,12 @@
 
-package em.parqueadero.trm.action;
+package trm.action;
 
 /**
  * Business TCRM response 
  * @author Alex Vicente Chacon Jimenez (alex.chacon@software-colombia.com)
  *
  */
-public class TcrmResponse extends em.parqueadero.trm.action.Tcrm implements java.io.Serializable
+public class TcrmResponse extends trm.action.Tcrm implements java.io.Serializable
 {
 	
 	private static final long serialVersionUID = 1L;

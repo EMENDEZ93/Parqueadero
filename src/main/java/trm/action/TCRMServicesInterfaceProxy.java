@@ -1,9 +1,9 @@
-package em.parqueadero.trm.action;
+package trm.action;
 
-public class TCRMServicesInterfaceProxy implements em.parqueadero.trm.action.TCRMServicesInterface
+public class TCRMServicesInterfaceProxy implements trm.action.TCRMServicesInterface
 {
 	private String _endpoint = null;
-	private em.parqueadero.trm.action.TCRMServicesInterface tCRMServicesInterface = null;
+	private trm.action.TCRMServicesInterface tCRMServicesInterface = null;
 
 	public TCRMServicesInterfaceProxy()
 	{
@@ -20,7 +20,7 @@ public class TCRMServicesInterfaceProxy implements em.parqueadero.trm.action.TCR
 	{
 		try
 		{
-			tCRMServicesInterface = (new em.parqueadero.trm.action.TCRMServicesWebServiceLocator()) .getTCRMServicesWebServicePort();
+			tCRMServicesInterface = (new trm.action.TCRMServicesWebServiceLocator()) .getTCRMServicesWebServicePort();
 			if (tCRMServicesInterface != null)
 			{
 				if (_endpoint != null)
@@ -48,14 +48,14 @@ public class TCRMServicesInterfaceProxy implements em.parqueadero.trm.action.TCR
 
 	}
 
-	public em.parqueadero.trm.action.TCRMServicesInterface getTCRMServicesInterface()
+	public trm.action.TCRMServicesInterface getTCRMServicesInterface()
 	{
 		if (tCRMServicesInterface == null)
 			_initTCRMServicesInterfaceProxy();
 		return tCRMServicesInterface;
 	}
 
-	public em.parqueadero.trm.action.TcrmResponse queryTCRM( java.util.Calendar tcrmQueryAssociatedDate) throws java.rmi.RemoteException
+	public trm.action.TcrmResponse queryTCRM( java.util.Calendar tcrmQueryAssociatedDate) throws java.rmi.RemoteException
 	{
 		if (tCRMServicesInterface == null)
 			_initTCRMServicesInterfaceProxy();

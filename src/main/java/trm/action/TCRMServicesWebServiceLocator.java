@@ -1,6 +1,6 @@
-package em.parqueadero.trm.action;
+package trm.action;
 
-public class TCRMServicesWebServiceLocator extends org.apache.axis.client.Service implements em.parqueadero.trm.action.TCRMServicesWebService
+public class TCRMServicesWebServiceLocator extends org.apache.axis.client.Service implements trm.action.TCRMServicesWebService
 {
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class TCRMServicesWebServiceLocator extends org.apache.axis.client.Servic
 		TCRMServicesWebServicePortWSDDServiceName = name;
 	}
 
-	public em.parqueadero.trm.action.TCRMServicesInterface getTCRMServicesWebServicePort()throws javax.xml.rpc.ServiceException
+	public trm.action.TCRMServicesInterface getTCRMServicesWebServicePort()throws javax.xml.rpc.ServiceException
 	{
 		java.net.URL endpoint;
 		try
@@ -52,11 +52,11 @@ public class TCRMServicesWebServiceLocator extends org.apache.axis.client.Servic
 		return getTCRMServicesWebServicePort(endpoint);
 	}
 
-	public em.parqueadero.trm.action.TCRMServicesInterface getTCRMServicesWebServicePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException
+	public trm.action.TCRMServicesInterface getTCRMServicesWebServicePort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException
 	{
 		try
 		{
-			em.parqueadero.trm.action.TCRMServicesWebServiceSoapBindingStub _stub = new em.parqueadero.trm.action.TCRMServicesWebServiceSoapBindingStub(portAddress, this);
+			trm.action.TCRMServicesWebServiceSoapBindingStub _stub = new trm.action.TCRMServicesWebServiceSoapBindingStub(portAddress, this);
 			_stub.setPortName(getTCRMServicesWebServicePortWSDDServiceName());
 			return _stub;
 		}
@@ -79,9 +79,9 @@ public class TCRMServicesWebServiceLocator extends org.apache.axis.client.Servic
 	{
 		try
 		{
-			if (em.parqueadero.trm.action.TCRMServicesInterface.class.isAssignableFrom(serviceEndpointInterface))
+			if (trm.action.TCRMServicesInterface.class.isAssignableFrom(serviceEndpointInterface))
 			{
-				em.parqueadero.trm.action.TCRMServicesWebServiceSoapBindingStub _stub = new em.parqueadero.trm.action.TCRMServicesWebServiceSoapBindingStub(new java.net.URL(TCRMServicesWebServicePort_address),this);
+				trm.action.TCRMServicesWebServiceSoapBindingStub _stub = new trm.action.TCRMServicesWebServiceSoapBindingStub(new java.net.URL(TCRMServicesWebServicePort_address),this);
 				_stub.setPortName(getTCRMServicesWebServicePortWSDDServiceName());
 				return _stub;
 			}

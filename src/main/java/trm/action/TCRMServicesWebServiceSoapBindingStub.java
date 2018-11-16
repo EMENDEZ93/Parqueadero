@@ -1,6 +1,6 @@
-package em.parqueadero.trm.action;
+package trm.action;
 
-public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.client.Stub implements em.parqueadero.trm.action.TCRMServicesInterface
+public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.client.Stub implements trm.action.TCRMServicesInterface
 {
 	private java.util.Vector cachedSerClasses = new java.util.Vector();
 	private java.util.Vector cachedSerQNames = new java.util.Vector();
@@ -32,7 +32,7 @@ public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.clien
 		oper.setReturnType(new javax.xml.namespace.QName(
 				"http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/",
 				"tcrmResponse"));
-		oper.setReturnClass(em.parqueadero.trm.action.TcrmResponse.class);
+		oper.setReturnClass(trm.action.TcrmResponse.class);
 		oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
 		oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
 		oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -83,7 +83,7 @@ public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.clien
 				"http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/",
 				"tcrm");
 		cachedSerQNames.add(qName);
-		cls = em.parqueadero.trm.action.Tcrm.class;
+		cls = trm.action.Tcrm.class;
 		cachedSerClasses.add(cls);
 		cachedSerFactories.add(beansf);
 		cachedDeserFactories.add(beandf);
@@ -92,7 +92,7 @@ public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.clien
 				"http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/",
 				"tcrmResponse");
 		cachedSerQNames.add(qName);
-		cls = em.parqueadero.trm.action.TcrmResponse.class;
+		cls = trm.action.TcrmResponse.class;
 		cachedSerClasses.add(cls);
 		cachedSerFactories.add(beansf);
 		cachedDeserFactories.add(beandf);
@@ -181,7 +181,7 @@ public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.clien
 		}
 	}
 
-	public em.parqueadero.trm.action.TcrmResponse queryTCRM(
+	public trm.action.TcrmResponse queryTCRM(
 			java.util.Calendar tcrmQueryAssociatedDate)
 			throws java.rmi.RemoteException
 	{
@@ -219,14 +219,14 @@ public class TCRMServicesWebServiceSoapBindingStub extends org.apache.axis.clien
 				extractAttachments(_call);
 				try
 				{
-					return (em.parqueadero.trm.action.TcrmResponse) _resp;
+					return (trm.action.TcrmResponse) _resp;
 				}
 				catch (java.lang.Exception _exception)
 				{
-					return (em.parqueadero.trm.action.TcrmResponse) org.apache.axis.utils.JavaUtils
+					return (trm.action.TcrmResponse) org.apache.axis.utils.JavaUtils
 							.convert(
 									_resp,
-									em.parqueadero.trm.action.TcrmResponse.class);
+									trm.action.TcrmResponse.class);
 				}
 			}
 		}
