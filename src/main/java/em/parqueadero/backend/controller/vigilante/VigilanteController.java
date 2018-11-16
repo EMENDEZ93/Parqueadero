@@ -16,6 +16,7 @@ import em.parqueadero.backend.domain.dto.factura.FacturaDto;
 import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosParqueadosDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
+import em.parqueadero.backend.domain.exception.preconditionexception.TrmException;
 import em.parqueadero.backend.domain.trm.TrmService;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.VehiculosParqueados;
@@ -50,7 +51,7 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/trm")
-	public float getTrm() throws Exception { 
+	public float getTrm() throws TrmException { 
 		return trmService.getTrm().getValue();
 	}  
 
