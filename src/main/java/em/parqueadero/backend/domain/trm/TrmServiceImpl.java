@@ -14,7 +14,7 @@ import em.parqueadero.trm.action.TcrmResponse;
 @Service
 public class TrmServiceImpl implements TrmService {
 
-	private static final Logger logger = LoggerFactory.getLogger(TrmServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TrmServiceImpl.class);
 
 	@Override
 	public TrmDto getTrm() throws TrmException {
@@ -32,7 +32,7 @@ public class TrmServiceImpl implements TrmService {
 				return trm;
 			}
 		} catch (Exception e) {
-			logger.info("Error en /ingresarVehiculo", e);
+			LOGGER.info("Error en /trm", e);
 			throw new TrmException(ConstantExcep.FALLO_SERVICIO_TRM);
 		} 
 		
