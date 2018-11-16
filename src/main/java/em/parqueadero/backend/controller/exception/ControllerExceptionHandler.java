@@ -1,4 +1,4 @@
-package em.parqueadero.backend.controller.vigilante;
+package em.parqueadero.backend.controller.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

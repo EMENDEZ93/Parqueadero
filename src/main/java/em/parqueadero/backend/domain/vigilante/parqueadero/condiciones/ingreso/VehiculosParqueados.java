@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.vigilante.parqueadero.segregation;
+package em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso;
 
 import java.util.List;
 

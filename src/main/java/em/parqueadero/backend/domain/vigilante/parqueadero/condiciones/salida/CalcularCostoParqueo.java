@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.vigilante.parqueadero.segregation;
+package em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.salida;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
