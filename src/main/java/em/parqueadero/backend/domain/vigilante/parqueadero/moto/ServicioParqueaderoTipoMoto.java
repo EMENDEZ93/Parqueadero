@@ -49,16 +49,16 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 
 	@Override
 	public boolean esValidoVehiculoDto(VehiculoDto vehiculo) throws PreconditionException {
-
+		
 		if (vehiculo.getPlaca().trim().isEmpty()) {
 			throw new PreconditionException(ConstantExcep.PLACA_NO_VALIDA);
 		}
 
-		if (vehiculo.getTipoVehiculo().trim().isEmpty()) {
+		if (vehiculo.getTipoVehiculo().trim().isEmpty() ) {
 			throw new PreconditionException(ConstantExcep.TIPO_VEHICULO_NO_VALIDO);
 		}
 
-		if (vehiculo.getCilindraje() == 0) {
+		if (vehiculo.getCilindraje() <= 0) {
 			throw new PreconditionException(ConstantExcep.CILINDRAJE_NO_VALIDO);
 		}
 
