@@ -42,7 +42,8 @@ public class VigilanteControllerTest {
 		vehiculo.setTipoVehiculo("Moto");
 
 		mockMvc.perform(post("/registro/ingreso/vehiculo/parqueadero").contentType(MediaType.APPLICATION_JSON)
-				.content(convertToJson(vehiculo))).andExpect(status().isOk());
+				.content(convertToJson(vehiculo)))
+				.andExpect(status().isOk());
 	}
 
 	public String convertToJson(VehiculoDto vehiculo) throws JsonProcessingException {
