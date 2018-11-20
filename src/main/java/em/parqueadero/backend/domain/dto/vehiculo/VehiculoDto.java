@@ -1,9 +1,12 @@
 package em.parqueadero.backend.domain.dto.vehiculo;
 
+import em.parqueadero.backend.domain.dto.vehiculo.validacion.uniqueplaca.UniquePlaca;
+
 public class VehiculoDto {
 
 	private int idVehiculo;
 
+	@UniquePlaca(message = "Existe un vehiculo parqueado con esta placa!!!")
 	private String placa;
 
 	private String tipoVehiculo;

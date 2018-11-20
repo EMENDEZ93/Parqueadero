@@ -37,8 +37,8 @@ public class VigilanteController {
 	@PostMapping("/registro/ingreso/vehiculo/parqueadero")
 	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoDto vehiculo) throws PreconditionException {
 		vigilante.ingresoVehiculoParqueadero(vehiculo);
-	}
-
+	}	
+	
 	@GetMapping("/registro/salida/vehiculo/parqueadero/{idParqueaderoEntity}")
 	public FacturaDto salidaVehiculoParqueadero(
 			@PathVariable(value = "idParqueaderoEntity") int idParqueaderoEntity) throws PreconditionException {
