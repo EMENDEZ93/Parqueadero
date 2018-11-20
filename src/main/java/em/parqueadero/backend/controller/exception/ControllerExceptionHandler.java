@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
-import em.parqueadero.backend.domain.exception.preconditionexception.TrmException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -17,11 +16,6 @@ public class ControllerExceptionHandler {
 	@ExceptionHandler(value = { PreconditionException.class })
 	protected ResponseEntity<Object> preconditionException(PreconditionException exception) {
 		return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-	}
-
-	@ExceptionHandler(value = { TrmException.class })
-	protected ResponseEntity<Object> trmException(TrmException exception) {
-		return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(value = { MethodArgumentNotValidException.class })
