@@ -17,7 +17,7 @@ import em.parqueadero.backend.domain.vigilante.parqueadero.ServicioParqueoSegunT
 import em.parqueadero.backend.domain.vigilante.parqueadero.carro.ServicioParqueaderoTipoCarro;
 import em.parqueadero.backend.domain.vigilante.parqueadero.moto.ServicioParqueaderoTipoMoto;
 
-public class FactoryTest {
+public class ServicioParqueoSegunTipoVehiculoTest {
 
 	private ServicioParqueoSegunTipoVehiculo factory;
 
