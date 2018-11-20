@@ -49,7 +49,7 @@ public interface CalcularCostoParqueo {
 		String tiempo = "";
 		int horasDeParqueo = obtenerDiferenciaEnHoras(fechaIngreso, fechaSalida);
 		int diasPorPagar = horasDeParqueo / CondicionesParqueaderoConstant.HORAS_AL_DIA;
-		if (diasPorPagar > 0) {
+		if (diasPorPagar > CondicionesParqueaderoConstant.MENOS_DE_UN_DIA) {
 			horasDeParqueo = horasDeParqueo - (CondicionesParqueaderoConstant.HORAS_AL_DIA * diasPorPagar);
 			if (horasDeParqueo >= CondicionesParqueaderoConstant.HORAS_MINIMA_PARA_GENERAR_COBRO_POR_DIA) {
 				diasPorPagar++;

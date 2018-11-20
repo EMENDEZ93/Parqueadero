@@ -79,26 +79,25 @@ public class ServicioParqueaderoTipoCarro implements VigilanteService, LugarDisp
 
 	@Override
 	public void crearRegistroVehiculoEnParqueadero(VehiculoEntity vehiculoEntity) throws PreconditionException {
-		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = new RegistroVehiculoParqueaderoEntity();
-		registroVehiculoParqueaderoEntity.setVehiculoEntity(vehiculoEntity);
+		RegistroVehiculoParqueaderoEntity registroVehiculoParqueadero = new RegistroVehiculoParqueaderoEntity();
+		registroVehiculoParqueadero.setVehiculoEntity(vehiculoEntity);
 
-		parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity);
+		parqueaderoJpaRepository.save(registroVehiculoParqueadero);
 	}
 
 	@Override
 	public FacturaDto salidaVehiculoParqueadero(int idParqueaderoEntity) throws PreconditionException {
-		RegistroVehiculoParqueaderoEntity registroVehiculoParqueaderoEntity = parqueaderoJpaRepository
-				.getOne(idParqueaderoEntity);
-		registroVehiculoParqueaderoEntity.setSeEncuentraParqueado(false);
-		registroVehiculoParqueaderoEntity.setFechaSalida(LocalDateTime.now());
-		registroVehiculoParqueaderoEntity
-				.setTiempoParqueado(obtenerTiempoParqueado(registroVehiculoParqueaderoEntity.getFechaIngreso(),
-						registroVehiculoParqueaderoEntity.getFechaSalida()));
-		registroVehiculoParqueaderoEntity
-				.setCosto(calcularCostoParqueo(registroVehiculoParqueaderoEntity, tipoVehiculoJpaRepository));
-	
-		return RegistroVehiculoParqueaderoBuilder.convertirRegistroVehiculoParqueaderoEntityAFacturaDto(
-				parqueaderoJpaRepository.save(registroVehiculoParqueaderoEntity));
+		RegistroVehiculoParqueaderoEntity registroSalida = parqueaderoJpaRepository.getOne(idParqueaderoEntity);
+
+		registroSalida.setSeEncuentraParqueado(false);
+		registroSalida.setFechaSalida(LocalDateTime.now());
+		registroSalida.setTiempoParqueado(
+				obtenerTiempoParqueado(registroSalida.getFechaIngreso(), registroSalida.getFechaSalida()));
+
+		registroSalida.setCosto(calcularCostoParqueo(registroSalida, tipoVehiculoJpaRepository));
+
+		return RegistroVehiculoParqueaderoBuilder
+				.convertirRegistroVehiculoParqueaderoEntityAFacturaDto(parqueaderoJpaRepository.save(registroSalida));
 	}
 
 }

@@ -15,4 +15,5 @@ public final class CondicionesParqueaderoConstant {
 	public static final int CILINDRAJE_LIMITE_SIN_RECARGO = 500;
 	public static final double COSTO_RECARGO_CILINDRAJE = 2000;
 	public static final String LETRA_INICIAL = "A";
+	public static final int MENOS_DE_UN_DIA = 0;
 }
