@@ -15,7 +15,7 @@ import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosPa
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.parqueadero.TipoVehiculoFactory;
+import em.parqueadero.backend.domain.vigilante.parqueadero.ServicioParqueoSegunTipoVehiculo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.ExisteVehiculoParqueado;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.VehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
@@ -26,7 +26,7 @@ import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero
 public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParqueado, VehiculosParqueados {
 
 	@Autowired
-	private TipoVehiculoFactory tipoVehiculo;
+	private ServicioParqueoSegunTipoVehiculo servicioParqueoSegunTipoVehiculo;
 
 	@Autowired
 	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -49,11 +49,11 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 
 		if (placaIniciConA(vehiculo)) {
 			ingresoVehiculoSoloDomingoLunes();
-			tipoVehiculo.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			servicioParqueoSegunTipoVehiculo.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
 
 		} else {
 
-			tipoVehiculo.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
+			servicioParqueoSegunTipoVehiculo.getService(vehiculo).ingresoVehiculoParqueadero(vehiculo);
 
 		}
 
@@ -74,7 +74,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 			VehiculoDto vehiculo = VehiculoBuilder.convertirVehiculoEntityADto(
 					parqueaderoJpaRepository.getOne(idParqueaderoEntity).getVehiculoEntity());
 
-			return tipoVehiculo.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
+			return servicioParqueoSegunTipoVehiculo.getService(vehiculo).salidaVehiculoParqueadero(idParqueaderoEntity);
 		}
 		throw new PreconditionException(ConstantExcep.VEHICULO_NO_SE_ENCUENTRA_PARQUEADERO);
 

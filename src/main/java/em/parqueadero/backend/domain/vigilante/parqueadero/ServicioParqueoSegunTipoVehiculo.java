@@ -12,7 +12,7 @@ import em.parqueadero.backend.domain.vigilante.parqueadero.carro.ServicioParquea
 import em.parqueadero.backend.domain.vigilante.parqueadero.moto.ServicioParqueaderoTipoMoto;
 
 @Service
-public class TipoVehiculoFactory { 
+public class ServicioParqueoSegunTipoVehiculo { 
 
 	@Autowired
 	private ServicioParqueaderoTipoMoto servicioParqueaderoTipoMoto;

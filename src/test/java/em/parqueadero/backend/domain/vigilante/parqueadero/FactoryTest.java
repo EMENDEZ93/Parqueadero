@@ -13,17 +13,17 @@ import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.parqueadero.TipoVehiculoFactory;
+import em.parqueadero.backend.domain.vigilante.parqueadero.ServicioParqueoSegunTipoVehiculo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.carro.ServicioParqueaderoTipoCarro;
 import em.parqueadero.backend.domain.vigilante.parqueadero.moto.ServicioParqueaderoTipoMoto;
 
 public class FactoryTest {
 
-	private TipoVehiculoFactory factory;
+	private ServicioParqueoSegunTipoVehiculo factory;
 
 	@Before
 	public void setUp() {
-		factory = Mockito.spy(TipoVehiculoFactory.class);
+		factory = Mockito.spy(ServicioParqueoSegunTipoVehiculo.class);
 	}
 
 	@Test
