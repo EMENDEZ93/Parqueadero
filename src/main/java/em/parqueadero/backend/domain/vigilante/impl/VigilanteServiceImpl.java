@@ -17,13 +17,13 @@ import em.parqueadero.backend.domain.exception.preconditionexception.Preconditio
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.ServicioParqueoSegunTipoVehiculo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.ExisteVehiculoParqueado;
-import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.VehiculosParqueados;
+import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.ObtenerVehiculosParqueados;
 import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
 import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
 
 @Service("vigilante")
-public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParqueado, VehiculosParqueados {
+public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoParqueado, ObtenerVehiculosParqueados {
 
 	@Autowired
 	private ServicioParqueoSegunTipoVehiculo servicioParqueoSegunTipoVehiculo;
@@ -81,7 +81,7 @@ public class VigilanteServiceImpl implements VigilanteService, ExisteVehiculoPar
 	}
 
 	@Override
-	public List<VehiculosParqueadosDto> vehiculosParqueados() {
+	public List<VehiculosParqueadosDto> obtenerVehiculosParqueados() {
 
 		List<VehiculosParqueadosDto> parqueaderoModels = new ArrayList<>();
 		parqueaderoJpaRepository.getAllBySeEncuentraParqueadoIsTrue().stream().forEach(parqueaderoEntity -> parqueaderoModels

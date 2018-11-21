@@ -14,7 +14,7 @@ public class VehiculoBuilderTest {
 	public void convertirVehiculoModelAEntityTest() {
 	
 		// arrange
-		VehiculoDto vehiculoModel = new VehiculoTestDataBuilder().buildModel();
+		VehiculoDto vehiculoModel = new VehiculoTestDataBuilder().buildDto();
 		VehiculoEntity vehiculoEntity = null;
 		
 		// act

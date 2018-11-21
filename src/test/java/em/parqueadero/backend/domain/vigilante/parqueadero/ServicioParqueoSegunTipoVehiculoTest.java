@@ -30,7 +30,7 @@ public class ServicioParqueoSegunTipoVehiculoTest {
 	public void factorygetServiceMotoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoDto moto = new VehiculoTestDataBuilder().setTipoVehiculo(CondicionesParqueaderoConstant.MOTO).buildModel();
+		VehiculoDto moto = new VehiculoTestDataBuilder().setTipoVehiculo(CondicionesParqueaderoConstant.MOTO).buildDto();
 		when(factory.getService(moto)).thenReturn(new ServicioParqueaderoTipoMoto());
 
 		// act
@@ -45,7 +45,7 @@ public class ServicioParqueoSegunTipoVehiculoTest {
 	public void factorygetServiceCarroTest() throws PreconditionException {
 
 		// arrange
-		VehiculoDto carro = new VehiculoTestDataBuilder().buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().buildDto();
 		when(factory.getService(carro)).thenReturn(new ServicioParqueaderoTipoCarro());
 
 		// act
@@ -60,7 +60,7 @@ public class ServicioParqueoSegunTipoVehiculoTest {
 	public void factorygetServiceNullTipoVehiculoTest() throws PreconditionException {
 
 		// arrange
-		VehiculoDto carro = new VehiculoTestDataBuilder().setTipoVehiculo("Camioneta").buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().setTipoVehiculo("Camioneta").buildDto();
 		
 		try {
 			

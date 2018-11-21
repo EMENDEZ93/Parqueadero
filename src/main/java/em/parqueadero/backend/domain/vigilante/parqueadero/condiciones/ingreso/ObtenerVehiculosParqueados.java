@@ -4,8 +4,8 @@ import java.util.List;
 
 import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosParqueadosDto;
 
-public interface VehiculosParqueados {
+public interface ObtenerVehiculosParqueados {
 
-	public List<VehiculosParqueadosDto> vehiculosParqueados();
+	public List<VehiculosParqueadosDto> obtenerVehiculosParqueados();
 	
 }

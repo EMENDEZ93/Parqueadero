@@ -36,10 +36,10 @@ public class MotoServiceTest {
 	public void lugarDisponibleParqueoMotoTest() throws PreconditionException {
 
 		// arrange
-		when(motoService.lugarDisponibleParqueo()).thenReturn(true);
+		when(motoService.verificarLugarDisponibleParqueo()).thenReturn(true);
 
 		// act
-		boolean lugarDisponible = motoService.lugarDisponibleParqueo();
+		boolean lugarDisponible = motoService.verificarLugarDisponibleParqueo();
 
 		// assert
 		assertTrue(lugarDisponible);
@@ -50,13 +50,13 @@ public class MotoServiceTest {
 	public void lugarNoDisponibleParqueoMotoTest() throws PreconditionException {
 
 		// arrange
-		when(motoService.lugarDisponibleParqueo())
+		when(motoService.verificarLugarDisponibleParqueo())
 				.thenThrow(new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_MOTO));
 
 		try {
 
 			// act
-			motoService.lugarDisponibleParqueo();
+			motoService.verificarLugarDisponibleParqueo();
 
 		} catch (PreconditionException e) {
 
@@ -72,7 +72,7 @@ public class MotoServiceTest {
 
 		// arrange
 		VehiculoDto moto = new VehiculoTestDataBuilder().setPlaca("AC500").setTipoVehiculo(CondicionesParqueaderoConstant.MOTO)
-				.setCilindraje(100).buildModel();
+				.setCilindraje(100).buildDto();
 
 		// act
 		boolean datosValidos = motoServiceImpl.esValidoVehiculoDto(moto);
@@ -87,7 +87,7 @@ public class MotoServiceTest {
 
 		// arrange
 		VehiculoDto moto = new VehiculoTestDataBuilder().setPlaca("").setTipoVehiculo(CondicionesParqueaderoConstant.MOTO)
-				.setCilindraje(100).buildModel();
+				.setCilindraje(100).buildDto();
 
 		try {
 
@@ -108,7 +108,7 @@ public class MotoServiceTest {
 
 		// arrange
 		VehiculoDto moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo("").setCilindraje(100)
-				.buildModel();
+				.buildDto();
 
 		try {
 
@@ -129,7 +129,7 @@ public class MotoServiceTest {
 
 		// arrange
 		VehiculoDto moto = new VehiculoTestDataBuilder().setPlaca("AC50").setTipoVehiculo(CondicionesParqueaderoConstant.MOTO)
-				.setCilindraje(0).buildModel();
+				.setCilindraje(0).buildDto();
 
 		try {
 
@@ -155,7 +155,7 @@ public class MotoServiceTest {
 		registroVehiculoParqueaderoEntity.setVehiculoEntity(moto);
 
 		// act
-		double recargo = motoServiceImpl.condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity);
+		double recargo = motoServiceImpl.validarCondicionCilindrajeRecargo(registroVehiculoParqueaderoEntity);
 
 		// assert
 		assertEquals(CondicionesParqueaderoConstant.COSTO_RECARGO_CILINDRAJE, recargo, 0.0);
@@ -171,7 +171,7 @@ public class MotoServiceTest {
 		registroVehiculoParqueaderoEntity.setVehiculoEntity(moto);
 
 		// act
-		double recargo = motoServiceImpl.condicionCilindrajeRecargo(registroVehiculoParqueaderoEntity);
+		double recargo = motoServiceImpl.validarCondicionCilindrajeRecargo(registroVehiculoParqueaderoEntity);
 
 		// assert
 		assertEquals(0.0, recargo, 0.0);

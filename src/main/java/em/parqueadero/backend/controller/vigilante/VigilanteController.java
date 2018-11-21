@@ -17,7 +17,7 @@ import em.parqueadero.backend.domain.dto.registrovehiculoparqueadero.VehiculosPa
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.VehiculosParqueados;
+import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.ObtenerVehiculosParqueados;
 
 @CrossOrigin
 @RestController
@@ -27,7 +27,7 @@ public class VigilanteController {
 	private VigilanteService vigilante;
 
 	@Autowired
-	private VehiculosParqueados vehiculosParqueados;
+	private ObtenerVehiculosParqueados vehiculosParqueados;
 
 	@PostMapping("/registro/ingreso/vehiculo/parqueadero")
 	public void ingresoVehiculoParqueadero(@Valid @RequestBody VehiculoDto vehiculo) throws PreconditionException {
@@ -41,8 +41,8 @@ public class VigilanteController {
 	}
 
 	@GetMapping("/vehiculos/parqueados")
-	public List<VehiculosParqueadosDto> vehiculosParqueados() {
-		return vehiculosParqueados.vehiculosParqueados();
+	public List<VehiculosParqueadosDto> getVehiculosParqueados() {
+		return vehiculosParqueados.obtenerVehiculosParqueados();
 	}
 
 }

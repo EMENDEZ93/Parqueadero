@@ -35,7 +35,7 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}	
 	
-	public VehiculoDto buildModel() {
+	public VehiculoDto buildDto() {
 		VehiculoDto vehiculo = new VehiculoDto();
 		vehiculo.setPlaca(this.placa);
 		vehiculo.setTipoVehiculo(this.tipoVehiculo);

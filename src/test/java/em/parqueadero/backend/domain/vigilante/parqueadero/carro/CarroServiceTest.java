@@ -29,10 +29,10 @@ public class CarroServiceTest {
 	public void lugarDisponibleParqueoCarroTest() throws PreconditionException {
 
 		// arrange
-		when(carroService.lugarDisponibleParqueo()).thenReturn(true);
+		when(carroService.verificarLugarDisponibleParqueo()).thenReturn(true);
 
 		// act
-		boolean lugarDisponibleCarro = carroService.lugarDisponibleParqueo();
+		boolean lugarDisponibleCarro = carroService.verificarLugarDisponibleParqueo();
 
 		// assert
 		assertTrue(lugarDisponibleCarro);
@@ -43,13 +43,13 @@ public class CarroServiceTest {
 	public void lugarNoDisponibleParqueoCarroTest() throws PreconditionException {
 
 		// arrange
-		when(carroService.lugarDisponibleParqueo())
+		when(carroService.verificarLugarDisponibleParqueo())
 				.thenThrow(new PreconditionException(ConstantExcep.NO_HAY_LUGAR_DISPONIBLE_CARRO));
 
 		try {
 
 			// act
-			carroService.lugarDisponibleParqueo();
+			carroService.verificarLugarDisponibleParqueo();
 
 		} catch (PreconditionException e) {
 
@@ -64,7 +64,7 @@ public class CarroServiceTest {
 	public void validarDatosVehiculoTipoCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoDto carro = new VehiculoTestDataBuilder().buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().buildDto();
 
 		// act
 		boolean datosValidos = carroServiceImpl.esValidoVehiculoDto(carro);
@@ -78,7 +78,7 @@ public class CarroServiceTest {
 	public void placaNoValidaCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoDto carro = new VehiculoTestDataBuilder().setPlaca("").buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().setPlaca("").buildDto();
 
 		try {
 
@@ -97,7 +97,7 @@ public class CarroServiceTest {
 	public void tipoVehiculoNoValidoVacioCarro() throws PreconditionException {
 
 		// arrange
-		VehiculoDto carro = new VehiculoTestDataBuilder().setTipoVehiculo("").buildModel();
+		VehiculoDto carro = new VehiculoTestDataBuilder().setTipoVehiculo("").buildDto();
 
 		try {
 

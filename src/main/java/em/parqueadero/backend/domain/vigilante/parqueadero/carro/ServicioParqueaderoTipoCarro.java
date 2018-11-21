@@ -14,7 +14,7 @@ import em.parqueadero.backend.domain.vigilante.VigilanteService;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.CrearRegistroVehiculoEnParqueadero;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.CrearVehiculo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.EsValidoVehiculoDto;
-import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.LugarDisponibleParqueadero;
+import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.VerificarLugarDisponibleParqueadero;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.salida.CalcularCostoParqueo;
 import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
@@ -25,7 +25,7 @@ import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class ServicioParqueaderoTipoCarro implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto,
+public class ServicioParqueaderoTipoCarro implements VigilanteService, VerificarLugarDisponibleParqueadero, EsValidoVehiculoDto,
 		CrearVehiculo, CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class ServicioParqueaderoTipoCarro implements VigilanteService, LugarDisp
 	private PreciosJpaRepository tipoVehiculoJpaRepository;
 
 	@Override
-	public boolean lugarDisponibleParqueo() throws PreconditionException {
+	public boolean verificarLugarDisponibleParqueo() throws PreconditionException {
 		if (parqueaderoJpaRepository.getAllParqueaderoEntityByCarroAndParqueado()
 				.size() < CondicionesParqueaderoConstant.LIMITE_CARROS_PARQUEADOS) {
 			return true;
@@ -63,7 +63,7 @@ public class ServicioParqueaderoTipoCarro implements VigilanteService, LugarDisp
 	@Override
 	public void ingresoVehiculoParqueadero(VehiculoDto vehiculo) throws PreconditionException {
 		esValidoVehiculoDto(vehiculo);
-		lugarDisponibleParqueo();
+		verificarLugarDisponibleParqueo();
 		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
 		crearRegistroVehiculoEnParqueadero(vehiculoEntity);
 	}

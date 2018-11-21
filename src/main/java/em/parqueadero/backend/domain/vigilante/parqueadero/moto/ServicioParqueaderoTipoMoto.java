@@ -11,11 +11,11 @@ import em.parqueadero.backend.domain.dto.factura.FacturaDto;
 import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.domain.exception.preconditionexception.PreconditionException;
 import em.parqueadero.backend.domain.vigilante.VigilanteService;
-import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.CondicionCilindrajeRecargo;
+import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.ValidarCondicionCilindrajeRecargo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.CrearRegistroVehiculoEnParqueadero;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.CrearVehiculo;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.EsValidoVehiculoDto;
-import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.LugarDisponibleParqueadero;
+import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.ingreso.VerificarLugarDisponibleParqueadero;
 import em.parqueadero.backend.domain.vigilante.parqueadero.condiciones.salida.CalcularCostoParqueo;
 import em.parqueadero.backend.persistence.builder.vehiculo.RegistroVehiculoParqueaderoBuilder;
 import em.parqueadero.backend.persistence.builder.vehiculo.VehiculoBuilder;
@@ -26,8 +26,8 @@ import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero
 import em.parqueadero.backend.persistence.repository.vehiculo.VehiculoJpaRepository;
 
 @Service
-public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDisponibleParqueadero, EsValidoVehiculoDto,
-		CrearVehiculo, CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo, CondicionCilindrajeRecargo {
+public class ServicioParqueaderoTipoMoto implements VigilanteService, VerificarLugarDisponibleParqueadero, EsValidoVehiculoDto,
+		CrearVehiculo, CrearRegistroVehiculoEnParqueadero, CalcularCostoParqueo, ValidarCondicionCilindrajeRecargo {
 
 	@Autowired
 	private RegistroVehiculoParqueaderoJpaRepository parqueaderoJpaRepository;
@@ -39,7 +39,7 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 	private PreciosJpaRepository tipoVehiculoJpaRepository;
 
 	@Override
-	public boolean lugarDisponibleParqueo() throws PreconditionException {
+	public boolean verificarLugarDisponibleParqueo() throws PreconditionException {
 		if (parqueaderoJpaRepository.getAllParqueaderoEntityByMotoAndParqueado()
 				.size() < CondicionesParqueaderoConstant.LIMITE_MOTOS_PARQUEADAS) {
 			return true;
@@ -69,7 +69,7 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 	@Override
 	public void ingresoVehiculoParqueadero(VehiculoDto vehiculo) throws PreconditionException {
 		esValidoVehiculoDto(vehiculo);
-		lugarDisponibleParqueo();
+		verificarLugarDisponibleParqueo();
 		VehiculoEntity vehiculoEntity = crearVehiculo(vehiculo);
 		crearRegistroVehiculoEnParqueadero(vehiculoEntity);
 	}
@@ -99,7 +99,7 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 		registroSalida.setSeEncuentraParqueado(false);
 		registroSalida.setFechaSalida(LocalDateTime.now());
 		registroSalida.setCosto(calcularCostoParqueo(registroSalida, tipoVehiculoJpaRepository)
-				+ condicionCilindrajeRecargo(registroSalida));
+				+ validarCondicionCilindrajeRecargo(registroSalida));
 		registroSalida.setTiempoParqueado(
 				obtenerTiempoParqueado(registroSalida.getFechaIngreso(), registroSalida.getFechaSalida()));
 		return RegistroVehiculoParqueaderoBuilder
@@ -107,7 +107,7 @@ public class ServicioParqueaderoTipoMoto implements VigilanteService, LugarDispo
 	}
 
 	@Override
-	public double condicionCilindrajeRecargo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueadero) {
+	public double validarCondicionCilindrajeRecargo(RegistroVehiculoParqueaderoEntity registroVehiculoParqueadero) {
 		if (registroVehiculoParqueadero.getVehiculoEntity()
 				.getCilindraje() > CondicionesParqueaderoConstant.CILINDRAJE_LIMITE_SIN_RECARGO) {
 			return CondicionesParqueaderoConstant.COSTO_RECARGO_CILINDRAJE;
