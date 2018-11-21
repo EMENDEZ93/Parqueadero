@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import em.parqueadero.backend.databuilder.TipoVehiculoTestDataBuilder;
 import em.parqueadero.backend.domain.dto.precios.PreciosDto;
-import em.parqueadero.backend.domain.dto.vehiculo.VehiculoDto;
 import em.parqueadero.backend.persistence.builder.vehiculo.PreciosBuilder;
 import em.parqueadero.backend.persistence.entity.precios.PreciosEntity;
 
