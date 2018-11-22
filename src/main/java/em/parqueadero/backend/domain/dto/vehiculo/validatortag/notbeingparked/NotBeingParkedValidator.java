@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.dto.vehiculo.validacion.uniqueplaca;
+package em.parqueadero.backend.domain.dto.vehiculo.validatortag.notbeingparked;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

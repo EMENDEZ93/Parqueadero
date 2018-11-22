@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.dto.vehiculo.validacion.existtipovehiculo;
+package em.parqueadero.backend.domain.dto.vehiculo.validatortag.existtipovehiculo;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

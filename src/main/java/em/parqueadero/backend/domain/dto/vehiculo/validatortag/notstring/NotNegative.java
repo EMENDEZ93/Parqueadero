@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.dto.vehiculo.validacion.existtipovehiculo;
+package em.parqueadero.backend.domain.dto.vehiculo.validatortag.notstring;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -11,8 +11,8 @@ import javax.validation.Payload;
 
 @Target({ FIELD })
 @Retention(RUNTIME)
-@Constraint(validatedBy = { ExistTipoVehiculoValidator.class })
-public @interface ExistTipoVehiculo {
+@Constraint(validatedBy = { NotNegativeValidator.class })
+public @interface NotNegative {
 
 	String message();
 

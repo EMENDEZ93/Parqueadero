@@ -1,4 +1,4 @@
-package em.parqueadero.backend.domain.dto.vehiculo.validacion.notstring;
+package em.parqueadero.backend.domain.dto.vehiculo.validatortag.notstring;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

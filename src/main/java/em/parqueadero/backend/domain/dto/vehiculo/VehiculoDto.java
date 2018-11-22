@@ -3,9 +3,9 @@ package em.parqueadero.backend.domain.dto.vehiculo;
 import javax.validation.constraints.NotNull;
 
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
-import em.parqueadero.backend.domain.dto.vehiculo.validacion.existtipovehiculo.ExistTipoVehiculo;
-import em.parqueadero.backend.domain.dto.vehiculo.validacion.notstring.NotNegative;
-import em.parqueadero.backend.domain.dto.vehiculo.validacion.uniqueplaca.NotBeingParked;
+import em.parqueadero.backend.domain.dto.vehiculo.validatortag.existtipovehiculo.ExistTipoVehiculo;
+import em.parqueadero.backend.domain.dto.vehiculo.validatortag.notbeingparked.NotBeingParked;
+import em.parqueadero.backend.domain.dto.vehiculo.validatortag.notstring.NotNegative;
 
 public class VehiculoDto {
 
