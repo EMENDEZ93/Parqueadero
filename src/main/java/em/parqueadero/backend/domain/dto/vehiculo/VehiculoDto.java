@@ -5,13 +5,13 @@ import javax.validation.constraints.NotNull;
 import em.parqueadero.backend.domain.constant.exception.ConstantExcep;
 import em.parqueadero.backend.domain.dto.vehiculo.validacion.existtipovehiculo.ExistTipoVehiculo;
 import em.parqueadero.backend.domain.dto.vehiculo.validacion.notstring.NotNegative;
-import em.parqueadero.backend.domain.dto.vehiculo.validacion.uniqueplaca.UniquePlaca;
+import em.parqueadero.backend.domain.dto.vehiculo.validacion.uniqueplaca.NotBeingParked;
 
 public class VehiculoDto {
 
 	private int idVehiculo;
 
-	@UniquePlaca(message = ConstantExcep.VEHICULO_PARQUEADO_CON_ESTA_PLACA)
+	@NotBeingParked(message = ConstantExcep.VEHICULO_PARQUEADO_CON_ESTA_PLACA)
 	@NotNull(message = ConstantExcep.PLACA_NO_VALIDA)
 	private String placa;
 

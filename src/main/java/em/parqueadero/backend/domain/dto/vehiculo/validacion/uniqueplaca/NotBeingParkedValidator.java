@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import em.parqueadero.backend.persistence.repository.registrovehiculoparqueadero.RegistroVehiculoParqueaderoJpaRepository;
 
-public class UniquePlacaValidator implements ConstraintValidator<UniquePlaca, String> {
+public class NotBeingParkedValidator implements ConstraintValidator<NotBeingParked, String> {
 
 	@Autowired
 	private RegistroVehiculoParqueaderoJpaRepository registroVehiculoParqueaderoJpaRepository;

@@ -11,8 +11,8 @@ import javax.validation.Payload;
 
 @Target({ FIELD })
 @Retention(RUNTIME)
-@Constraint(validatedBy = { UniquePlacaValidator.class })
-public @interface UniquePlaca {
+@Constraint(validatedBy = { NotBeingParkedValidator.class })
+public @interface NotBeingParked {
 
 	String message();
 
